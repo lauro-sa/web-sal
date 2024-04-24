@@ -44,31 +44,21 @@ export const transicionPagina = {
   },
 };
 
-export const desvanecer = (posicion) => {
-  return {
-    visible: {
-      y: 0,
-      x: 0,
-      opacity: 1,
-      transition: {
-        type: "tween",
-        duration: 1.4,
-        delay: 0.5,
-        ease: [0.25, 0.25, 0.25, 0.75],
-      },
+export const entrarDesdeCentro = {
+  hidden: {
+    scale: 0, // Comienza en cero para escalar desde el centro
+    opacity: 0, // Comienza completamente transparente
+  },
+  visible: {
+    scale: 1, // Escala hasta el tamaño normal
+    opacity: 1, // Completamente visible
+    transition: {
+      type: "spring", // Transición dinámica tipo 'spring'
+      stiffness: 150,
+      damping: 20,
+      delay: 0.5, // Retraso opcional
     },
-    hidden: {
-      y: position === "bottom" ? -80 : 0,
-      x: position === "right" ? 80 : 0,
-      opacity: 0,
-      transition: {
-        type: "tween",
-        duration: 0.5,
-        delay: 0.5,
-        ease: [0.25, 0.25, 0.25, 0.25],
-      },
-    },
-  };
+  },
 };
 
 export const entrarAbajoArriba = {

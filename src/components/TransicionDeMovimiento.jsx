@@ -4,7 +4,7 @@ import React from "react";
 import { motion } from "framer-motion";
 import {
   entradaLogo,
-  desvanecer,
+  entrarDesdeCentro,
   entrarAbajoArriba,
   entrarIzquierdaDerecha,
   entrarDerechaIzquierda,
@@ -90,8 +90,23 @@ const TransicionDeMovimiento = ({
         },
       };
       break;
-    default:
-      variants = desvanecer(); // Asegúrate de que esta función maneja un caso predeterminado adecuadamente
+
+    case "entrarDesdeCentro":
+      variants = entrarDesdeCentro;
+      if (delay) {
+        // Si hay un delay, lo aplicamos a todas las transiciones
+        const adjustedTransitions = {
+          ...entrarDesdeCentro.visible.transition,
+          delay: delay,
+        };
+        variants = {
+          hidden: { ...entrarDesdeCentro.hidden },
+          visible: {
+            ...entrarDesdeCentro.visible,
+            transition: adjustedTransitions,
+          },
+        };
+      }
       break;
   }
 

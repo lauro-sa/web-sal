@@ -37,14 +37,14 @@ function InfoSal() {
           <a
             href="/path/to/CV-Sebastian-Code-ES.pdf" // Cambia la URL al archivo real
             download
-            className="px-4 py-3  text-center text-[10px]  md:text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-texto-claro hover:bg-violeta-marca hover:text-white transition-colors"
+            className="px-4 py-3  text-center text-[10px] md:text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
           >
             Descargar CV (ES)
           </a>
           <a
             href="/path/to/CV-Sebastian-Code-EN.pdf" // Cambia la URL al archivo real
             download
-            className="px-4 py-3  text-center text-[10px] md:text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-texto-claro hover:bg-violeta-marca hover:text-white transition-colors"
+            className="px-4 py-3  text-center text-[10px] md:text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
           >
             Download CV (EN)
           </a>

@@ -8,6 +8,7 @@ import SobreMi from "./pages/SobreMi";
 import Proyectos from "./pages/Proyectos";
 import Laboratorio from "./pages/Laboratorio";
 import Contacto from "./pages/Contacto";
+import Servicios from "./pages/Servicios";
 
 function App() {
   return (
@@ -23,6 +24,7 @@ function App() {
             <Route path="/proyectos" element={<Proyectos />} />
             <Route path="/laboratorio" element={<Laboratorio />} />
             <Route path="/contacto" element={<Contacto />} />
+            <Route path="/servicios" element={<Servicios />} />
           </Routes>
         </div>
       </div>

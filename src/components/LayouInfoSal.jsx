@@ -11,12 +11,12 @@ function LayouInfoSal() {
           <img
             src="/img/sal-01.png"
             alt="SAL"
-            style={{ width: "100%", height: "auto" }}
+            style={{ width: "100%", height: "auto", opacity: "0.8" }}
             draggable="false"
           />
         </div>
         <p className="text-sm tracking-wider md:text-left">Developer</p>
-        <p className="text-sm tracking-wider md:text-left">2020 - Presente</p>
+        <p className="text-sm tracking-wider md:text-left">2019 - Presente</p>
       </ContenedorLayou1>
       <ContenedorLayou2 className="">
         <InfoSal />

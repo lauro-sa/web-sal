@@ -38,3 +38,46 @@
   }
 }
 /* Estilos para InfoPrincipal */
+
+
+/* Animaciones para Icones Redes Sociales SVG */
+
+@keyframes titileo {
+  0%, 100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0.6;
+  }
+}
+
+.icon {
+  animation: titileo 4s ease-in-out infinite;
+  transition: transform 0.3s ease;
+  cursor: pointer;
+}
+
+.icon:hover {
+  transform: scale(1.25);
+}
+
+/* Animaciones para Icones Redes Sociales SVG */
+
+
+/* Personalización de los puntos de paginación con colores específicos en Servicios.jsx */
+
+.swiper-pagination {
+  width: 100% !important;           /* Asegura que el contenedor tenga el ancho completo */
+  bottom: 0px !important;          /* Ajusta la distancia desde el fondo del swiper */
+  /* Alinea los puntos al centro horizontalmente */
+}
+
+.swiper-pagination-bullet {
+  background: #8964e8 !important; /* Usa !important para garantizar que se aplique */
+}
+
+.swiper-pagination-bullet-active {
+  background: #8964e8 !important;
+}
+
+/* Personalización de los puntos de paginación con colores específicos en Servicios.jsx */
