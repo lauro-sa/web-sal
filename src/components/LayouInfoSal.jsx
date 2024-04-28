@@ -1,6 +1,6 @@
 import React from "react";
-import ContenedorLayou1 from "./ContenedorLayou1";
-import ContenedorLayou2 from "./ContenedorLayou2";
+import ContenedorLayou1 from "./Contenedores/ContenedorLayou1";
+import ContenedorLayou2 from "./Contenedores/ContenedorLayou2";
 import InfoSal from "./InfoSal";
 
 function LayouInfoSal() {

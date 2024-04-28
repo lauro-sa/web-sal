@@ -1,21 +1,19 @@
 import React from "react";
-import ContenedorPagina from "../components/ContenedorPagina";
-import InfoPrincipal from "../components/InfoPrincipal";
+import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
+
 import LayouInfoSal from "../components/LayouInfoSal";
-import InfoServicios from "../components/InfoServicios";
-import LayouHabilidades from "../components/LayouHabilidades";
-import RedesSociales from "../components/RedesSociales";
 
 function SobreMi() {
   return (
-    <ContenedorPagina>
-      <InfoPrincipal />
-      <LayouInfoSal />
-      <InfoServicios />
-      <LayouHabilidades />
-      <RedesSociales />
-
-      <h1>HOLAAAAAA</h1>
+    <ContenedorPagina className="px-4">
+      {" "}
+      <h1 className="mt-16">Sobre Mi</h1>
+      <p className="my-8">Aquí podras leer infirmacion de mi carrera.</p>
+      <div className=" w-80 h-96 m-24 bg-slate-600"></div>
+      <div className=" w-80 h-96 m-24 bg-slate-600"></div>
+      <div className=" w-80 h-96 m-24 bg-slate-600"></div>
+      <div className=" w-80 h-96 m-24 bg-slate-600"></div>
+      <div className=" w-80 h-96 m-24 bg-slate-600"></div>
     </ContenedorPagina>
   );
 }

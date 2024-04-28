@@ -146,3 +146,83 @@ export const servicios = [
 ];
 
 // Datos de los servicios ofrecidos
+
+// Datos de los proyectos
+export const proyectos = [
+  {
+    id: 1,
+    images: [
+      "/img/proyectos/he-01.png",
+      "/img/proyectos/he-02.png",
+      "/img/proyectos/he-04.png",
+    ],
+    title: "Web - HERREELEC",
+    description:
+      "Este proyecto es una muestra de innovación y funcionalidad, desarrollado con las últimas tecnologías web como React JS, SCSS y Firebase, ofreciendo una experiencia de usuario fluida y moderna. Se trata del sitio web de un taller especializado en portones, diseñado para facilitar la gestión de visitas programadas directamente a través de la página. Además de proporcionar información detallada sobre servicios y productos, la web dispone de un sistema de reservas intuitivo que simplifica la programación de citas para los clientes. La integración de formularios y la base de datos de Firebase aseguran la eficiencia y seguridad en la gestión de la información.",
+    tecnologias: " React JS, SCSS, Firebase",
+    link: "https://www.herreelec.com/",
+  },
+  {
+    id: 2,
+    images: [
+      "/img/proyectos/EV-03.png",
+      "/img/proyectos/EV-01.png",
+      "/img/proyectos/EV-02.png",
+    ],
+    title: "Logo - Equipo Volar",
+    description:
+      "Este logotipo fue creado para un equipo interdisciplinario de profesionales dedicados a la salud integral de niños y niñas, reflejando el espíritu de crecimiento y libertad. Representa a una persona elevando un barrilete, que funciona como metáfora de superación y aspiraciones. Los colores azul y coral aportan serenidad y energía positiva, mientras que la tipografía contemporánea subraya nuestra profesionalidad. Diseñado en Photoshop, este trabajo ejemplifica cómo la simplicidad visual puede comunicar un mensaje potente y optimista.",
+    tecnologias: " React JS, SCSS, Firebase",
+    link: "https://ejemplo-link-proyecto2.com",
+  },
+  {
+    id: 3,
+    images: [
+      "https://source.unsplash.com/random/300x200?sig=7",
+      "https://source.unsplash.com/random/300x200?sig=8",
+      "https://source.unsplash.com/random/300x200?sig=9",
+    ],
+    title: "Web - Lactancia 24/7",
+    description:
+      "Conectando el mundo con soluciones que trascienden las barreras tradicionales para un futuro mejor.",
+    tecnologias: " React JS, SCSS, Firebase",
+    link: "https://ejemplo-link-proyecto3.com",
+  },
+  {
+    id: 4,
+    images: [
+      "https://source.unsplash.com/random/300x200?sig=10",
+      "https://source.unsplash.com/random/300x200?sig=11",
+      "https://source.unsplash.com/random/300x200?sig=12",
+    ],
+    title: "PWA - HE",
+    description:
+      "Aprovecha el poder de la inteligencia artificial para crear sistemas más inteligentes y eficientes.",
+    tecnologias: " React JS, SCSS, Firebase",
+    link: "https://ejemplo-link-proyecto4.com",
+  },
+  {
+    id: 5,
+    images: ["https://source.unsplash.com/random/300x200?sig=13"],
+    title: "Web - EsAr digital",
+    description:
+      "Reinventando la manera en que interactuamos con la tecnología digital día a día.",
+    tecnologias: " React JS, SCSS, Firebase",
+    link: "https://ejemplo-link-proyecto5.com",
+  },
+  {
+    id: 6,
+    images: [
+      "https://source.unsplash.com/random/300x200?sig=16",
+
+      "https://source.unsplash.com/random/300x200?sig=18",
+    ],
+    title: "Web - Ventas Online",
+    description:
+      "Creando conexiones duraderas a través de plataformas digitales que fomentan la comunidad y la colaboración.",
+    tecnologias: " React JS, SCSS, Firebase",
+    link: "https://ejemplo-link-proyecto6.com",
+  },
+];
+
+// Datos de los proyectos

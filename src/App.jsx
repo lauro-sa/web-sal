@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import Header from "./components/Header";
+
 import Navbar from "./components/Navbar";
 import FondoParticulasX from "./components/FondoParticulasX";
 import Inicio from "./pages/Inicio";
@@ -9,14 +9,14 @@ import Proyectos from "./pages/Proyectos";
 import Laboratorio from "./pages/Laboratorio";
 import Contacto from "./pages/Contacto";
 import Servicios from "./pages/Servicios";
+import Footer from "./components/Footer";
 
 function App() {
   return (
     <Router>
-      <div className="App relative">
+      <div className="App flex flex-col min-h-screen relative">
         <FondoParticulasX />
-        <div className="relative z-10">
-          {" "}
+        <div className="flex flex-col flex-grow relative z-10">
           <Navbar />
           <Routes>
             <Route path="/" element={<Inicio />} />
@@ -26,6 +26,7 @@ function App() {
             <Route path="/contacto" element={<Contacto />} />
             <Route path="/servicios" element={<Servicios />} />
           </Routes>
+          <Footer />
         </div>
       </div>
     </Router>

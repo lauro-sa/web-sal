@@ -1,9 +1,10 @@
 import React from "react";
 
 function ContenedorPagina({ children, className }) {
-  // Asegúrate de que los valores de padding-top son válidos en Tailwind CSS
-  const clasesCombinadas = `w-full text-center pt-14 ${className || ""}`;
-
+  // Añade 'mx-auto' para asegurar el centrado horizontal
+  const clasesCombinadas = `w-full mx-auto text-center pt-14 max-w-screen-xl ${
+    className || ""
+  }`;
   return <div className={clasesCombinadas}>{children}</div>;
 }
 

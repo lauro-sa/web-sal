@@ -1,6 +1,6 @@
 import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
-import Contenedor from "./Contenedor";
+import Contenedor from "./Contenedores/Contenedor";
 import "../estilos.css";
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
 import { servicios } from "../config/datos";
@@ -37,6 +37,9 @@ function InfoServicios() {
   return (
     <TransicionDeMovimiento type="entrarDesdeCentro">
       <Contenedor className="h-full ">
+        <p className="text-lg uppercase tracking-wider mb-4 text-violeta-marca">
+          Servicios
+        </p>
         <Swiper
           ref={swiperRef}
           modules={[Pagination, Navigation, Autoplay]}

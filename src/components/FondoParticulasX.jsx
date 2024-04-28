@@ -41,22 +41,22 @@ const FondoParticulasX = () => {
   const [dots, setDots] = useState([]);
   const spacing = 100;
   const [speed, setSpeed] = useState(0.15); // Estado para controlar la velocidad
+  const extraBottomOffset = 100; // Offset adicional para que los puntos aparezcan más abajo
 
   const initializeDots = () => {
-    const numRows = Math.ceil(contentHeight / spacing) + 0;
+    const numRows = Math.ceil(contentHeight / spacing) + 1; // Ajustado para asegurar cobertura completa
     const tempDots = [];
 
     for (let j = 0; j < numRows; j++) {
       for (let i = 0; i < numColumns; i++) {
         tempDots.push({
-          top: j * spacing,
+          top: j * spacing + extraBottomOffset, // Agregar el offset aquí
           left: `${(100 / numColumns) * i + 100 / numColumns / 2 - 1.5 / 2}%`,
         });
       }
     }
     return tempDots;
   };
-
   useEffect(() => {
     let tempDots = initializeDots();
     setDots(tempDots);

@@ -1,5 +1,5 @@
 import React from "react";
-import ContenedorPagina from "../components/ContenedorPagina";
+import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
 
 function Servicios() {
   return (

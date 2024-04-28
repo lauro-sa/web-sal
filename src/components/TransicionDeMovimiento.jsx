@@ -19,24 +19,15 @@ const TransicionDeMovimiento = ({
 }) => {
   let variants;
   switch (type) {
-    case "entradaLogo":
-      // Aplicar el delay a cada transición específica dentro de las propiedades animadas
+    case "entrarAbajoArriba":
       variants = {
-        hidden: {
-          ...entradaLogo.hidden,
-        },
+        hidden: { y: 20, opacity: 0 },
         visible: {
-          ...entradaLogo.visible,
+          y: 0,
+          opacity: 1,
           transition: {
-            ...entradaLogo.visible.transition,
-            scale: {
-              ...entradaLogo.visible.transition.scale,
-              delay: delay,
-            },
-            opacity: {
-              ...entradaLogo.visible.transition.opacity,
-              delay: delay,
-            },
+            duration: 0.2, // Más rápido
+            delay: delay,
           },
         },
       };

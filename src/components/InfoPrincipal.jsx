@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Contenedor from "../components/Contenedor";
+import Contenedor from "../components/Contenedores/Contenedor";
 
 import "../estilos.css";
 

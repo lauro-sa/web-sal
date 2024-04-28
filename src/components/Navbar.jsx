@@ -52,7 +52,7 @@ function Navbar() {
       <div className="max-w-7xl mx-auto  px-8 flex justify-between items-center w-full">
         {/* Logo */}
         {!isScrolled && (
-          <div className="flex items-center w-40">
+          <div className=" hidden md:flex items-center w-40 ">
             <img
               src="/img/logo-sal.png"
               alt="Logo"
@@ -78,7 +78,7 @@ function Navbar() {
               to="/sobre-mi"
               className={`text-sm md:text-base ${getNavLinkClass("/sobre-mi")}`}
             >
-              Sobre Mí
+              SobreMí
             </Link>
           </li>
           <li>
@@ -113,7 +113,7 @@ function Navbar() {
 
         {/* Button on the right */}
         {!isScrolled && (
-          <div className="w-40 flex justify-end items-center">
+          <div className=" hidden md:flex w-40  justify-end items-center">
             <button className="hidden px-4 py-2 text-center text-[10px] md:text-sm  tracking-wider font-bold rounded-xl border text-black/80  bg-violeta-marca border-texto-claro hover:border-violeta-marca hover:bg-texto-claro transition-colors">
               Contactame
             </button>

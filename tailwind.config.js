@@ -10,6 +10,7 @@ export const theme = {
       'azul-custom': '#2e3c51',
       'texto-claro': 'rgba(191, 199, 210, 1)',
       'acento-rosa': '#c42ed4',
+      'fondo-oscuro': '#10151d',
     },
     backgroundColor: {
       'fondo-oscuro': '#10151d',
@@ -19,7 +20,8 @@ export const theme = {
     },
     transitionDuration: {
       '300': '300ms'
-    }
+    },
+
   },
 };
 export const plugins = [];

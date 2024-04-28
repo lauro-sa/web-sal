@@ -1,5 +1,5 @@
-// RedesSociales.jsx
 import React from "react";
+import "../estilos.css";
 import {
   EmailIcon,
   LinkedInIcon,
@@ -7,50 +7,66 @@ import {
   GitHubIcon,
   InstagramIcon,
 } from "../config/IconosRedes";
+import TransicionDeMovimiento from "./TransicionDeMovimiento"; // Importa el componente de transición
 
-function RedesSociales({ iconsToShow = [] }) {
+function RedesSociales({ iconsToShow = [], animateIcons = false }) {
+  const baseDelay = 0.1; // Base delay en segundos
+  const delayIncrement = 0.1; // Incremento de delay para cada icono adicional
+
+  // Ahora renderIcon también recibe un className
+  const renderIcon = (Icon, delayMultiplier, url, className) => {
+    const iconElement = (
+      <Icon
+        size="25"
+        color="#8964e8"
+        className={`icon ${animateIcons ? "animated" : ""} ${className}`}
+        url={url}
+      />
+    );
+    return animateIcons ? (
+      <TransicionDeMovimiento
+        type="entrarAbajoArriba"
+        delay={baseDelay + delayMultiplier * delayIncrement}
+      >
+        {iconElement}
+      </TransicionDeMovimiento>
+    ) : (
+      iconElement
+    );
+  };
+
   return (
-    <div className="flex items-center justify-center space-x-4">
-      {iconsToShow.includes("linkedin") && (
-        <LinkedInIcon
-          size="24"
-          color="#8964e8"
-          className="icon"
-          url="https://www.linkedin.com/in/yourprofile"
-        />
-      )}
-      {iconsToShow.includes("github") && (
-        <GitHubIcon
-          size="26"
-          color="#8964e8"
-          className="icon"
-          url="https://github.com/yourusername"
-        />
-      )}
-      {iconsToShow.includes("email") && (
-        <EmailIcon
-          size="25"
-          color="#8964e8"
-          className="icon"
-          url="mailto:your-email@example.com"
-        />
-      )}
-      {iconsToShow.includes("whatsapp") && (
-        <WhatsAppIcon
-          size="25"
-          color="#8964e8"
-          className="icon"
-          url="https://wa.me/yourphonenumber"
-        />
-      )}
-      {iconsToShow.includes("instagram") && (
-        <InstagramIcon
-          size="25"
-          color="#8964e8"
-          className="icon"
-          url="https://www.instagram.com/yourusername"
-        />
-      )}
+    <div className="flex items-center justify-center space-x-4 ">
+      {iconsToShow.includes("linkedin") &&
+        renderIcon(
+          LinkedInIcon,
+          0,
+          "https://www.linkedin.com/in/yourprofile",
+          "linkedin-icon"
+        )}
+      {iconsToShow.includes("github") &&
+        renderIcon(
+          GitHubIcon,
+          1,
+          "https://github.com/yourusername",
+          "github-icon"
+        )}
+      {iconsToShow.includes("email") &&
+        renderIcon(EmailIcon, 2, "mailto:your-email@example.com", "email-icon")}
+      {iconsToShow.includes("whatsapp") &&
+        renderIcon(
+          WhatsAppIcon,
+          3,
+          "https://wa.me/yourphonenumber",
+          "whatsapp-icon"
+        )}
+      {iconsToShow.includes("instagram") &&
+        renderIcon(
+          InstagramIcon,
+          4,
+          "https://www.instagram.com/yourusername",
+          "instagram-icon"
+        )}
     </div>
   );
 }

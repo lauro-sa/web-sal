@@ -1,5 +1,5 @@
 import React from "react";
-import TransicionDeMovimiento from "./TransicionDeMovimiento";
+import TransicionDeMovimiento from "../TransicionDeMovimiento";
 
 function ContenedorLayout1({ children, className }) {
   // Aplicamos las clases base y luego añadimos las condiciones para los estilos específicos

@@ -1,5 +1,5 @@
 import React from "react";
-import TransicionDeMovimiento from "./TransicionDeMovimiento";
+import TransicionDeMovimiento from "../TransicionDeMovimiento";
 
 function ContenedorLayout2({ children, className }) {
   // Mantenemos todas las clases originales, asegurando que siempre tenga todos los bordes.

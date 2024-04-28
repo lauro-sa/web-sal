@@ -1,6 +1,7 @@
 /* estilos.css*/
 
-/* Estilos para InfoPrincipal */
+/* --------------------------------- Estilos para InfoPrincipal --------------------------------- */
+
 .animated-text {
   background: linear-gradient(to right, #8964e8, #8964e8, #c42ed4);
   -webkit-background-clip: text;
@@ -9,10 +10,8 @@
 
   font-weight: 600;
 
-  animation: tracking-in-expand 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both; /* Reusando la animación existente */
+  animation: tracking-in-expand 2s cubic-bezier(0.215, 0.610, 0.355, 1.000) both; 
 }
-
-
 @-webkit-keyframes tracking-in-expand {
   0% {
     letter-spacing: -0.5em;
@@ -37,10 +36,13 @@
     opacity: 1;
   }
 }
-/* Estilos para InfoPrincipal */
+/* --------------------------------- Estilos para InfoPrincipal --------------------------------- */
 
 
-/* Animaciones para Icones Redes Sociales SVG */
+
+
+
+/* --------------------------------- Animaciones para Icones Redes Sociales SVG  --------------------------------- */
 
 @keyframes titileo {
   0%, 100% {
@@ -61,7 +63,10 @@
   transform: scale(1.25);
 }
 
-/* Animaciones para Icones Redes Sociales SVG */
+/* --------------------------------- Animaciones para Icones Redes Sociales SVG  --------------------------------- */
+
+
+
 
 
 /* Personalización de los puntos de paginación con colores específicos en Servicios.jsx */
@@ -81,3 +86,197 @@
 }
 
 /* Personalización de los puntos de paginación con colores específicos en Servicios.jsx */
+
+
+
+
+/* --------------------------------- Modales --------------------------------- */
+
+/* Efecto Texto Modales */
+.tracking-in-contract-bck-top {
+  background: linear-gradient(to right, #8964e8, #8964e8, #c42ed4);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+
+	-webkit-animation: tracking-in-contract-bck-top 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+	        animation: tracking-in-contract-bck-top 1s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}          
+
+@-webkit-keyframes tracking-in-contract-bck-top {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(400px) translateY(-300px);
+            transform: translateZ(400px) translateY(-300px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+            transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes tracking-in-contract-bck-top {
+  0% {
+    letter-spacing: 1em;
+    -webkit-transform: translateZ(400px) translateY(-300px);
+            transform: translateZ(400px) translateY(-300px);
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    -webkit-transform: translateZ(0) translateY(0);
+            transform: translateZ(0) translateY(0);
+    opacity: 1;
+  }
+}
+/* Efecto Texto Modales */
+
+/* --------------------------------- Modales --------------------------------- */
+
+
+
+
+/* --------------------------------- Estilo Medidor calidad imagen conversor --------------------------------- */
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 16px;
+  height: 16px;
+  background: #8964e8;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+input[type="range"]::-moz-range-thumb {
+  width: 16px;
+  height: 16px;
+  background: #8964e8;
+  cursor: pointer;
+  border-radius: 50%;
+}
+
+/* --------------------------------- Estilo Medidor calidad imagen conversor --------------------------------- */
+
+
+
+/* --------------------------------- Estilos del footer --------------------------------- */
+
+/* Footer Border */
+.borde-gradiente-hover {
+  position: relative;
+  border: solid 1.5px transparent; /* Borde transparente para mantener el layout */
+  transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out; /* Transición suave para el cambio de color y sombra */
+}
+.borde-gradiente-hover:before {
+  content: "";
+  position: absolute;
+  top: -3px; /* Ajuste basado en el grosor deseado del borde */
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  z-index: -1;
+  background: linear-gradient(to left, #c42ed4 0%, #b460e5 50%, #8964e8 100%);
+  border-radius: inherit; /* Asegúrate de que los bordes estén redondeados si el elemento original también lo está */
+  transition: opacity 0.3s ease-in-out;
+  opacity: 0; /* Inicialmente transparente */
+}
+.borde-gradiente-hover:hover {
+  border-color: transparent; /* Hace transparente el borde original en hover */
+}
+.borde-gradiente-hover:hover:before {
+  opacity: 1; /* Mostrar el borde gradiente al pasar el mouse */
+}
+.border-azul-custom {
+  border-color: #0056b3; /* Suponiendo que #0056b3 es el color azul custom */
+}
+
+
+/* Estilos para la animacion Footer saltarin */
+
+.jello-vertical {
+	-webkit-animation: jello-vertical 1.9s both;
+	        animation: jello-vertical 1.9s both;
+}
+
+@-webkit-keyframes jello-vertical {
+  0%, 100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+  30% {
+    -webkit-transform: scale3d(0.95, 1.05, 1);
+            transform: scale3d(0.95, 1.05, 1);
+  }
+  40% {
+    -webkit-transform: scale3d(1.05, 0.95, 1);
+            transform: scale3d(1.05, 0.95, 1);
+  }
+  50% {
+    -webkit-transform: scale3d(0.98, 1.02, 1);
+            transform: scale3d(0.98, 1.02, 1);
+  }
+  65% {
+    -webkit-transform: scale3d(1.02, 0.98, 1);
+            transform: scale3d(1.02, 0.98, 1);
+  }
+  75% {
+    -webkit-transform: scale3d(0.99, 1.01, 1);
+            transform: scale3d(0.99, 1.01, 1);
+  }
+  100% {
+    -webkit-transform: scale3d(1, 1, 1);
+            transform: scale3d(1, 1, 1);
+  }
+}
+
+@keyframes jello-vertical {
+  0%, 100% {
+    transform: scale3d(1, 1, 1);
+  }
+  30% {
+    transform: scale3d(0.95, 1.05, 1);
+  }
+  40% {
+    transform: scale3d(1.05, 0.95, 1);
+  }
+  50% {
+    transform: scale3d(0.98, 1.02, 1);
+  }
+  65% {
+    transform: scale3d(1.02, 0.98, 1);
+  }
+  75% {
+    transform: scale3d(0.99, 1.01, 1);
+  }
+  100% {
+    transform: scale3d(1, 1, 1);
+  }
+}
+/* Estilos para la animacion Footer saltarin  */
+
+/* Estilos para la animacion Footer saltarin Hover */
+
+@keyframes saltito {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+.jello-hover {
+  animation: saltito 0.6s ease-in-out;
+}
+
+/* Estilos para la animacion Footer saltarin Hover */
+
+/* --------------------------------- Estilos del footer --------------------------------- */
+
