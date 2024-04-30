@@ -1,0 +1,85 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;700&display=swap');
+
+.signature {
+  position: relative;
+  font-size: 22px;
+  cursor: pointer;
+  overflow: hidden;
+  width: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  transition: width .5s ease;
+  font-family: 'Roboto Mono', monospace;
+}
+
+.signature:hover {
+  width: 160px;
+  font-size: 24px;
+}
+
+.main-text.sa, .main-text.l {
+  transition: transform 1.2s ease;
+}
+
+.signature:hover .main-text.sa {
+  transform: translateX(-48px);
+}
+
+.signature:hover .main-text.l {
+  transform: translateX(36px);
+}
+
+.hover-text {
+  position: absolute;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  opacity: 0;
+  transition: opacity 0.5s, transform 0.5s;
+  transform: scale(0);
+  top: 0;
+  left: 50%;
+  transform-origin: center;
+  text-align: center;
+  padding: 4px 0; /* Agrega un poco de padding para ayudar con el centrado */
+}
+
+.signature:hover .hover-text {
+  opacity: 1;
+  transform: translate(-50%, -10%) scale(1); /* Ajusta este valor para mover el texto verticalmente */
+}
+
+.name, .title {
+  display: block;
+  width: 100%;
+  text-align: center;
+  animation: none; /* Previene la animación hasta el hover */
+  font-size: 12px;
+  margin: 0;
+
+}
+
+.name {
+  margin-bottom: -4px; /* Ajusta este valor para controlar el espacio entre 'StianLauro' y 'Developer' */
+}
+
+.signature:hover .name, .signature:hover .title {
+  animation: tracking-in-expand 1.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  
+}
+
+@keyframes tracking-in-expand {
+  0% {
+    letter-spacing: -0.5em;
+    opacity: 0;
+  }
+  40% {
+    opacity: 0.6;
+  }
+  100% {
+    opacity: 1;
+  }
+}

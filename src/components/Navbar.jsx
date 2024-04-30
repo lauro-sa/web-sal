@@ -54,11 +54,11 @@ function Navbar() {
         {!isScrolled && (
           <div className=" hidden md:flex items-center w-40 ">
             <img
-              src="/img/logo-sal.png"
+              src="/img/logo-sal-2.png"
               alt="Logo"
-              className="md:block hidden h-10 w-auto "
+              className="md:block hidden h-6 w-auto "
             />
-            <h1 className="animated-text text-lg uppercase tracking-wider mx-1 ">
+            <h1 className="animated-text text-xl uppercase tracking-wider mx-1 ">
               S7ian Code
             </h1>
           </div>

@@ -13,6 +13,7 @@ const Footer = () => {
     "whatsapp",
     "github",
     "instagram",
+    "formulario",
   ];
 
   const alternarPie = () => {
@@ -83,7 +84,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="flex justify-center items-center fixed -bottom-2 left-0 right-0">
+    <div className="flex justify-center items-center fixed -bottom-3 left-0 right-0">
       <div
         ref={referenciaAlPie}
         className=" max-w-[98%] md:max-w-[800px] w-full p-0.5 transition-all duration-300 ease-in-out"

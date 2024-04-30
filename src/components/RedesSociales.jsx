@@ -6,6 +6,7 @@ import {
   WhatsAppIcon,
   GitHubIcon,
   InstagramIcon,
+  FormularioIcon,
 } from "../config/IconosRedes";
 import TransicionDeMovimiento from "./TransicionDeMovimiento"; // Importa el componente de transición
 
@@ -60,6 +61,10 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
           "https://wa.me/yourphonenumber",
           "whatsapp-icon"
         )}
+
+      {iconsToShow.includes("formulario") &&
+        renderIcon(FormularioIcon, 4, "", "formulario-icon")}
+
       {iconsToShow.includes("instagram") &&
         renderIcon(
           InstagramIcon,

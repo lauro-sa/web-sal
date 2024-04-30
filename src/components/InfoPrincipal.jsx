@@ -17,7 +17,7 @@ function InfoPrincipal() {
           <h1 className="flex flex-col items-center justify-center md:flex-row md:items-end h-full text-center">
             <span className="text-2xl uppercase tracking-wider">Soy</span>
             <span className="animated-text text-4xl uppercase tracking-wider mx-2">
-              Sebastian Code
+              S7ian Code
             </span>
             <span className="text-2xl uppercase tracking-wider">
               Programador

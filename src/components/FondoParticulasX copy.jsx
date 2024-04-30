@@ -15,10 +15,10 @@ const Dot = ({ top, left }) => {
 };
 
 const DiffuseLight = () => {
-  const size = "800px";
+  const size = "800px"; // Tamaño del círculo
   const style = {
     position: "absolute",
-    top: "-550px",
+    top: "-550px", // Ajusta este valor para controlar cuánto del círculo quieres mostrar
     left: "50%",
     transform: "translateX(-50%)",
     width: size,
@@ -40,52 +40,36 @@ const FondoParticulasX = () => {
   );
   const [dots, setDots] = useState([]);
   const spacing = 100;
-  const extraBottomOffset = 100;
-  const speed = 0.15;
+  const [speed, setSpeed] = useState(0.15); // Estado para controlar la velocidad
+  const extraBottomOffset = 100; // Offset adicional para que los puntos aparezcan más abajo
 
   const initializeDots = () => {
-    const numRows = Math.ceil(contentHeight / spacing) + 1;
+    const numRows = Math.ceil(contentHeight / spacing) + 1; // Ajustado para asegurar cobertura completa
     const tempDots = [];
 
     for (let j = 0; j < numRows; j++) {
       for (let i = 0; i < numColumns; i++) {
         tempDots.push({
-          top: j * spacing + extraBottomOffset,
+          top: j * spacing + extraBottomOffset, // Agregar el offset aquí
           left: `${(100 / numColumns) * i + 100 / numColumns / 2 - 1.5 / 2}%`,
         });
       }
     }
     return tempDots;
   };
-
   useEffect(() => {
+    let tempDots = initializeDots();
+    setDots(tempDots);
+
     const handleResize = () => {
       setContentHeight(
         Math.max(document.body.scrollHeight, window.innerHeight)
       );
+      setNumColumns(window.innerWidth < 800 ? 7 : 12);
     };
-
-    // MutationObserver para detectar cambios en el DOM
-    const observer = new MutationObserver((mutations) => {
-      handleResize();
-    });
-    observer.observe(document.body, {
-      childList: true,
-      subtree: true,
-      attributes: false,
-    });
-
     window.addEventListener("resize", handleResize);
-    window.addEventListener("load", handleResize);
+    window.addEventListener("load", handleResize); // Asegúrate de ajustar cuando se cargue completamente el contenido
 
-    return () => {
-      window.removeEventListener("resize", handleResize);
-      window.removeEventListener("load", handleResize);
-      observer.disconnect();
-    };
-  }, []);
-
-  useEffect(() => {
     const interval = setInterval(() => {
       setDots((currentDots) =>
         currentDots
@@ -93,16 +77,19 @@ const FondoParticulasX = () => {
             ...dot,
             top: dot.top - speed,
           }))
-          .filter((dot) => dot.top >= -spacing)
+          .map((dot) => ({
+            ...dot,
+            top: dot.top < -spacing ? contentHeight - 100 : dot.top,
+          }))
       );
     }, 16);
 
-    return () => clearInterval(interval);
+    return () => {
+      clearInterval(interval);
+      window.removeEventListener("resize", handleResize);
+      window.removeEventListener("load", handleResize);
+    };
   }, [contentHeight, numColumns, speed]);
-
-  useEffect(() => {
-    setDots(initializeDots());
-  }, [contentHeight, numColumns]);
 
   return (
     <div
