@@ -5,7 +5,7 @@ function Servicios() {
   return (
     <ContenedorPagina>
       <h1>Servicios</h1>
-      <p>Aquí puedes poner información de Servicios.</p>
+      <p>Aquí información de Servicios.</p>
     </ContenedorPagina>
   );
 }

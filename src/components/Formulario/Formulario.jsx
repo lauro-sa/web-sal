@@ -90,7 +90,7 @@ const Formulario = ({ onClose }) => {
 
           <div className="">
             <h2 className="text-sm mb-2">
-              Quieres dejarme alguna web de referencia?
+              Quieres dejarme algun link de referencia?
             </h2>
 
             <Field

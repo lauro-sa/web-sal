@@ -4,27 +4,31 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Tus estilos personalizados */
+/* Estilos personalizados */
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-
 }
 
-body{
-  font-family: 'Open Sans', sans-serif;
-  font-family: 'Google Sans Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
+html, body {
+  min-height: 100vh;
+  height: 100%;
+  background-color: #10151d; 
+  color: #fff; /* Opcional: Color de texto */
+  font-family: 'Open Sans', sans-serif, 'Google Sans Display', ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, 'Noto Sans', sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol', 'Noto Color Emoji';
   letter-spacing: -.025em;
   @apply text-texto-claro; 
-
-
-  min-height: 100vh;
-
-  background-color: #10151d;
-
 }
 
+/* Contenedor principal de la aplicación */
+#root {
+  min-height: 100vh;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  background-color: inherit; 
+}
 
 /* Estilos globales para la barra de desplazamiento */
 ::-webkit-scrollbar {
@@ -45,7 +49,6 @@ body{
   background-color: #8964e833; 
   cursor: pointer;
 }
-/* Estilos globales para la barra de desplazamiento */
 
 @layer utilities {
   .neon-effect {
@@ -78,4 +81,3 @@ body{
     opacity: 0.6;
   }
 }
-

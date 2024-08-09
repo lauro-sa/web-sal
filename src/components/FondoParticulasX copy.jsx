@@ -18,7 +18,7 @@ const DiffuseLight = () => {
   const size = "800px"; // Tamaño del círculo
   const style = {
     position: "absolute",
-    top: "-550px", // Ajusta este valor para controlar cuánto del círculo quieres mostrar
+    top: "-550px", // controlar cuánto del círculo se muestran
     left: "50%",
     transform: "translateX(-50%)",
     width: size,
@@ -50,7 +50,7 @@ const FondoParticulasX = () => {
     for (let j = 0; j < numRows; j++) {
       for (let i = 0; i < numColumns; i++) {
         tempDots.push({
-          top: j * spacing + extraBottomOffset, // Agregar el offset aquí
+          top: j * spacing + extraBottomOffset, // Agregar el offset
           left: `${(100 / numColumns) * i + 100 / numColumns / 2 - 1.5 / 2}%`,
         });
       }
@@ -68,7 +68,7 @@ const FondoParticulasX = () => {
       setNumColumns(window.innerWidth < 800 ? 7 : 12);
     };
     window.addEventListener("resize", handleResize);
-    window.addEventListener("load", handleResize); // Asegúrate de ajustar cuando se cargue completamente el contenido
+    window.addEventListener("load", handleResize); // ajustar cuando se cargue completamente el contenido
 
     const interval = setInterval(() => {
       setDots((currentDots) =>

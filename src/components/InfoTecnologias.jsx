@@ -2,12 +2,10 @@ import React, { useState } from "react";
 
 import ModalTechnology from "./ModalTechnology";
 import { technologyData } from "../config/technologyData";
-import { motion } from "framer-motion"; // Asegúrate de importar motion si no está importado
-
+import { motion } from "framer-motion"; 
 import "../estilos.css";
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
-import CardTecnologias from "./CardTecnologias"; // Corregido el typo en el nombre del componente
-
+import CardTecnologias from "./CardTecnologias"; 
 const containerVariants = {
   // Definición de las variantes del contenedor
   hidden: { opacity: 0 },

@@ -8,7 +8,7 @@ import {
   InstagramIcon,
   FormularioIcon,
 } from "../config/IconosRedes";
-import TransicionDeMovimiento from "./TransicionDeMovimiento"; // Importa el componente de transición
+import TransicionDeMovimiento from "./TransicionDeMovimiento"; 
 
 function RedesSociales({ iconsToShow = [], animateIcons = false }) {
   const baseDelay = 0.1; // Base delay en segundos

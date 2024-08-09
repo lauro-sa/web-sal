@@ -1,7 +1,7 @@
 // CardGeneradorContrasenas.jsx
 import React from "react";
-import ModalCustom from "../../ModalCustom"; // Asegúrate de importar ModalCustom
-import GeneradorContra from "./GeneradorContra"; // Importa el componente del generador
+import ModalCustom from "../../ModalCustom"; 
+import GeneradorContra from "./GeneradorContra"; 
 
 const CardGeneradorContrasenas = () => {
   const [modalOpen, setModalOpen] = React.useState(false);

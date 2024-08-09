@@ -72,8 +72,8 @@
 /* Personalización de los puntos de paginación con colores específicos en Servicios.jsx */
 
 .swiper-pagination {
-  width: 100% !important;           /* Asegura que el contenedor tenga el ancho completo */
-  bottom: 0px !important;          /* Ajusta la distancia desde el fondo del swiper */
+  width: 100% !important;           
+  bottom: 0px !important;          
   /* Alinea los puntos al centro horizontalmente */
 }
 

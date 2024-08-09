@@ -1,6 +1,6 @@
 // ModalFormulario.js
 import React from "react";
-import { useModal } from "../components/ModalContext"; // Ajusta la ruta si es necesario
+import { useModal } from "../components/ModalContext";
 
 const ModalFormulario = () => {
   const { isModalVisible, ocultarModal } = useModal();

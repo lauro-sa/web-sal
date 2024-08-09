@@ -10,7 +10,7 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  // Puedes definir los iconos que deseas mostrar como un array de strings
+  // los iconos en un array de strings
   const iconosDeseados = ["email", "linkedin", "github"];
 
   useEffect(() => {
@@ -54,11 +54,11 @@ function Navbar() {
         {!isScrolled && (
           <div className=" hidden md:flex items-center w-40 ">
             <img
-              src="/img/logo-sal-2.png"
+              src="/img/logo-sal-3.png"
               alt="Logo"
-              className="md:block hidden h-6 w-auto "
+              className="md:block hidden h-8 w-auto "
             />
-            <h1 className="animated-text text-xl uppercase tracking-wider mx-1 ">
+            <h1 className="animated-text text-l uppercase tracking-wider mx-1 ">
               S7ian Code
             </h1>
           </div>

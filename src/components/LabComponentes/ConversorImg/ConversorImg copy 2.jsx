@@ -69,7 +69,7 @@ const ConversorImg = () => {
 
   const { getRootProps, getInputProps } = useDropzone({
     onDrop,
-    accept: "image/*", // Asegúrate de aceptar solo imágenes
+    accept: "image/*",
   });
 
   return (

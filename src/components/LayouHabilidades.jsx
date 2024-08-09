@@ -1,12 +1,12 @@
 import React from "react";
-import ContenedorLayou1 from "./Contenedores/ContenedorLayou1";
-import ContenedorLayou2 from "./Contenedores/ContenedorLayou2";
+import ContenedorLayou3 from "./Contenedores/ContenedorLayou3";
+import ContenedorLayou4 from "./Contenedores/ContenedorLayou4";
 import InfoTecnologias from "./InfoTecnologias";
 
 function LayouHabilidades() {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center m-4">
-      <ContenedorLayou1 className="flex flex-col justify-center items-center ">
+      <ContenedorLayou3 className="flex flex-col justify-center items-center ">
         <p className="text-lg uppercase tracking-wider mb-4 text-violeta-marca">
           Habilidades
         </p>
@@ -16,10 +16,10 @@ function LayouHabilidades() {
           calidad me diferencia, ofreciéndote soluciones efectivas y visualmente
           atractivas.
         </p>
-      </ContenedorLayou1>
-      <ContenedorLayou2 className="">
+      </ContenedorLayou3>
+      <ContenedorLayou4 className="">
         <InfoTecnologias />
-      </ContenedorLayou2>
+      </ContenedorLayou4>
     </div>
   );
 }

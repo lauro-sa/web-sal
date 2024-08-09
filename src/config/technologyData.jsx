@@ -16,7 +16,7 @@ import {
   MetaADS,
   PWA,
   Vite,
-} from "./SVGIcons"; // Ajusta la ruta según sea necesario
+} from "./SVGIcons"; 
 
 export const technologyData = [
   {

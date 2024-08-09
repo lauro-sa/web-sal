@@ -1,6 +1,6 @@
 import { useRef, useState } from "react";
 import { CheckIcon, CircleStackIcon } from "@heroicons/react/24/outline";
-import Flama from "./Flama"; // Ajusta la ruta según sea necesario
+import Flama from "./Flama";
 
 const CardInteractivaFlama = () => {
   const cardRef = useRef(null);

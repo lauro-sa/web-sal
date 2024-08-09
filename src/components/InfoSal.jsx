@@ -35,14 +35,14 @@ function InfoSal() {
       <TransicionDeMovimiento type="entrarAbajoArriba">
         <div className="flex justify-center space-x-4">
           <a
-            href="/path/to/CV-Sebastian-Code-ES.pdf" // Cambia la URL al archivo real
+            href="/path/to/CV-Sebastian-Code-ES.pdf" // Cambiar la URL al archivo real
             download
             className="px-4 py-3  text-center text-[10px] md:text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
           >
             Descargar CV (ES)
           </a>
           <a
-            href="/path/to/CV-Sebastian-Code-EN.pdf" // Cambia la URL al archivo real
+            href="/path/to/CV-Sebastian-Code-EN.pdf" // Cambiar la URL al archivo real
             download
             className="px-4 py-3  text-center text-[10px] md:text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
           >

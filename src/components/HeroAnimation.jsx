@@ -8,14 +8,13 @@ const HeroAnimation = () => {
     >
       <div className="mtanim-slide">
         <div className="flex">
-          {/* Repite la estructura interna como en tu ejemplo original */}
+          {/* Repite la estructura interna */}
           <div className="mtanim-cell">
             <span>E</span>
           </div>
           <div className="mtanim-cell">
             <span>N</span>
           </div>
-          {/* Continúa con los demás elementos */}
         </div>
       </div>
     </div>

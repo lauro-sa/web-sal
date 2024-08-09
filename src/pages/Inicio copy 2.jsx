@@ -22,7 +22,7 @@ function Inicio() {
 
   // Controla el inicio del desplazamiento suave en función de la dirección del scroll
   const manejarDesplazamiento = (direccion) => {
-    if (estaDesplazando) return; // Previene múltiples desplazamientos simultáneos
+    if (estaDesplazando) return; // Previene múltiples desplazamientos simultáaeos
 
     establecerEstaDesplazando(true);
     const alturaSeccion = window.innerHeight;
