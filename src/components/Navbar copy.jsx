@@ -8,7 +8,7 @@ function Navbar() {
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
-  // Los iconos en un array de strings
+  // los iconos en un array de strings
   const iconosDeseados = ["email", "linkedin", "github"];
 
   useEffect(() => {
@@ -17,7 +17,7 @@ function Navbar() {
       setIsScrolled(currentScrollY > 50);
       if (currentScrollY > lastScrollY && currentScrollY > 200) {
         setIsVisible(false);
-      } else if (currentScrollY < lastScrollY || currentScrollY === 0) {
+      } else if (currentScrollY < lastScrollY) {
         setIsVisible(true);
       }
       setLastScrollY(currentScrollY);
@@ -43,24 +43,12 @@ function Navbar() {
                       ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4"
                       : "bg-transparent md:w-full"
                   }
-                  ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
+                  ${
+                    isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"
+                  }`}
     >
-      <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center w-full">
-        {/* Logo en mobile y desktop, visible solo si no se ha hecho scroll */}
-        {!isScrolled && (
-          <Link to="/" className="flex md:hidden items-center mt-4">
-            <img
-              src="/img/logo-sal-3.png"
-              alt="Logo"
-              className="h-8 w-auto mr-2"
-            />
-            <h1 className="animated-text text-l uppercase tracking-wider">
-              S7ian Code
-            </h1>
-          </Link>
-        )}
-
-        {/* Logo en desktop */}
+      <div className="max-w-7xl mx-auto  px-8 flex justify-between items-center w-full">
+        {/* Logo */}
         {!isScrolled && (
           <Link to="/" className="hidden md:flex items-center w-40">
             <img
@@ -73,11 +61,13 @@ function Navbar() {
             </h1>
           </Link>
         )}
-
         {/* Navigation Links */}
         <ul className="flex space-x-4 py-4">
           <li>
-            <Link to="/" className={`text-sm md:text-base ${getNavLinkClass("/")}`}>
+            <Link
+              to="/"
+              className={`text-sm md:text-base ${getNavLinkClass("/")}`}
+            >
               Inicio
             </Link>
           </li>
@@ -92,7 +82,9 @@ function Navbar() {
           <li>
             <Link
               to="/proyectos"
-              className={`text-sm md:text-base ${getNavLinkClass("/proyectos")}`}
+              className={`text-sm md:text-base ${getNavLinkClass(
+                "/proyectos"
+              )}`}
             >
               Proyectos
             </Link>
@@ -100,7 +92,9 @@ function Navbar() {
           <li>
             <Link
               to="/laboratorio"
-              className={`text-sm md:text-base ${getNavLinkClass("/laboratorio")}`}
+              className={`text-sm md:text-base ${getNavLinkClass(
+                "/laboratorio"
+              )}`}
             >
               Laboratorio
             </Link>
@@ -117,8 +111,8 @@ function Navbar() {
 
         {/* Button on the right */}
         {!isScrolled && (
-          <div className="hidden md:flex w-40 justify-end items-center">
-            <button className="hidden px-4 py-2 text-center text-[10px] md:text-sm tracking-wider font-bold rounded-xl border text-black/80 bg-violeta-marca border-texto-claro hover:border-violeta-marca hover:bg-texto-claro transition-colors">
+          <div className="hidden md:flex w-40  justify-end items-center">
+            <button className="hidden px-4 py-2 text-center text-[10px] md:text-sm  tracking-wider font-bold rounded-xl border text-black/80  bg-violeta-marca border-texto-claro hover:border-violeta-marca hover:bg-texto-claro transition-colors">
               Contactame
             </button>
             <RedesSociales iconsToShow={iconosDeseados} />

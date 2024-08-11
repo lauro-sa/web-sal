@@ -84,7 +84,7 @@ const Footer = () => {
   };
 
   return (
-    <div className="flex justify-center items-center fixed -bottom-3 left-0 right-0">
+    <div className="flex justify-center items-center fixed -bottom-3 left-0 right-0 z-50">
       <div
         ref={referenciaAlPie}
         className=" max-w-[98%] md:max-w-[800px] w-full p-0.5 transition-all duration-300 ease-in-out"
@@ -100,9 +100,9 @@ const Footer = () => {
               alt="Logo"
               className="md:block hidden h-5 w-auto "
             />
-            <span className="w-28 text-sm ml-1">S7ian Code</span>
+            <span className="w-28 text-sm md:ml-1">S7ian Code</span>
             </div>
-            <span className="w-28 text-sm text-center">© - 2024</span>
+            <span className="w-28 text-sm text-end">2024</span>
           </div>
           {estaAbierto && (
             <div className="h-20 flex items-center justify-center">
