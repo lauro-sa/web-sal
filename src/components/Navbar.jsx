@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import RedesSociales from "./RedesSociales";
+import logo from '../assets/img/logo-sal-3.png';
+
+
 
 function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -38,11 +41,10 @@ function Navbar() {
   return (
     <nav
       className={`fixed top-0 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out
-                  ${
-                    isScrolled
-                      ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4"
-                      : "bg-transparent md:w-full"
-                  }
+                  ${isScrolled
+          ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4"
+          : "bg-transparent md:w-full"
+        }
                   ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
     >
       <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center w-full">
@@ -50,7 +52,7 @@ function Navbar() {
         {!isScrolled && (
           <Link to="/" className="flex md:hidden items-center mt-4">
             <img
-              src="/img/logo-sal-3.png"
+              src={logo}
               alt="Logo"
               className="h-8 w-auto mr-2"
             />
@@ -64,7 +66,7 @@ function Navbar() {
         {!isScrolled && (
           <Link to="/" className="hidden md:flex items-center w-40">
             <img
-              src="/img/logo-sal-3.png"
+              src={logo}
               alt="Logo"
               className="md:block hidden h-8 w-auto"
             />
