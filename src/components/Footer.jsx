@@ -1,5 +1,6 @@
 import React, { useState, useRef, useEffect } from "react";
 import RedesSociales from "./RedesSociales";
+import logo from '../assets/img/logo-sal-3.png';
 import "../estilos.css";
 
 const Footer = () => {
@@ -95,12 +96,12 @@ const Footer = () => {
         <div className="py-2 bg-fondo-oscuro border-t-2 border-l-2 border-r-2 rounded-t-lg borde-gradiente-hover border-azul-custom">
           <div className="h-11 border-b border-azul-custom flex justify-between items-center px-4 cursor-pointer rounded-t-lg">
             <div className="flex items-center">
-            <img
-              src="/img/logo-sal-3.png"
-              alt="Logo"
-              className="md:block hidden h-5 w-auto "
-            />
-            <span className="w-28 text-sm md:ml-1">S7ian Code</span>
+              <img
+                src={logo}
+                alt="Logo"
+                className="md:block hidden h-5 w-auto "
+              />
+              <span className="w-28 text-sm md:ml-1">S7ian Code</span>
             </div>
             <span className="w-28 text-sm text-end">2024</span>
           </div>

@@ -1,4 +1,3 @@
-// ModalCustom.jsx
 import React from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -20,8 +19,7 @@ const ModalCustom = ({ isVisible, onClose, children }) => {
           onClick={onClose}
         >
           <motion.div
-            className="rounded-lg shadow-lg p-6 z-10 max-w-xl bg-[rgba(1,1,1,0.80)] border border-violeta-marca/50
-            w-full"
+            className="rounded-lg shadow-lg p-6 z-10 max-w-xl bg-[rgba(1,1,1,0.80)] border border-violeta-marca/50 w-full flex justify-center items-center"
             onClick={(e) => e.stopPropagation()}
           >
             {children}

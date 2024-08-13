@@ -6,10 +6,14 @@ import LayouInfoSal from "../components/LayouInfoSal";
 import InfoServicios from "../components/InfoServicios";
 import LayouHabilidades from "../components/LayouHabilidades";
 import LayouProyectos from "../components/LayouProyectos";
+import BotonFlotanteVideollamada from "../components/BotonFlotanteVideollamada"; // Importa el botón flotante
 
 function Inicio() {
   return (
     <ContenedorPagina>
+      {/* Botón flotante para agendar videollamada */}
+      <BotonFlotanteVideollamada />
+      
       <div className="flex justify-center items-center min-h-screen">
         <InfoPrincipal />
       </div>
