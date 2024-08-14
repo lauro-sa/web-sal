@@ -20,7 +20,7 @@ function LayouProyectos() {
           transforman ideas en realidades impactantes.
         </p>
       </ContenedorLayou3>
-      <ContenedorLayou4 className="">
+      <ContenedorLayou4 className="mb-12">
         <InfoProyectos />
       </ContenedorLayou4>
     </div>

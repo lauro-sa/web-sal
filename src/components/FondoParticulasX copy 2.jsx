@@ -41,7 +41,7 @@ const FondoParticulasX = () => {
   const [dots, setDots] = useState([]);
   const spacing = 100;
   const extraBottomOffset = 100;
-  const speed = 0.10;
+  const speed = 0.15;
 
   const initializeDots = () => {
     const numRows = Math.ceil(contentHeight / spacing) + 1;
@@ -66,7 +66,7 @@ const FondoParticulasX = () => {
     };
 
     // MutationObserver para detectar cambios en el DOM
-    const observer = new MutationObserver(() => {
+    const observer = new MutationObserver((mutations) => {
       handleResize();
     });
     observer.observe(document.body, {
@@ -95,15 +95,6 @@ const FondoParticulasX = () => {
           }))
           .filter((dot) => dot.top >= -spacing)
       );
-
-      // Verifica si hay que generar más puntos
-      setDots((currentDots) => {
-        const numRows = Math.ceil(contentHeight / spacing) + 1;
-        if (currentDots.length < numRows * numColumns) {
-          return [...currentDots, ...initializeDots()];
-        }
-        return currentDots;
-      });
     }, 16);
 
     return () => clearInterval(interval);

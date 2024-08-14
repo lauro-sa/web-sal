@@ -25,11 +25,12 @@ const BotonFlotanteVideollamada = () => {
 
   return (
     <div>
+
       <button
-        className="fixed bottom-16 right-4 bg-violeta-marca text-white p-4 rounded-full shadow-lg hover:bg-violeta-marca/90 transition-colors flex items-center justify-center z-100 cursor-pointer"
+        className="fixed bottom-16 right-4 bg-gradiente-marca text-white p-4 rounded-full shadow-lg hover:bg-violeta-marca/90 transition-colors flex items-center justify-center z-100 cursor-pointer"
         onClick={toggleModal}
       >
-        <HiVideoCamera className="w-6 h-6" />
+        <HiVideoCamera className="w-6 h-6 transition-transform duration-300 hover:scale-110" />
       </button>
 
       <ModalCustom isVisible={isModalVisible} onClose={toggleModal}>

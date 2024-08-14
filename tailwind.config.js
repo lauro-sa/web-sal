@@ -12,6 +12,9 @@ export const theme = {
       'acento-rosa': '#c42ed4',
       'fondo-oscuro': '#10151d',
     },
+    backgroundImage: {
+      'gradiente-marca': 'linear-gradient(to right, #8964e8 0%, #7a5bdc 20%, #6e52d0 40%, #6379c4 60%, #558fd8 80%, #4c9cd0 100%)',
+    },
     backgroundColor: {
       'fondo-oscuro': '#10151d',
     },
@@ -21,7 +24,7 @@ export const theme = {
     transitionDuration: {
       '300': '300ms'
     },
-
   },
 };
 export const plugins = [];
+

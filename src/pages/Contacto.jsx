@@ -15,7 +15,7 @@ function Contacto() {
   ];
 
   return (
-    <ContenedorPagina className="px-4">
+    <ContenedorPagina className="px-4 mt-8">
       {" "}
       <p className="my-8 text-xs md:text-sm">
         Aquí puedes poner en contacto con migo por estos canales o bien completa

@@ -13,10 +13,13 @@ function InfoSal() {
       </TransicionDeMovimiento>
       <h1 className=" md:text-end ">
         <span className="text-2xl uppercase tracking-wider">
-          Hola, me llamo
+          Mi nombre es
         </span>
-        <span className="animated-text text-2xl uppercase tracking-wider ml-2">
-          Sebastian
+        <span className="animated-text text-2xl uppercase tracking-wider mx-2">
+          Sebastian 
+        </span>
+        <span className="text-2xl uppercase tracking-wider">
+         y soy
         </span>
         <br />
         <span className="text-xl uppercase tracking-wider">Programador</span>

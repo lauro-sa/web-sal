@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import RedesSociales from "./RedesSociales";
-import logo from '../assets/img/logo-01.png';
+import logo from '../assets/img/logo-03.png';
 
 
 
@@ -39,14 +39,16 @@ function Navbar() {
   };
 
   return (
-    <nav
-      className={`fixed top-0 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out
-                  ${isScrolled
-          ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4"
-          : "bg-transparent md:w-full"
-        }
-                  ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
-    >
+<nav
+  className={`fixed top-0 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out
+              ${isScrolled && lastScrollY > 30
+                ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4 border border-violeta-marca/50 shadow-md shadow-violeta-marca/30"
+                : "bg-transparent md:w-full border-none shadow-none"
+              }
+              ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
+>
+
+
       <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center w-full">
         {/* Logo en mobile y desktop, visible solo si no se ha hecho scroll */}
         {!isScrolled && (

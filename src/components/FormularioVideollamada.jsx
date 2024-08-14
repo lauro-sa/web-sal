@@ -27,9 +27,11 @@ const validateForm = (values) => {
 const FormularioVideollamada = ({ onClose }) => {
   const [selectedDate, setSelectedDate] = useState(null);
   const [selectedServices, setSelectedServices] = useState([]);
+  const [showCalendar, setShowCalendar] = useState(false);
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
+    setShowCalendar(false); // Oculta el calendario después de seleccionar una fecha
   };
 
   const handleServiceToggle = (service) => {
@@ -52,24 +54,20 @@ const FormularioVideollamada = ({ onClose }) => {
             servicios: selectedServices,
           };
           localStorage.setItem("videoCallData", JSON.stringify(dataToSave));
-
-          const formattedDate = selectedDate.toLocaleDateString("es-ES", {
-            weekday: "long",
-            year: "numeric",
-            month: "long",
-            day: "numeric",
-          });
-
           alert(
-            `📅 Agendamos tu reunión para el día ${formattedDate}. Te enviaremos un mail con el enlace para la reunión.`
+            `📅 Agendamos tu reunión para el ${selectedDate.toLocaleDateString("es-ES", {
+              weekday: "long",
+              year: "numeric",
+              month: "long",
+              day: "numeric",
+            })}. Te enviaremos un correo con el enlace para la reunión.`
           );
-
           setSubmitting(false);
           onClose();
         }, 400);
       }}
     >
-      {({ isSubmitting }) => (
+      {({ values, isSubmitting }) => (
         <Form className="space-y-6 flex flex-col p-4 w-96 bg-fondo-oscuro rounded-md">
           <div>
             <Field
@@ -101,14 +99,14 @@ const FormularioVideollamada = ({ onClose }) => {
 
           {/* Servicios seleccionados */}
           {selectedServices.length > 0 && (
-            <div className="mt-6 text-center border-t border-gray-500 pt-2">
+            <div className="mt-6 text-center">
               <h4 className="text-sm mb-2 text-white">Servicios seleccionados:</h4>
-              <div className="flex flex-wrap gap-2 justify-center">
+              <div className="flex flex-wrap gap-2 justify-center border-t border-gray-500 pt-2">
                 {selectedServices.map((service) => (
                   <span
                     key={service}
                     onClick={() => handleServiceToggle(service)}
-                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-green-900 hover:bg-red-900/20 transition-colors"
+                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-green-900 hover:bg-green-900/20 transition-colors"
                   >
                     {service}
                   </span>
@@ -119,15 +117,15 @@ const FormularioVideollamada = ({ onClose }) => {
 
           {/* Servicios disponibles */}
           <div className="mt-4">
-            <h3 className="text-sm mb-2 text-white text-center">Servicios disponibles para video consulta:</h3>
-            <div className="flex flex-wrap gap-2 justify-center ">
+            <h3 className="text-sm mb-2 text-white text-center">Selecciona los servicios:</h3>
+            <div className="flex flex-wrap gap-2 justify-center border-t border-gray-500 pt-2">
               {serviciosDisponibles
                 .filter((service) => !selectedServices.includes(service))
                 .map((service) => (
                   <span
                     key={service}
                     onClick={() => handleServiceToggle(service)}
-                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-red-900 hover:bg-green-900/20 transition-colors"
+                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-red-900 hover:bg-red-900/20 transition-colors"
                   >
                     {service}
                   </span>
@@ -136,19 +134,19 @@ const FormularioVideollamada = ({ onClose }) => {
           </div>
 
           {/* Calendario para seleccionar la fecha */}
-          <div className="flex flex-col items-center border-t border-gray-500 pt-2">
-          
-            <Calendar onChange={handleDateChange} value={selectedDate} />
-            {selectedDate && (
-              <p className="text-sm mt-2 text-white">
-                Fecha seleccionada:{" "}
-                {selectedDate.toLocaleDateString("es-ES", {
-                  weekday: "long",
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
-              </p>
+          <div className="flex flex-col items-center">
+            <h3 className="text-sm mb-2 text-white">
+              Selecciona la fecha para la videollamada:
+            </h3>
+            <button
+              type="button"
+              onClick={() => setShowCalendar(!showCalendar)}
+              className="px-4 py-2 mt-2 w-full text-center text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
+            >
+              {selectedDate ? selectedDate.toLocaleDateString("es-ES") : "Seleccionar fecha"}
+            </button>
+            {showCalendar && (
+              <Calendar onChange={handleDateChange} value={selectedDate} />
             )}
           </div>
 
@@ -158,7 +156,7 @@ const FormularioVideollamada = ({ onClose }) => {
               disabled={isSubmitting}
               className="px-4 py-2 mt-4 w-full text-center text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
             >
-              Agendar Video Consulta
+              Agendar Videollamada
             </button>
           </div>
         </Form>
