@@ -1,8 +1,6 @@
 import React from "react";
 import "../estilos.css";
 
-
-
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
 
 function InfoSal() {
@@ -11,15 +9,15 @@ function InfoSal() {
       <TransicionDeMovimiento type="entrarArribaAbajo">
         <p className="text-sm uppercase tracking-wider text-left">Sobre Mi</p>
       </TransicionDeMovimiento>
-      <h1 className=" md:text-end ">
+      <h1 className="md:text-end">
         <span className="text-2xl uppercase tracking-wider">
           Mi nombre es
         </span>
         <span className="animated-text text-2xl uppercase tracking-wider mx-2">
-          Sebastian 
+          Sebastian
         </span>
         <span className="text-2xl uppercase tracking-wider">
-         y soy
+          y soy
         </span>
         <br />
         <span className="text-xl uppercase tracking-wider">Programador</span>
@@ -38,19 +36,21 @@ function InfoSal() {
       <TransicionDeMovimiento type="entrarAbajoArriba">
         <div className="flex justify-center space-x-4">
           <a
-            href="/path/to/CV-Sebastian-Code-ES.pdf" 
+            href={`${import.meta.env.BASE_URL}assets/archivos/CV-SebastianLauro.pdf`}
             download
-            className="px-4 py-3  text-center text-[10px] md:text-sm tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
+            className="px-4 py-3 text-center text-[10px] md:text-sm tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
           >
             DESCARGAR CV (es)
           </a>
           <a
-            href="/path/to/CV-Sebastian-Code-EN.pdf" 
+            href={`${import.meta.env.BASE_URL}assets/archivos/CV-SebastianLauro.pdf`}
             download
-            className="px-4 py-3  text-center text-[10px] md:text-sm tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
+            className="px-4 py-3 text-center text-[10px] md:text-sm tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
           >
             DOWNLOAD CV (en)
           </a>
+
+
         </div>
       </TransicionDeMovimiento>
     </div>

@@ -86,7 +86,7 @@
 }
 
 .swiper-pagination-bullet {
-  background: #8964e8 !important; /* Usa !important para garantizar que se aplique */
+  background: #8964e8 !important; 
 }
 
 .swiper-pagination-bullet-active {

@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { Link, useLocation } from "react-router-dom";
 import RedesSociales from "./RedesSociales";
-import logo from '../assets/img/logo-03.png';
+import logo from '../assets/img/logo-01.png';
 
 
 

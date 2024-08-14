@@ -154,6 +154,16 @@ import imgHE04 from "../assets/img/proyectos/he-04.png";
 import imgEV01 from "../assets/img/proyectos/EV-01.png";
 import imgEV02 from "../assets/img/proyectos/EV-02.png";
 import imgEV03 from "../assets/img/proyectos/EV-03.png";
+import imgL24701 from "../assets/img/proyectos/L247-01.png";
+import imgL24702 from "../assets/img/proyectos/L247-02.png";
+import imgL24703 from "../assets/img/proyectos/L247-03.png";
+import imgPWAHE01 from "../assets/img/proyectos/PWA-HE-01.png";
+import imgPWAHE02 from "../assets/img/proyectos/PWA-HE-02.png";
+import imgPWAHE03 from "../assets/img/proyectos/PWA-HE-03.png";
+import imgEsAr01 from "../assets/img/proyectos/ESAR-01.png";
+import imgEsAr02 from "../assets/img/proyectos/ESAR-02.png";
+import imgEsAr03 from "../assets/img/proyectos/ESAR-03.png";
+import imgWVENTA01 from "../assets/img/proyectos/WVENTA-01.png";
 
 // Datos de los proyectos
 export const proyectos = [
@@ -163,7 +173,7 @@ export const proyectos = [
     title: "Web - HERREELEC",
     description:
       "Este proyecto es una muestra de innovación y funcionalidad, desarrollado con las últimas tecnologías web como React JS, SCSS y Firebase, ofreciendo una experiencia de usuario fluida y moderna. Se trata del sitio web de un taller especializado en portones, diseñado para facilitar la gestión de visitas programadas directamente a través de la página. Además de proporcionar información detallada sobre servicios y productos, la web dispone de un sistema de reservas intuitivo que simplifica la programación de citas para los clientes. La integración de formularios y la base de datos de Firebase aseguran la eficiencia y seguridad en la gestión de la información.",
-    tecnologias: " React JS, SCSS, Firebase",
+    tecnologias: "React JS, SCSS, Firebase",
     link: "https://www.herreelec.com/",
   },
   {
@@ -172,57 +182,43 @@ export const proyectos = [
     title: "Logo - Equipo Volar",
     description:
       "Este logotipo fue creado para un equipo interdisciplinario de profesionales dedicados a la salud integral de niños y niñas, reflejando el espíritu de crecimiento y libertad. Representa a una persona elevando un barrilete, que funciona como metáfora de superación y aspiraciones. Los colores azul y coral aportan serenidad y energía positiva, mientras que la tipografía contemporánea subraya nuestra profesionalidad. Diseñado en Photoshop, este trabajo ejemplifica cómo la simplicidad visual puede comunicar un mensaje potente y optimista.",
-    tecnologias: " React JS, SCSS, Firebase",
+    tecnologias: "Photoshop, Canva, Drive",
     link: "https://ejemplo-link-proyecto2.com",
   },
   {
     id: 3,
-    images: [
-      "https://source.unsplash.com/random/300x200?sig=7",
-      "https://source.unsplash.com/random/300x200?sig=8",
-      "https://source.unsplash.com/random/300x200?sig=9",
-    ],
+    images: [imgL24701, imgL24702, imgL24703],
     title: "Web - Lactancia 24/7",
     description:
-      "Conectando el mundo con soluciones que trascienden las barreras tradicionales para un futuro mejor.",
-    tecnologias: " React JS, SCSS, Firebase",
-    link: "https://ejemplo-link-proyecto3.com",
+    "Lactancia 24/7 es un sitio web diseñado para una puericultora especializada en ofrecer videollamadas y consultas relacionadas con la lactancia materna. A través de esta plataforma, las madres pueden acceder a asesoramiento profesional, solicitar artículos específicos y recibir consejos personalizados para mejorar su experiencia de lactancia. El sitio también ofrece la posibilidad de contactar directamente a la puericultora para programar consultas o adquirir productos recomendados.",
+    tecnologias: "HTML5, CSS, Photoshop",
+    link: "https://lactancia247.com",
   },
   {
     id: 4,
-    images: [
-      "https://source.unsplash.com/random/300x200?sig=10",
-      "https://source.unsplash.com/random/300x200?sig=11",
-      "https://source.unsplash.com/random/300x200?sig=12",
-    ],
+    images: [imgPWAHE01, imgPWAHE02, imgPWAHE03],
     title: "PWA - HE",
     description:
-      "Aprovecha el poder de la inteligencia artificial para crear sistemas más inteligentes y eficientes.",
-    tecnologias: " React JS, SCSS, Firebase",
+      "Esta Progressive Web App (PWA) fue desarrollada para una empresa de servicios que gestiona una amplia gama de actividades, incluyendo la administración de clientes, estados de proyectos, visitas programadas y usuarios para todo el personal. La aplicación incluye un sistema de gestión interna con un bloc de notas, creación de presupuestos y otras funcionalidades que mejoran la eficiencia operativa. Gracias a la implementación con React JS, SCSS y Firebase, la PWA ofrece una experiencia intuitiva, accesible desde cualquier dispositivo y con capacidades offline.",
+    tecnologias: "React JS, SCSS, Firebase",
     link: "https://ejemplo-link-proyecto4.com",
   },
   {
     id: 5,
-    images: ["https://source.unsplash.com/random/300x200?sig=13"],
+    images: [imgEsAr01, imgEsAr02, imgEsAr03],
     title: "Web - EsAr digital",
     description:
-      "Reinventando la manera en que interactuamos con la tecnología digital día a día.",
-    tecnologias: " React JS, SCSS, Firebase",
-    link: "https://ejemplo-link-proyecto5.com",
+      "EsAr digital es una plataforma web creada para un grupo de jóvenes profesionales que ofrecen servicios digitales como marketing, diseño gráfico y desarrollo web, trabajando desde Argentina y España. La página web está diseñada para promover estos servicios y facilitar la colaboración entre clientes y el equipo de EsAr digital, proporcionando una experiencia de usuario moderna y eficiente.",
+    tecnologias: "Vite, React JS, Tailwind, Firebase",
+    link: "https://esar-c221b.web.app/",
   },
   {
     id: 6,
-    images: [
-      "https://source.unsplash.com/random/300x200?sig=16",
-
-      "https://source.unsplash.com/random/300x200?sig=18",
-    ],
+    images: [imgWVENTA01],
     title: "Web - Ventas Online",
     description:
-      "Creando conexiones duraderas a través de plataformas digitales que fomentan la comunidad y la colaboración.",
-    tecnologias: " React JS, SCSS, Firebase",
+      "Desarrollo de una plataforma de ventas en línea, enfocada en proporcionar una experiencia de compra rápida y segura. El proyecto incluye un sistema de carrito de compras, integración de pasarelas de pago y gestión de inventario. Utilizando React JS y SCSS para la interfaz de usuario y Firebase para la base de datos, la plataforma está optimizada para su uso tanto en dispositivos móviles como en desktop.",
+    tecnologias: "React JS, SCSS, Firebase",
     link: "https://ejemplo-link-proyecto6.com",
   },
 ];
-
-// Datos de los proyectos

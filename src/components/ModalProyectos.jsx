@@ -86,7 +86,7 @@ const ModalProyectos = ({ project, onClose }) => {
                 rel="noopener noreferrer"
                 className="px-4 py-3  text-center text-[10px] md:text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
               >
-                Learn More
+                Mas info
               </a>
             </TransicionDeMovimiento>
           </motion.div>

@@ -42,18 +42,20 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
         renderIcon(
           LinkedInIcon,
           0,
-          "https://www.linkedin.com/in/yourprofile",
+          "https://www.linkedin.com/in/laurosa/",
           "linkedin-icon"
         )}
       {iconsToShow.includes("github") &&
         renderIcon(
           GitHubIcon,
           1,
-          "https://github.com/yourusername",
+          "https://github.com/lauro-sa",
           "github-icon"
         )}
+
       {iconsToShow.includes("email") &&
-        renderIcon(EmailIcon, 2, "mailto:your-email@example.com", "email-icon")}
+        renderIcon(EmailIcon, 2, "mailto:anterior.sembrar-0o@icloud.com", "email-icon")}
+
       {iconsToShow.includes("whatsapp") &&
         renderIcon(
           WhatsAppIcon,
@@ -69,7 +71,7 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
         renderIcon(
           InstagramIcon,
           4,
-          "https://www.instagram.com/yourusername",
+          "https://www.instagram.com/stianlauro/",
           "instagram-icon"
         )}
     </div>
