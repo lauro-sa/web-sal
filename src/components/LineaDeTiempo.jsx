@@ -1,7 +1,10 @@
 import React from 'react';
-import { HiCalendar } from 'react-icons/hi';
-import { eventos } from "../config/datos";
 
+// Iconos
+import { HiCalendar } from 'react-icons/hi';
+
+// Datos
+import { eventos } from "../config/datos";
 
 function LineaDeTiempo() {
   return (

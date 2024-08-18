@@ -1,9 +1,16 @@
 import React, { useState, useRef, useEffect } from "react";
+
+// Componentes
 import RedesSociales from "./RedesSociales";
+
+// Activos
 import logo from '../assets/img/logo-01.png';
+
+// Estilos
 import "../estilos.css";
 
 const Footer = () => {
+
   const referenciaAlPie = useRef(null);
   const [estaAbierto, setEstaAbierto] = useState(false);
   const animacionEnCurso = useRef(false);

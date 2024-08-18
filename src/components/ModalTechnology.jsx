@@ -1,6 +1,9 @@
 // ModalTechnology.jsx
 import React from "react";
+
+// Animaciones
 import { motion, AnimatePresence } from "framer-motion";
+
 
 const modalVariants = {
   hidden: { opacity: 0 },

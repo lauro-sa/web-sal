@@ -1,7 +1,11 @@
 import React from "react";
+
+// Componentes
 import ContenedorLayou1 from "./Contenedores/ContenedorLayou1";
 import ContenedorLayou2 from "./Contenedores/ContenedorLayou2";
 import InfoSal from "./InfoSal";
+
+// Activos
 import fotoRetrato from '../assets/img/sal-01.png';
 
 function LayouInfoSal() {

@@ -1,7 +1,13 @@
 import React, { useState } from "react";
+
+// Estilos
 import "../estilos.css";
+
+// Componentes
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
 import ModalProyectos from "./ModalProyectos";
+
+// Datos
 import { proyectos } from "../config/datos";
 
 function InfoProyectos() {

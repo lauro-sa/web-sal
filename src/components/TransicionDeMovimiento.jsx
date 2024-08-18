@@ -1,5 +1,9 @@
 import React from "react";
+
+// Animaciones
 import { motion } from "framer-motion";
+
+// Utilidades
 import {
   entradaLogo,
   entrarDesdeCentro,

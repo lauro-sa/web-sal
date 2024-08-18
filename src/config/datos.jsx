@@ -1,5 +1,4 @@
 // config/datos.jsx
-
 import React from "react";
 
 // Datos liena de tiempo

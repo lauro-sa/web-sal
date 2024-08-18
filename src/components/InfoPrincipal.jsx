@@ -1,10 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+
+// Componentes
 import Contenedor from "../components/Contenedores/Contenedor";
-
-import "../estilos.css";
-
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
+
+// Estilos
+import "../estilos.css";
 
 function InfoPrincipal() {
   return (

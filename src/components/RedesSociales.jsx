@@ -1,5 +1,9 @@
 import React from "react";
+
+// Estilos
 import "../estilos.css";
+
+// Iconos
 import {
   EmailIcon,
   LinkedInIcon,
@@ -8,7 +12,9 @@ import {
   InstagramIcon,
   FormularioIcon,
 } from "../config/IconosRedes";
-import TransicionDeMovimiento from "./TransicionDeMovimiento"; 
+
+// Componentes
+import TransicionDeMovimiento from "./TransicionDeMovimiento";
 
 function RedesSociales({ iconsToShow = [], animateIcons = false }) {
   const baseDelay = 0.1; // Base delay en segundos

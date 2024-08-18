@@ -1,5 +1,9 @@
 import React from "react";
+
+// Animaciones
 import { motion, AnimatePresence } from "framer-motion";
+
+// Componentes
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
 
 const modalVariants = {

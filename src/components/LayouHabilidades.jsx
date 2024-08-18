@@ -1,4 +1,6 @@
 import React from "react";
+
+// Componentes
 import ContenedorLayou3 from "./Contenedores/ContenedorLayou3";
 import ContenedorLayou4 from "./Contenedores/ContenedorLayou4";
 import InfoTecnologias from "./InfoTecnologias";

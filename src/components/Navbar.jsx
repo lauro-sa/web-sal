@@ -1,9 +1,13 @@
 import React, { useState, useEffect } from "react";
+
+// Navegación
 import { Link, useLocation } from "react-router-dom";
+
+// Componentes
 import RedesSociales from "./RedesSociales";
+
+// Activos
 import logo from '../assets/img/logo-01.png';
-
-
 
 function Navbar() {
   const [lastScrollY, setLastScrollY] = useState(0);
@@ -39,16 +43,14 @@ function Navbar() {
   };
 
   return (
-<nav
-  className={`fixed top-0 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out
+    <nav
+      className={`fixed top-0 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out
               ${isScrolled && lastScrollY > 30
-                ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4 border border-violeta-marca/50 shadow-md shadow-violeta-marca/30"
-                : "bg-transparent md:w-full border-none shadow-none"
-              }
+          ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4 border border-violeta-marca/50 shadow-md shadow-violeta-marca/30"
+          : "bg-transparent md:w-full border-none shadow-none"
+        }
               ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
->
-
-
+    >
       <div className="max-w-7xl mx-auto px-8 flex flex-col md:flex-row justify-between items-center w-full">
         {/* Logo en mobile y desktop, visible solo si no se ha hecho scroll */}
         {!isScrolled && (
@@ -58,10 +60,11 @@ function Navbar() {
               alt="Logo"
               className="h-8 w-auto mr-2"
             />
-            <h1 className="animated-text text-l uppercase tracking-wider">
+            <h1 className="animated-text text-xl md:text-l uppercase tracking-wider">
               S7ian Code
             </h1>
           </Link>
+
         )}
 
         {/* Logo en desktop */}
@@ -93,6 +96,16 @@ function Navbar() {
               SobreMí
             </Link>
           </li>
+          {/* 
+          <li>
+            <Link
+              to="/servicios"
+              className={`text-sm md:text-base ${getNavLinkClass("/servicios")}`}
+            >
+              Servicios
+            </Link>
+          </li>
+          */}
           <li>
             <Link
               to="/proyectos"
@@ -123,7 +136,7 @@ function Navbar() {
         {!isScrolled && (
           <div className="hidden md:flex w-40 justify-end items-center">
             <button className="hidden px-4 py-2 text-center text-[10px] md:text-sm tracking-wider font-bold rounded-xl border text-black/80 bg-violeta-marca border-texto-claro hover:border-violeta-marca hover:bg-texto-claro transition-colors">
-              Contactame
+              Contáctame
             </button>
             <RedesSociales iconsToShow={iconosDeseados} />
           </div>

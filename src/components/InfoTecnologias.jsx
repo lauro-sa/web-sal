@@ -1,11 +1,19 @@
 import React, { useState } from "react";
 
+// Componentes
 import ModalTechnology from "./ModalTechnology";
-import { technologyData } from "../config/technologyData";
-import { motion } from "framer-motion"; 
-import "../estilos.css";
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
-import CardTecnologias from "./CardTecnologias"; 
+import CardTecnologias from "./CardTecnologias";
+
+// Datos
+import { technologyData } from "../config/technologyData";
+
+// Animaciones
+import { motion } from "framer-motion";
+
+// Estilos
+import "../estilos.css";
+
 const containerVariants = {
   // Definición de las variantes del contenedor
   hidden: { opacity: 0 },

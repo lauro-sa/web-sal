@@ -1,4 +1,6 @@
 import React, { useState, useEffect } from "react";
+
+// Animaciones
 import { motion } from "framer-motion";
 
 const itemVariants = {

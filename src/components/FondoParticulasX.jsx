@@ -15,6 +15,11 @@ const Dot = ({ top, left }) => {
 };
 
 const DiffuseLight = () => {
+  // Solo mostrar en pantallas más grandes (mayores a 768px)
+  if (window.innerWidth < 768) {
+    return null; // No renderizar en dispositivos móviles
+  }
+
   const size = "800px";
   const style = {
     position: "absolute",
@@ -32,6 +37,7 @@ const DiffuseLight = () => {
 
   return <div style={style} />;
 };
+
 
 const FondoParticulasX = () => {
   const [contentHeight, setContentHeight] = useState(window.innerHeight);

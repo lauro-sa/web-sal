@@ -1,15 +1,21 @@
 import React, { useRef, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+// Componentes
 import Contenedor from "./Contenedores/Contenedor";
-import "../estilos.css";
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
+
+// Estilos
+import "../estilos.css";
+
+// Datos
 import { servicios } from "../config/datos";
 
+// Swiper
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
-
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 function InfoServicios() {

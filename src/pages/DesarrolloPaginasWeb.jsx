@@ -1,4 +1,6 @@
 import React from "react";
+
+// Componentes
 import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
 import Contenedor from "../components/Contenedores/Contenedor";
 

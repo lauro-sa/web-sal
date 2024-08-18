@@ -1,6 +1,9 @@
 import React from "react";
+
+// Estilos
 import "../estilos.css";
 
+// Componentes
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
 
 function InfoSal() {
