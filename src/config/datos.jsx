@@ -2,7 +2,112 @@
 
 import React from "react";
 
+// Datos liena de tiempo
+export const eventos = [
+  { 
+    año: 'En curso', 
+    tema: 'Formación',
+    titulo: 'Diplomatura Full Stack',
+    descripcion: 'Diplomatura en Programación Full Stack - UTN Buenos Aires' 
+  },
+  { 
+    año: '2024', 
+    tema: 'Proyecto',
+    titulo: 'Web Marketing España',
+    descripcion: 'Desarrollo de la página web de una empresa de marketing para España, realizada con React.' 
+  },
+  { 
+    año: 'nov. 2023', 
+    tema: 'Formación',
+    titulo: 'Especialización React JS',
+    descripcion: 'Desarrollador Web en React JS - Argentina Programa 4.0' 
+  },
+  { 
+    año: '2023', 
+    tema: 'Proyecto',
+    titulo: 'PWA Gestión de Servicios',
+    descripcion: 'Proyecto de una PWA para una empresa de servicios, gestionada completamente por mí. La PWA permite agendar clientes, realizar cotizaciones y agendar eventos con hasta 5 usuarios. Realizada con React.' 
+  },
+  { 
+    año: 'feb. 2023', 
+    tema: 'Formación',
+    titulo: 'Curso Frontend Avanzado',
+    descripcion: 'Desarrollo Frontend - Argentina Programa 4.0' 
+  },
+  { 
+    año: 'jul. 2022', 
+    tema: 'Formación',
+    titulo: 'Curso Se Programar',
+    descripcion: 'Curso Se Programar del trayecto formativo INTI' 
+  },
+  { 
+    año: 'oct. 2021', 
+    tema: 'Formación',
+    titulo: 'Diplomatura en Ads',
+    descripcion: 'Diplomatura en Publicidad y Ads para Social Media - UTN Buenos Aires' 
+  },
+  { 
+    año: 'jun. 2021', 
+    tema: 'Formación',
+    titulo: 'Certificación Google Ads',
+    descripcion: 'Google Ads - Publicidad con Búsqueda avanzada - UTN Buenos Aires' 
+  },
+  { 
+    año: 'abr. 2020', 
+    tema: 'Formación',
+    titulo: 'Fundamentos IoT',
+    descripcion: 'Fundamentos IoT - EducacionIT' 
+  },
+  { 
+    año: 'dic. 2018', 
+    tema: 'Formación',
+    titulo: 'Certificación FrontEnd',
+    descripcion: 'Certificación en Programación Inicial FrontEnd - Digital House' 
+  },
+  { 
+    año: '2015 - 2021', 
+    tema: 'Proyecto',
+    titulo: 'Desarrollo Web Empresa',
+    descripcion: 'Desarrollo de la web de una empresa de servicios. Realicé el diseño y la funcionalidad de la web, evolucionando desde HTML y CSS puro hasta React JS y SCSS.' 
+  },
+];
+// Fin datos liena de tiempo
+
 // Datos de los servicios ofrecidos
+
+// Importación de las imágenes de servicios
+import DesarrolloPaginasWeb01 from "../assets/img/servicios/DesarrolloPaginasWeb-01.webp";
+import DesarrolloPaginasWeb02 from "../assets/img/servicios/DesarrolloPaginasWeb-02.webp";
+import DesarrolloPaginasWeb03 from "../assets/img/servicios/DesarrolloPaginasWeb-03.webp";
+
+import DisenoComponentes01 from "../assets/img/servicios/DisenoComponentes-01.webp";
+import DisenoComponentes02 from "../assets/img/servicios/DisenoComponentes-02.webp";
+import DisenoComponentes03 from "../assets/img/servicios/DisenoComponentes-03.webp";
+
+import DesarrolloPWA01 from "../assets/img/servicios/DesarrolloPWA-01.webp";
+import DesarrolloPWA02 from "../assets/img/servicios/DesarrolloPWA-02.webp";
+import DesarrolloPWA03 from "../assets/img/servicios/DesarrolloPWA-03.webp";
+
+import AlojamientoWeb01 from "../assets/img/servicios/AlojamientoWeb-01.webp";
+import AlojamientoWeb02 from "../assets/img/servicios/AlojamientoWeb-02.webp";
+import AlojamientoWeb03 from "../assets/img/servicios/AlojamientoWeb-03.webp";
+
+import DisenoWebIntegral01 from "../assets/img/servicios/DisenoWebIntegral-01.webp";
+import DisenoWebIntegral02 from "../assets/img/servicios/DisenoWebIntegral-02.webp";
+import DisenoWebIntegral03 from "../assets/img/servicios/DisenoWebIntegral-03.webp";
+
+import OptimizacionWeb01 from "../assets/img/servicios/OptimizacionWeb-01.webp";
+import OptimizacionWeb02 from "../assets/img/servicios/OptimizacionWeb-02.webp";
+import OptimizacionWeb03 from "../assets/img/servicios/OptimizacionWeb-03.webp";
+
+import MantenimientoWeb01 from "../assets/img/servicios/MantenimientoWeb-01.webp";
+import MantenimientoWeb02 from "../assets/img/servicios/MantenimientoWeb-02.webp";
+import MantenimientoWeb03 from "../assets/img/servicios/MantenimientoWeb-03.webp";
+
+import OptimizacionSEO01 from "../assets/img/servicios/OptimizacionSEO-01.webp";
+import OptimizacionSEO02 from "../assets/img/servicios/OptimizacionSEO-02.webp";
+import OptimizacionSEO03 from "../assets/img/servicios/OptimizacionSEO-03.webp";
+
 export const servicios = [
   {
     id: 1,
@@ -18,8 +123,14 @@ export const servicios = [
       </svg>
     ),
     title: "Desarrollo de páginas web",
+    slug: "desarrollo-paginas-web",
     description:
       "Creo y diseño sitios web adaptativos y a medida, optimizados para una experiencia de usuario excepcional en cualquier dispositivo.",
+    description2:
+      "Me especializo en la creación de sitios web responsivos, lo que significa que el diseño y la funcionalidad se adaptan perfectamente a cualquier tamaño de pantalla, desde móviles hasta escritorios. Esto es crucial para mantener la relevancia en un mundo donde el tráfico móvil sigue creciendo.",
+    description3:
+      "Además de la adaptabilidad, también priorizo la velocidad y la seguridad de los sitios que desarrollo. Implemento prácticas de optimización para mejorar los tiempos de carga y utilizo técnicas avanzadas para proteger los datos de los usuarios, asegurando así una experiencia segura y eficiente.",
+    images: [DesarrolloPaginasWeb01, DesarrolloPaginasWeb02, DesarrolloPaginasWeb03], // Imágenes de muestra para este servicio
   },
   {
     id: 2,
@@ -35,8 +146,14 @@ export const servicios = [
       </svg>
     ),
     title: "Diseño de componentes",
+    slug: "diseno-componentes",
     description:
       "Diseño componentes web personalizados que se integran perfectamente en tu sitio, mejorando la funcionalidad y la estética de tu presencia online.",
+    description2:
+      "Al diseñar componentes, me aseguro de que cada elemento esté alineado con la identidad visual de la marca, creando una coherencia que fortalece la presencia online de mis clientes. Utilizo un enfoque centrado en el usuario, lo que significa que cada componente está diseñado para ser intuitivo y fácil de usar.",
+    description3:
+      "La integración de estos componentes personalizados en el sitio web no solo mejora la funcionalidad, sino que también añade un toque único que diferencia a la página de las demás. Trabajo en estrecha colaboración con mis clientes para entender sus necesidades específicas y así crear componentes que cumplan con sus objetivos.",
+    images: [DisenoComponentes01, DisenoComponentes02, DisenoComponentes03], // Imágenes de muestra para este servicio
   },
   {
     id: 3,
@@ -53,8 +170,14 @@ export const servicios = [
       </svg>
     ),
     title: "Desarrollo de aplicaciones (PWA)",
+    slug: "desarrollo-aplicaciones-pwa",
     description:
       "Desarrollo aplicaciones web progresivas que ofrecen una experiencia de usuario de nivel de aplicación nativa, accesible directamente desde cualquier navegador web.",
+    description2:
+      "Me aseguro de que cada PWA que creo sea rápida, confiable y esté optimizada para ofrecer una excelente experiencia de usuario. Utilizo tecnologías modernas que permiten a las PWAs cargar rápidamente y funcionar sin problemas, incluso en condiciones de red limitadas.",
+    description3:
+      "Además, las PWAs que desarrollo están diseñadas para ser instalables directamente desde el navegador, lo que permite a los usuarios acceder a ellas fácilmente desde sus pantallas de inicio, sin ocupar espacio en sus dispositivos. Esto las convierte en una solución ideal para empresas que buscan ofrecer una experiencia de aplicación sin los inconvenientes de las descargas tradicionales.",
+    images: [DesarrolloPWA01, DesarrolloPWA02, DesarrolloPWA03], // Imágenes de muestra para este servicio
   },
   {
     id: 4,
@@ -71,8 +194,14 @@ export const servicios = [
       </svg>
     ),
     title: "Alojamiento de sitios web",
+    slug: "alojamiento-sitios-web",
     description:
       "Ofrezco servicios de alojamiento web seguro y confiable, asegurando que tu sitio esté disponible y funcione eficientemente las 24 horas del día.",
+    description2:
+      "Mis soluciones de alojamiento incluyen opciones escalables que se adaptan al crecimiento de tu sitio web. Ya sea que estés comenzando con un pequeño blog o gestionando un gran portal de comercio electrónico, tengo la infraestructura necesaria para mantener tu sitio funcionando sin problemas.",
+    description3:
+      "Además, proporciono soporte técnico continuo para resolver cualquier problema que pueda surgir, asegurando tiempos de inactividad mínimos y una experiencia de usuario excelente. Trabajo con las mejores plataformas de hosting para garantizar la velocidad y seguridad de tu sitio.",
+    images: [AlojamientoWeb01, AlojamientoWeb02, AlojamientoWeb03], // Imágenes de muestra para este servicio
   },
   {
     id: 5,
@@ -88,8 +217,14 @@ export const servicios = [
       </svg>
     ),
     title: "Diseño web integral",
+    slug: "diseno-web-integral",
     description:
       "Ofrezco servicios de diseño web que cubren desde la interfaz hasta la experiencia de usuario, garantizando un sitio atractivo y fácil de navegar.",
+    description2:
+      "Me especializo en crear diseños que no solo sean visualmente impactantes, sino también prácticos y accesibles. Esto incluye la optimización del flujo de navegación y la disposición de contenido para maximizar la conversión de visitantes en clientes.",
+    description3:
+      "Además, cada diseño que realizo es completamente personalizable, lo que significa que puedo adaptar el sitio a las necesidades específicas de tu marca, garantizando una presencia en línea coherente y profesional.",
+    images: [DisenoWebIntegral01, DisenoWebIntegral02, DisenoWebIntegral03], // Imágenes de muestra para este servicio
   },
   {
     id: 6,
@@ -105,8 +240,14 @@ export const servicios = [
       </svg>
     ),
     title: "Optimización web",
+    slug: "optimizacion-web",
     description:
       "Soluciono problemas técnicos y mejoro tu sitio web actual para maximizar su rendimiento y mejorar la experiencia del usuario.",
+    description2:
+      "Realizo una revisión exhaustiva de tu sitio para detectar áreas de mejora, como la optimización de imágenes, la minificación de archivos CSS y JavaScript, y la configuración de caché del navegador. Cada ajuste está dirigido a reducir los tiempos de carga y mejorar la respuesta del servidor.",
+    description3:
+      "Además, monitorizo continuamente el rendimiento de tu sitio para asegurarme de que sigue funcionando de manera óptima, implementando ajustes adicionales cuando sea necesario. Mi objetivo es proporcionar una experiencia rápida y fluida para todos los usuarios de tu sitio web.",
+    images: [OptimizacionWeb01, OptimizacionWeb02, OptimizacionWeb03], // Imágenes de muestra para este servicio
   },
   {
     id: 7,
@@ -122,8 +263,14 @@ export const servicios = [
       </svg>
     ),
     title: "Mantenimiento web",
+    slug: "mantenimiento-web",
     description:
       "Ofrezco planes de mantenimiento web para asegurar que tu sitio se mantenga actualizado, seguro y funcional.",
+    description2:
+      "Me aseguro de que todos los componentes de tu sitio estén al día, incluyendo actualizaciones de seguridad para protegerte contra vulnerabilidades. También realizo pruebas de rendimiento periódicas para detectar y corregir cualquier problema antes de que afecte a tus usuarios.",
+    description3:
+      "Además, mis planes de mantenimiento incluyen soporte técnico para resolver cualquier inconveniente que pueda surgir, asegurando tiempos de inactividad mínimos y una experiencia de usuario sin interrupciones. Mi objetivo es que puedas concentrarte en tu negocio mientras yo me encargo de la salud de tu sitio web.",
+    images: [MantenimientoWeb01, MantenimientoWeb02, MantenimientoWeb03], // Imágenes de muestra para este servicio
   },
   {
     id: 8,
@@ -140,12 +287,20 @@ export const servicios = [
       </svg>
     ),
     title: "Optimización SEO",
+    slug: "optimizacion-seo",
     description:
       "Mejoro la visibilidad de tu sitio web en los motores de búsqueda con mis estrategias de optimización SEO adaptadas a tus necesidades específicas.",
+    description2:
+      "Mi enfoque SEO abarca tanto la optimización on-page, que incluye la mejora de contenido y palabras clave, como la optimización técnica, que asegura que tu sitio cumpla con los estándares de los motores de búsqueda. Esto incluye mejorar la velocidad de carga, la estructura del sitio, y la indexación de contenido.",
+    description3:
+      "Además, realizo un análisis continuo del rendimiento SEO para ajustar la estrategia según sea necesario y asegurar que tu sitio siga siendo competitivo en los resultados de búsqueda. Mi objetivo es ayudarte a alcanzar una mayor visibilidad y generar más oportunidades de negocio.",
+    images: [OptimizacionSEO01, OptimizacionSEO02, OptimizacionSEO03], // Imágenes de muestra para este servicio
   },
 ];
+// Fin datos de los servicios ofrecidos
 
-// Datos de los servicios ofrecidos
+
+// Datos de los proyectos
 
 // Importación de las imágenes
 import imgHE01 from "../assets/img/proyectos/he-01.png";
@@ -165,7 +320,6 @@ import imgEsAr02 from "../assets/img/proyectos/ESAR-02.png";
 import imgEsAr03 from "../assets/img/proyectos/ESAR-03.png";
 import imgWVENTA01 from "../assets/img/proyectos/WVENTA-01.png";
 
-// Datos de los proyectos
 export const proyectos = [
   {
     id: 1,
@@ -190,7 +344,7 @@ export const proyectos = [
     images: [imgL24701, imgL24702, imgL24703],
     title: "Web - Lactancia 24/7",
     description:
-    "Lactancia 24/7 es un sitio web diseñado para una puericultora especializada en ofrecer videollamadas y consultas relacionadas con la lactancia materna. A través de esta plataforma, las madres pueden acceder a asesoramiento profesional, solicitar artículos específicos y recibir consejos personalizados para mejorar su experiencia de lactancia. El sitio también ofrece la posibilidad de contactar directamente a la puericultora para programar consultas o adquirir productos recomendados.",
+      "Lactancia 24/7 es un sitio web diseñado para una puericultora especializada en ofrecer videollamadas y consultas relacionadas con la lactancia materna. A través de esta plataforma, las madres pueden acceder a asesoramiento profesional, solicitar artículos específicos y recibir consejos personalizados para mejorar su experiencia de lactancia. El sitio también ofrece la posibilidad de contactar directamente a la puericultora para programar consultas o adquirir productos recomendados.",
     tecnologias: "HTML5, CSS, Photoshop",
     link: "https://lactancia247.com",
   },
@@ -222,3 +376,4 @@ export const proyectos = [
     link: "https://ejemplo-link-proyecto6.com",
   },
 ];
+// Fin datos de los proyectos

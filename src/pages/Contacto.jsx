@@ -15,14 +15,14 @@ function Contacto() {
   ];
 
   return (
-    <ContenedorPagina className="px-4 mt-8">
-      {" "}
-      <p className="my-8 text-xs md:text-sm">
-        Aquí puedes poner en contacto con migo por estos canales o bien completa
-        el formulario y te respodere a la brevedad.
+    <ContenedorPagina className="px-4">
+      <h1 className="mt-16 text-xl font-bold">Contacto</h1>
+      <p className="mt-2 mb-8 text-l leading-relaxed">
+        Aquí puedes ponerte en contacto conmigo a través de estos canales o bien completar
+        el formulario y te responderé a la brevedad.
       </p>
       <RedesSociales iconsToShow={iconosDeseados} />
-      <Contenedor className=" flex justify-center m-auto mt-8 max-w-[450px] bg-fondo-oscuro/60">
+      <Contenedor className="flex justify-center m-auto mt-8 max-w-[450px] bg-fondo-oscuro/60">
         <Formulario />
       </Contenedor>
     </ContenedorPagina>

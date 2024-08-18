@@ -1,5 +1,3 @@
-// TransicionDeMovimiento.jsx
-
 import React from "react";
 import { motion } from "framer-motion";
 import {
@@ -40,18 +38,6 @@ const TransicionDeMovimiento = ({
           ...entrarArribaAbajo.visible,
           transition: {
             ...entrarArribaAbajo.visible.transition,
-            delay: delay,
-          },
-        },
-      };
-      break;
-    case "entrarAbajoArriba":
-      variants = {
-        hidden: { ...entrarAbajoArriba.hidden },
-        visible: {
-          ...entrarAbajoArriba.visible,
-          transition: {
-            ...entrarAbajoArriba.visible.transition,
             delay: delay,
           },
         },

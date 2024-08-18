@@ -3,6 +3,7 @@ import { Formik, Form, Field, ErrorMessage } from "formik";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
 
+// Lista de servicios disponibles para seleccionar
 const serviciosDisponibles = [
   "Consultoría Técnica",
   "Desarrollo Web",
@@ -11,6 +12,7 @@ const serviciosDisponibles = [
   "Desarrollo de Aplicaciones Móviles",
 ];
 
+// Función para validar los campos del formulario
 const validateForm = (values) => {
   const errors = {};
   if (!values.nombre) {
@@ -25,20 +27,25 @@ const validateForm = (values) => {
 };
 
 const FormularioVideollamada = ({ onClose }) => {
+  // Estado para la fecha seleccionada
   const [selectedDate, setSelectedDate] = useState(null);
+  // Estado para los servicios seleccionados
   const [selectedServices, setSelectedServices] = useState([]);
+  // Estado para controlar la visibilidad del calendario
   const [showCalendar, setShowCalendar] = useState(false);
 
+  // Maneja el cambio de fecha en el calendario
   const handleDateChange = (date) => {
     setSelectedDate(date);
     setShowCalendar(false); // Oculta el calendario después de seleccionar una fecha
   };
 
+  // Maneja la selección y deselección de servicios
   const handleServiceToggle = (service) => {
     setSelectedServices((prev) =>
       prev.includes(service)
-        ? prev.filter((s) => s !== service)
-        : [...prev, service]
+        ? prev.filter((s) => s !== service) // Si el servicio ya está seleccionado, lo deselecciona
+        : [...prev, service] // Si no está seleccionado, lo agrega a la lista
     );
   };
 
@@ -53,7 +60,7 @@ const FormularioVideollamada = ({ onClose }) => {
             fecha: selectedDate,
             servicios: selectedServices,
           };
-          localStorage.setItem("videoCallData", JSON.stringify(dataToSave));
+          localStorage.setItem("videoCallData", JSON.stringify(dataToSave)); // Guarda los datos en el localStorage
           alert(
             `📅 Agendamos tu reunión para el ${selectedDate.toLocaleDateString("es-ES", {
               weekday: "long",
@@ -63,7 +70,7 @@ const FormularioVideollamada = ({ onClose }) => {
             })}. Te enviaremos un correo con el enlace para la reunión.`
           );
           setSubmitting(false);
-          onClose();
+          onClose(); // Cierra el modal después de agendar la videollamada
         }, 400);
       }}
     >
@@ -97,7 +104,7 @@ const FormularioVideollamada = ({ onClose }) => {
             />
           </div>
 
-          {/* Servicios seleccionados */}
+          {/* Muestra los servicios seleccionados */}
           {selectedServices.length > 0 && (
             <div className="mt-6 text-center">
               <h4 className="text-sm mb-2 text-white">Servicios seleccionados:</h4>
@@ -115,7 +122,7 @@ const FormularioVideollamada = ({ onClose }) => {
             </div>
           )}
 
-          {/* Servicios disponibles */}
+          {/* Muestra los servicios disponibles para seleccionar */}
           <div className="mt-4">
             <h3 className="text-sm mb-2 text-white text-center">Selecciona los servicios:</h3>
             <div className="flex flex-wrap gap-2 justify-center border-t border-gray-500 pt-2">
@@ -133,7 +140,7 @@ const FormularioVideollamada = ({ onClose }) => {
             </div>
           </div>
 
-          {/* Calendario para seleccionar la fecha */}
+          {/* Botón para mostrar/ocultar el calendario y seleccionar la fecha */}
           <div className="flex flex-col items-center">
             <h3 className="text-sm mb-2 text-white">
               Selecciona la fecha para la videollamada:

@@ -5,15 +5,11 @@ import "../estilos.css";
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
 import { servicios } from "../config/datos";
 
-// Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
-
-// Import Swiper styles
 import "swiper/css";
 import "swiper/css/pagination";
 import "swiper/css/navigation";
 
-// import required modules
 import { Autoplay, Pagination, Navigation } from "swiper/modules";
 
 function InfoServicios() {
@@ -28,7 +24,6 @@ function InfoServicios() {
 
     window.addEventListener("resize", handleResize);
 
-    // Cleanup function
     return () => {
       window.removeEventListener("resize", handleResize);
     };
@@ -36,10 +31,12 @@ function InfoServicios() {
 
   return (
     <TransicionDeMovimiento type="entrarDesdeCentro">
-      <Contenedor className="h-full ">
-        <p className="text-lg uppercase tracking-wider mb-4 text-violeta-marca">
-          Servicios
-        </p>
+      <Contenedor className="h-full">
+        <Link to="/servicios">
+          <p className="text-lg uppercase tracking-wider mb-4 text-violeta-marca cursor-pointer">
+            Servicios
+          </p>
+        </Link>
         <Swiper
           ref={swiperRef}
           modules={[Pagination, Navigation, Autoplay]}
@@ -65,27 +62,18 @@ function InfoServicios() {
           className="p-3 h-[300px] w-[325px] md:w-full"
         >
           {servicios.map((servicio, index) => (
-            <SwiperSlide key={index} className="">
+            <SwiperSlide key={index}>
               <Link
-                to="/servicios"
-                className={`flex flex-col items-center rounded-md shadow-md hover:shadow-lg p-2 transition-all duration-300 ease-in-out border border-solid border-azul-custom hover:border-violeta-marca hover:bg-violeta-marca/5 hover:scale-105 mb-6 ${
-                  servicio.isHovered ? "bg-violeta-marca" : ""
-                }`}
-                style={{ minHeight: "95%" }}
+                to={
+                  servicio.slug === "desarrollo-paginas-web"
+                    ? "/desarrollo-paginas-web" // Redirigir a la nueva página exclusiva
+                    : "/servicios"
+                }
+                className="flex flex-col items-center rounded-md shadow-md hover:shadow-lg p-2 transition-all duration-300 ease-in-out border border-solid border-azul-custom hover:border-violeta-marca hover:bg-violeta-marca/5 hover:scale-105 mb-6"
               >
                 <div className="w-10 h-12 my-4 svg-icon">{servicio.icon}</div>
-                <h3
-                  className={`mt-2 mb-4 text-sm font-bold ${
-                    servicio.isHovered ? "text-white" : ""
-                  }`}
-                >
-                  {servicio.title}
-                </h3>
-                <p
-                  className={`text-sm text-gray-600 text-center ${
-                    servicio.isHovered ? "text-texto-claro" : ""
-                  }`}
-                >
+                <h3 className="mt-2 mb-4 text-sm font-bold">{servicio.title}</h3>
+                <p className="text-sm text-gray-600 text-center">
                   {servicio.description}
                 </p>
               </Link>

@@ -1,5 +1,5 @@
 import React from "react";
-import "./FirmaSal.css"; // Asegúrate de que el nombre del archivo CSS coincida
+import "./FirmaSal.css";
 
 const FirmaSal = () => {
   return (

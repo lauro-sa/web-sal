@@ -44,12 +44,12 @@
   left: 50%;
   transform-origin: center;
   text-align: center;
-  padding: 4px 0; /* Agrega un poco de padding para ayudar con el centrado */
+  padding: 4px 0; 
 }
 
 .signature:hover .hover-text {
   opacity: 1;
-  transform: translate(-50%, -10%) scale(1); /* Ajusta este valor para mover el texto verticalmente */
+  transform: translate(-50%, -10%) scale(1); 
 }
 
 .name, .title {
@@ -63,7 +63,7 @@
 }
 
 .name {
-  margin-bottom: -4px; /* Ajusta este valor para controlar el espacio entre 'StianLauro' y 'Developer' */
+  margin-bottom: -4px; 
 }
 
 .signature:hover .name, .signature:hover .title {
