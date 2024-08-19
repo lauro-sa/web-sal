@@ -58,7 +58,7 @@ function Navbar() {
             <img
               src={logo}
               alt="Logo"
-              className="h-8 w-auto mr-2"
+              className="h-8 w-auto mr-1"
             />
             <h1 className="animated-text text-xl md:text-l uppercase tracking-wider">
               S7ian Code
