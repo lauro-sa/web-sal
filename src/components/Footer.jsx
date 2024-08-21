@@ -11,12 +11,6 @@ import logo from '../assets/img/logo-01.png';
 // Estilos
 import "../estilos.css";
 
-
-
-
-
-
-
 const Footer = () => {
   const referenciaAlPie = useRef(null);
   const [estaAbierto, setEstaAbierto] = useState(false);
@@ -137,13 +131,9 @@ const Footer = () => {
       </div>
 
       {/* Modal para el formulario */}
-    {/* Modal para el formulario */}
-<ModalCustom isVisible={isModalOpen} onClose={toggleModal}>
-  {/* Título del Modal */}
-  <h3 className="text-xl font-bold mb-4 text-white">Hablemos</h3>
-  <Formulario onClose={toggleModal} />
-</ModalCustom>
-
+      <ModalCustom isVisible={isModalOpen} onClose={toggleModal}>
+        <Formulario onClose={toggleModal} />
+      </ModalCustom>
     </div>
   );
 };

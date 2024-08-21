@@ -9,6 +9,7 @@ import CardGeneradorContrasenas from "../components/LabComponentes/GeneradorDeCo
 import CardGeneradorQr from "../components/LabComponentes/GeneradorDeQr/CardGeneradorQr";
 import CardConversorAudio from "../components/LabComponentes/ConversorAudio/CardConversorAudio";
 import CardConversorImg from "../components/LabComponentes/ConversorImg/CardConversorImg";
+import CardGeneradorQrWifi from "../components/LabComponentes/GeneradorQrWifi/CardGeneradorQrWifi";
 
 function Laboratorio() {
   return (
@@ -27,6 +28,7 @@ function Laboratorio() {
           <CardGeneradorQr />
           <CardConversorAudio />
           <CardConversorImg />
+          <CardGeneradorQrWifi />
         </div>
       </ContenedorPagina>
     </div>

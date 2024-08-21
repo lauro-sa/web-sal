@@ -20,11 +20,23 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
     setIsModalOpen(!isModalOpen);
   };
 
-  const renderIcon = (Icon, delayMultiplier, onClickHandler, className) => {
-    return (
+  const handleIconClick = (url, e) => {
+    e.stopPropagation(); // Asegura que el clic solo afecte al ícono y no a otros elementos
+    if (url) {
+      window.open(url, "_blank");
+    } else {
+      toggleModal(e);
+    }
+  };
+
+  const baseDelay = 0.1; // Base delay en segundos
+  const delayIncrement = 0.1; // Incremento de delay para cada icono adicional
+
+  const renderIcon = (Icon, delayMultiplier, url, className) => {
+    const iconElement = (
       <div
         className={`cursor-pointer ${className}`}
-        onClick={onClickHandler}
+        onClick={(e) => handleIconClick(url, e)}
       >
         <Icon
           size="25"
@@ -32,6 +44,16 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
           className={`icon ${animateIcons ? "animated" : ""}`}
         />
       </div>
+    );
+    return animateIcons ? (
+      <TransicionDeMovimiento
+        type="entrarAbajoArriba"
+        delay={baseDelay + delayMultiplier * delayIncrement}
+      >
+        {iconElement}
+      </TransicionDeMovimiento>
+    ) : (
+      iconElement
     );
   };
 
@@ -41,37 +63,37 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
         renderIcon(
           LinkedInIcon,
           0,
-          () => window.open("https://www.linkedin.com/in/laurosa/", "_blank"),
+          "https://www.linkedin.com/in/laurosa/",
           "linkedin-icon"
         )}
       {iconsToShow.includes("github") &&
         renderIcon(
           GitHubIcon,
           1,
-          () => window.open("https://github.com/lauro-sa", "_blank"),
+          "https://github.com/lauro-sa",
           "github-icon"
         )}
       {iconsToShow.includes("email") &&
         renderIcon(
           EmailIcon,
           2,
-          () => window.open("mailto:anterior.sembrar-0o@icloud.com"),
+          "mailto:anterior.sembrar-0o@icloud.com",
           "email-icon"
         )}
       {iconsToShow.includes("whatsapp") &&
         renderIcon(
           WhatsAppIcon,
           3,
-          () => window.open("https://wa.me/yourphonenumber", "_blank"),
+          "https://wa.me/yourphonenumber",
           "whatsapp-icon"
         )}
       {iconsToShow.includes("formulario") &&
-        renderIcon(FormularioIcon, 4, toggleModal, "formulario-icon")}
+        renderIcon(FormularioIcon, 4, null, "formulario-icon")}
       {iconsToShow.includes("instagram") &&
         renderIcon(
           InstagramIcon,
           5,
-          () => window.open("https://www.instagram.com/stianlauro/", "_blank"),
+          "https://www.instagram.com/stianlauro/",
           "instagram-icon"
         )}
 

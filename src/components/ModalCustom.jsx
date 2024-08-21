@@ -17,16 +17,12 @@ const ModalCustom = ({ isVisible, onClose, children }) => {
           animate="visible"
           exit="hidden"
           onClick={onClose}
+          style={{ margin: 0 }}  // Eliminar cualquier margen
         >
           <motion.div
             className="rounded-lg shadow-lg p-6 z-10 max-w-xl bg-[rgba(1,1,1,0.80)] border border-violeta-marca/50 w-full"
             onClick={(e) => e.stopPropagation()}
           >
-            {/* Contenedor del título */}
-            <div className="text-center mb-4">
-              <h3 className="text-white text-lg font-semibold">Hablamos</h3>
-            </div>
-
             {/* Renderizado del contenido */}
             <div className="w-full flex flex-col items-center">
               {children}

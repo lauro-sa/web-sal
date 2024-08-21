@@ -102,7 +102,15 @@
 
 /* Efecto Texto Modales */
 .tracking-in-contract-bck-top {
-  background: linear-gradient(to right, #8964e8, #8964e8, #c42ed4);
+  background: linear-gradient(
+    to right,
+    #8964e8 0%,
+    #7a5bdc 20%,
+    #6e52d0 40%,
+    #6379c4 60%,
+    #558fd8 80%,
+    #4c9cd0 100%
+  );
   -webkit-background-clip: text;
   background-clip: text;
   -webkit-text-fill-color: transparent;

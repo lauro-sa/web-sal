@@ -7,6 +7,7 @@ export const theme = {
   extend: {
     colors: {
       'violeta-marca': '#8964e8',
+      'azul-marca': '#4c9cd0',
       'azul-custom': '#2e3c51',
       'texto-claro': 'rgba(191, 199, 210, 1)',
       'acento-rosa': '#c42ed4',
