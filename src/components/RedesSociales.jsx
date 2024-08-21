@@ -1,9 +1,5 @@
-import React from "react";
-
-// Estilos
+import React, { useState } from "react";
 import "../estilos.css";
-
-// Iconos
 import {
   EmailIcon,
   LinkedInIcon,
@@ -12,74 +8,77 @@ import {
   InstagramIcon,
   FormularioIcon,
 } from "../config/IconosRedes";
-
-// Componentes
 import TransicionDeMovimiento from "./TransicionDeMovimiento";
+import ModalCustom from "./ModalCustom";
+import Formulario from "./Formulario/Formulario";
 
 function RedesSociales({ iconsToShow = [], animateIcons = false }) {
-  const baseDelay = 0.1; // Base delay en segundos
-  const delayIncrement = 0.1; // Incremento de delay para cada icono adicional
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
-  // Ahora renderIcon también recibe un className
-  const renderIcon = (Icon, delayMultiplier, url, className) => {
-    const iconElement = (
-      <Icon
-        size="25"
-        color="#8964e8"
-        className={`icon ${animateIcons ? "animated" : ""} ${className}`}
-        url={url}
-      />
-    );
-    return animateIcons ? (
-      <TransicionDeMovimiento
-        type="entrarAbajoArriba"
-        delay={baseDelay + delayMultiplier * delayIncrement}
+  const toggleModal = (e) => {
+    e.stopPropagation(); // Evita que el clic en el formulario cierre el footer
+    setIsModalOpen(!isModalOpen);
+  };
+
+  const renderIcon = (Icon, delayMultiplier, onClickHandler, className) => {
+    return (
+      <div
+        className={`cursor-pointer ${className}`}
+        onClick={onClickHandler}
       >
-        {iconElement}
-      </TransicionDeMovimiento>
-    ) : (
-      iconElement
+        <Icon
+          size="25"
+          color="#8964e8"
+          className={`icon ${animateIcons ? "animated" : ""}`}
+        />
+      </div>
     );
   };
 
   return (
-    <div className="flex items-center justify-center space-x-4 ">
+    <div className="flex items-center justify-center space-x-4">
       {iconsToShow.includes("linkedin") &&
         renderIcon(
           LinkedInIcon,
           0,
-          "https://www.linkedin.com/in/laurosa/",
+          () => window.open("https://www.linkedin.com/in/laurosa/", "_blank"),
           "linkedin-icon"
         )}
       {iconsToShow.includes("github") &&
         renderIcon(
           GitHubIcon,
           1,
-          "https://github.com/lauro-sa",
+          () => window.open("https://github.com/lauro-sa", "_blank"),
           "github-icon"
         )}
-
       {iconsToShow.includes("email") &&
-        renderIcon(EmailIcon, 2, "mailto:anterior.sembrar-0o@icloud.com", "email-icon")}
-
+        renderIcon(
+          EmailIcon,
+          2,
+          () => window.open("mailto:anterior.sembrar-0o@icloud.com"),
+          "email-icon"
+        )}
       {iconsToShow.includes("whatsapp") &&
         renderIcon(
           WhatsAppIcon,
           3,
-          "https://wa.me/yourphonenumber",
+          () => window.open("https://wa.me/yourphonenumber", "_blank"),
           "whatsapp-icon"
         )}
-
       {iconsToShow.includes("formulario") &&
-        renderIcon(FormularioIcon, 4, "", "formulario-icon")}
-
+        renderIcon(FormularioIcon, 4, toggleModal, "formulario-icon")}
       {iconsToShow.includes("instagram") &&
         renderIcon(
           InstagramIcon,
-          4,
-          "https://www.instagram.com/stianlauro/",
+          5,
+          () => window.open("https://www.instagram.com/stianlauro/", "_blank"),
           "instagram-icon"
         )}
+
+      {/* Modal */}
+      <ModalCustom isVisible={isModalOpen} onClose={toggleModal}>
+        <Formulario onClose={toggleModal} />
+      </ModalCustom>
     </div>
   );
 }

@@ -88,3 +88,10 @@ Este es un proyecto personal, pero si tienes sugerencias o encuentras algún err
 📬 Contacto
 Si tienes alguna pregunta o simplemente quieres saludar, no dudes en contactarme
 
+Comandos utiles:
+
+git add .
+git commit -m "Descripcion de los cambios"
+git push origin main
+-
+npm run deploy

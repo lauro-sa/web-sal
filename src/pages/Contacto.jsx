@@ -14,7 +14,6 @@ function Contacto() {
     "whatsapp",
     "github",
     "instagram",
-    "formulario",
   ];
 
   return (
@@ -27,9 +26,11 @@ function Contacto() {
           el formulario y te responderé a la brevedad.
         </p>
         <RedesSociales iconsToShow={iconosDeseados} />
-        <Contenedor className="flex justify-center m-auto mt-8 max-w-[450px] bg-fondo-oscuro/60">
+        <div className="flex justify-center items-center">
+        <Contenedor className="">
           <Formulario />
         </Contenedor>
+        </div>
       </ContenedorPagina>
     </div>
   );

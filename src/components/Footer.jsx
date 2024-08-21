@@ -2,6 +2,8 @@ import React, { useState, useRef, useEffect } from "react";
 
 // Componentes
 import RedesSociales from "./RedesSociales";
+import ModalCustom from "./ModalCustom";
+import Formulario from "./Formulario/Formulario";
 
 // Activos
 import logo from '../assets/img/logo-01.png';
@@ -9,10 +11,16 @@ import logo from '../assets/img/logo-01.png';
 // Estilos
 import "../estilos.css";
 
-const Footer = () => {
 
+
+
+
+
+
+const Footer = () => {
   const referenciaAlPie = useRef(null);
   const [estaAbierto, setEstaAbierto] = useState(false);
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const animacionEnCurso = useRef(false);
 
   const iconosDeseados = [
@@ -23,6 +31,10 @@ const Footer = () => {
     "instagram",
     "formulario",
   ];
+
+  const toggleModal = () => {
+    setIsModalOpen(!isModalOpen);
+  };
 
   const alternarPie = () => {
     setEstaAbierto(!estaAbierto);
@@ -95,7 +107,7 @@ const Footer = () => {
     <div className="flex justify-center items-center fixed -bottom-3 left-0 right-0 z-50">
       <div
         ref={referenciaAlPie}
-        className=" max-w-[98%] md:max-w-[800px] w-full p-0.5 transition-all duration-300 ease-in-out"
+        className="max-w-[98%] md:max-w-[800px] w-full p-0.5 transition-all duration-300 ease-in-out"
         onClick={alternarPie}
         onMouseEnter={onMouseEnterHandler}
         onMouseLeave={onMouseLeaveHandler}
@@ -106,7 +118,7 @@ const Footer = () => {
               <img
                 src={logo}
                 alt="Logo"
-                className="md:block hidden h-5 w-auto "
+                className="md:block hidden h-5 w-auto"
               />
               <span className="w-28 text-sm md:ml-1">S7ian Code</span>
             </div>
@@ -114,11 +126,24 @@ const Footer = () => {
           </div>
           {estaAbierto && (
             <div className="h-20 flex items-center justify-center">
-              <RedesSociales iconsToShow={iconosDeseados} animateIcons={true} />
+              <RedesSociales
+                iconsToShow={iconosDeseados}
+                animateIcons={true}
+                toggleModal={toggleModal}
+              />
             </div>
           )}
         </div>
       </div>
+
+      {/* Modal para el formulario */}
+    {/* Modal para el formulario */}
+<ModalCustom isVisible={isModalOpen} onClose={toggleModal}>
+  {/* Título del Modal */}
+  <h3 className="text-xl font-bold mb-4 text-white">Hablemos</h3>
+  <Formulario onClose={toggleModal} />
+</ModalCustom>
+
     </div>
   );
 };
