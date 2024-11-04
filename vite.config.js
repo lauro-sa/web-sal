@@ -3,6 +3,5 @@ import react from '@vitejs/plugin-react'
 
 export default defineConfig({
   plugins: [react()],
-  base: '/web-sal/', 
-  assetsInclude: ['**/*.pdf'],
+  assetsInclude: ['**/*.pdf'], // Para incluir archivos PDF en los assets
 })
