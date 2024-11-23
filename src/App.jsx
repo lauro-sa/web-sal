@@ -13,6 +13,7 @@ import Laboratorio from "./pages/Laboratorio";
 import Contacto from "./pages/Contacto";
 import Servicios from "./pages/Servicios";
 import DesarrolloPaginasWeb from "./pages/DesarrolloPaginasWeb";
+import Noticias from "./pages/Noticias";
 import Error404 from "./pages/Error404";
 
 function ContenidoApp() {
@@ -26,6 +27,7 @@ function ContenidoApp() {
     "/contacto",
     "/servicios",
     "/desarrollo-paginas-web",
+    "/noticias", 
   ];
   const esPaginaError = !rutasValidas.includes(ubicacion.pathname);
 
@@ -41,6 +43,7 @@ function ContenidoApp() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/servicios" element={<Servicios />} />
           <Route path="/desarrollo-paginas-web" element={<DesarrolloPaginasWeb />} />
+          <Route path="/noticias" element={<Noticias />} /> {/* Añade la nueva ruta aquí */}
           <Route path="*" element={<Error404 />} />
         </Routes>
         {!esPaginaError && <Footer />}

@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 
 // Componentes
-import FondoParticulasX from "../components/FondoParticulasX"; 
+import FondoParticulasX from "../components/FondoParticulasX";
 import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
+import ModalAutenticacion from "../components/Sesion/ModalAutentificacion";
 
 // Componentes herramientas
 import CardGeneradorContrasenas from "../components/LabComponentes/GeneradorDeContraseñas/CardGeneradorContrasenas";
@@ -12,6 +13,28 @@ import CardConversorImg from "../components/LabComponentes/ConversorImg/CardConv
 import CardGeneradorQrWifi from "../components/LabComponentes/GeneradorQrWifi/CardGeneradorQrWifi";
 
 function Laboratorio() {
+  const [isAuthenticated, setIsAuthenticated] = useState(
+    !!localStorage.getItem("token")
+  );
+
+  const handleAuthSuccess = (token) => {
+    localStorage.setItem("token", token); // Guardar el token en almacenamiento local
+    setIsAuthenticated(true); // Actualizar el estado de autenticación
+  };
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    setIsAuthenticated(!!token); // Verificar si el token existe en el almacenamiento local
+  }, []);
+
+  if (!isAuthenticated) {
+    return (
+      <ModalAutenticacion
+        onAuthSuccess={(token) => handleAuthSuccess(token)}
+      />
+    );
+  }
+
   return (
     <div className="relative min-h-screen">
       <FondoParticulasX /> {/* Incluye el fondo animado */}

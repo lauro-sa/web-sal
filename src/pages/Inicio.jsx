@@ -1,5 +1,3 @@
-import React from "react";
-
 // Componentes
 import FondoParticulasX from "../components/FondoParticulasX";
 import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
@@ -8,16 +6,17 @@ import LayouInfoSal from "../components/LayouInfoSal";
 import InfoServicios from "../components/InfoServicios";
 import LayouHabilidades from "../components/LayouHabilidades";
 import LayouProyectos from "../components/LayouProyectos";
-import BotonFlotanteVideollamada from "../components/VideoConsulta/BotonFlotanteVideollamada"; // Importa el botón flotante
+import BotonFlotanteVideollamada from "../components/VideoConsulta/BotonFlotanteVideollamada";
+import BotonFlotanteUsuario from "../components/Sesion/BotonFlotanteUsuario";
 
 function Inicio() {
   return (
     <div className="relative min-h-screen">
-      <FondoParticulasX /> {/* Incluye el fondo animado */}
+      <FondoParticulasX />
       <ContenedorPagina className="relative z-10">
-        {/* Botón flotante para agendar videollamada */}
         <BotonFlotanteVideollamada />
-        
+        <BotonFlotanteUsuario />
+
         <div className="flex justify-center items-center min-h-screen">
           <InfoPrincipal />
         </div>
