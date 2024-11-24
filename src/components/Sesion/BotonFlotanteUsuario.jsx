@@ -1,33 +1,21 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import ModalAutentificacion from "./ModalAutentificacion";
 import NavbarUsuario from "./NavbarUsuario";
+import { AuthContext } from "./AuthContext";
 
 const BotonFlotanteUsuario = () => {
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+  const { isAuthenticated, user, login, logout } = useContext(AuthContext);
+  const [isNavbarVisible, setIsNavbarVisible] = useState(false); // Manejar visibilidad del navbar
   const [isModalVisible, setIsModalVisible] = useState(false);
-  const [user, setUser] = useState(null);
   const [lastScrollY, setLastScrollY] = useState(0);
-
-  useEffect(() => {
-    // Verificar autenticación inicial
-    const token = localStorage.getItem("token");
-    if (token) {
-      // Aquí podrías realizar una llamada para validar el token si es necesario
-      const storedUser = JSON.parse(localStorage.getItem("user"));
-      setIsAuthenticated(!!token);
-      setUser(storedUser);
-    }
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
 
-      // Oculta el NavbarUsuario si haces scroll hacia abajo
-      if (currentScrollY > lastScrollY) {
-        setIsNavbarVisible(false);
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        setIsNavbarVisible(false); // Ocultar cuando hacemos scroll hacia abajo
       }
 
       setLastScrollY(currentScrollY);
@@ -39,29 +27,24 @@ const BotonFlotanteUsuario = () => {
     };
   }, [lastScrollY]);
 
+  // Mostrar automáticamente el NavbarUsuario al iniciar sesión
+  useEffect(() => {
+    if (isAuthenticated) {
+      setIsNavbarVisible(true); // Mostrar el NavbarUsuario al iniciar sesión
+    }
+  }, [isAuthenticated]);
+
   const toggleNavbar = () => {
     if (isAuthenticated) {
-      setIsNavbarVisible((prev) => !prev); // Alterna la visibilidad del NavbarUsuario
+      setIsNavbarVisible((prev) => !prev); // Alternar visibilidad del NavbarUsuario
     } else {
-      setIsModalVisible(true); // Abre el modal de autenticación si no está autenticado
+      setIsModalVisible(true); // Mostrar el modal si no está autenticado
     }
   };
 
-  const handleAuthSuccess = (userData) => {
-    localStorage.setItem("token", userData.token); // Guarda el token
-    localStorage.setItem("user", JSON.stringify(userData)); // Guarda el usuario
-    setIsAuthenticated(true);
-    setUser(userData);
-    setIsModalVisible(false); // Cierra el modal después de autenticarse
-    setIsNavbarVisible(true); // Fuerza la visibilidad del NavbarUsuario
-  };
-
   const handleLogout = () => {
-    localStorage.removeItem("token"); // Elimina el token
-    localStorage.removeItem("user"); // Elimina el usuario
-    setIsAuthenticated(false);
-    setUser(null);
-    setIsNavbarVisible(false); // Oculta el NavbarUsuario al cerrar sesión
+    logout(); // Cerrar sesión
+    setIsNavbarVisible(false); // Ocultar el NavbarUsuario
   };
 
   return (
@@ -75,18 +58,24 @@ const BotonFlotanteUsuario = () => {
       </button>
 
       {/* NavbarUsuario */}
-      <NavbarUsuario
-        user={user}
-        isVisible={isNavbarVisible}
-        onLogout={handleLogout}
-      />
+      {isAuthenticated && (
+        <NavbarUsuario
+          isVisible={isNavbarVisible}
+          user={user}
+          onLogout={handleLogout}
+        />
+      )}
 
       {/* Modal de autenticación */}
       {isModalVisible && (
         <ModalAutentificacion
           isVisible={isModalVisible}
           onClose={() => setIsModalVisible(false)}
-          onAuthSuccess={handleAuthSuccess}
+          onAuthSuccess={(userData) => {
+            login(userData.token, userData); // Realizar login
+            setIsModalVisible(false); // Cerrar modal
+            setIsNavbarVisible(true); // Mostrar NavbarUsuario inmediatamente
+          }}
         />
       )}
     </div>

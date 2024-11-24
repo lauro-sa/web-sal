@@ -1,10 +1,8 @@
-import React, { useContext } from "react";
+import React from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { AuthContext } from "./components/Sesion/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
 import BotonFlotanteUsuario from "./components/Sesion/BotonFlotanteUsuario";
-import NavbarUsuario from "./components/Sesion/NavbarUsuario";
 import Inicio from "./pages/Inicio";
 import SobreMi from "./pages/SobreMi";
 import Proyectos from "./pages/Proyectos";
@@ -16,26 +14,14 @@ import Noticias from "./pages/Noticias";
 import Error404 from "./pages/Error404";
 
 function App() {
-  const { isAuthenticated, user, logout } = useContext(AuthContext);
-
   return (
     <Router>
       <div className="App flex flex-col min-h-screen relative">
         {/* Navbar principal */}
         <Navbar />
 
-        {/* Botón Flotante de Usuario */}
+        {/* Botón Flotante de Usuario (controla también el NavbarUsuario) */}
         <BotonFlotanteUsuario />
-
-        {/* Navbar flotante del usuario autenticado */}
-        {isAuthenticated && (
-          <NavbarUsuario
-            user={user}
-            onLogout={logout}
-            isVisible={isAuthenticated}
-          />
-        )}
-
 
         {/* Rutas principales */}
         <Routes>

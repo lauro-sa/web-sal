@@ -1,38 +1,35 @@
-import React, { useState, useEffect } from "react";
-import { FiLogOut } from "react-icons/fi"; // Ícono de cierre de sesión
+import React from "react";
+import { FiLogOut } from "react-icons/fi";
+import { motion } from "framer-motion"; // Para animaciones
 
-function NavbarUsuario({ user, onLogout, isVisible }) {
-  const [isVisibleOnScreen, setIsVisibleOnScreen] = useState(isVisible);
-  const [lastScrollY, setLastScrollY] = useState(0);
+// Animación para entrar desde fuera de la pantalla a la izquierda
+const entrarDesdeIzquierda = {
+  hidden: {
+    x: "-100vw", // Comienza fuera de la pantalla a la izquierda
+    opacity: 0, // Invisible al inicio
+  },
+  visible: {
+    x: "-50%", // Se centra horizontalmente
+    opacity: 1, // Totalmente visible
+    transition: {
+      type: "spring", // Transición suave tipo "spring"
+      stiffness: 120, // Ajusta la rigidez del resorte
+      damping: 15, // Reduce las oscilaciones
+      duration: 0.5, // Duración de la animación
+    },
+  },
+  exit: {
+    x: "-100vw", // Sale nuevamente hacia la izquierda
+    opacity: 0, // Desaparece al salir
+    transition: {
+      duration: 0.3, // Más rápido al salir
+    },
+  },
+};
 
-  // Manejar la visibilidad del Navbar al hacer scroll
-  useEffect(() => {
-    const handleScroll = () => {
-      const currentScrollY = window.scrollY;
+function NavbarUsuario({ isVisible, user, onLogout }) {
+  if (!isVisible) return null;
 
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        // Desaparece cuando hacemos scroll hacia abajo
-        setIsVisibleOnScreen(false);
-      } else {
-        // Aparece cuando hacemos scroll hacia arriba
-        setIsVisibleOnScreen(true);
-      }
-
-      setLastScrollY(currentScrollY);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
-  }, [lastScrollY]);
-
-  // Actualizar visibilidad al cambiar `isVisible` (como al cerrar sesión)
-  useEffect(() => {
-    setIsVisibleOnScreen(isVisible);
-  }, [isVisible]);
-
-  // Formateo de la última sesión
   const formatLastSession = (dateTime) => {
     if (!dateTime) return { date: "No disponible", time: "" };
 
@@ -52,32 +49,27 @@ function NavbarUsuario({ user, onLogout, isVisible }) {
 
   const lastSession = formatLastSession(user?.lastActiveSession);
 
-  // Si no debe mostrarse, retorna null
-  if (!isVisibleOnScreen || !isVisible) return null;
-
   return (
-    <div
+    <motion.div
       className={`fixed top-20 left-1/2 transform -translate-x-1/2 z-40 transition-all duration-500 ease-in-out
         bg-black/10 backdrop-blur-lg rounded-lg mt-2 border border-violeta-marca/40 shadow-sm shadow-violeta-marca/20 max-w-sm px-3 py-2 flex justify-between items-center`}
+      initial="hidden"
+      animate="visible"
+      exit="hidden"
+      variants={entrarDesdeIzquierda} // Usar la animación ajustada
     >
       {/* Información del usuario en fila */}
       <div className="flex space-x-8 text-[10px] md:text-[11px] font-mono text-white truncate">
         <div className="flex flex-col items-center">
-          <strong className="text-[9px] uppercase text-violeta-marca">
-            Nombre
-          </strong>
+          <strong className="text-[9px] uppercase text-violeta-marca">Nombre</strong>
           <p className="truncate">{user?.nombreCompleto || "No disponible"}</p>
         </div>
         <div className="flex flex-col items-center">
-          <strong className="text-[9px] uppercase text-violeta-marca">
-            Correo
-          </strong>
+          <strong className="text-[9px] uppercase text-violeta-marca">Correo</strong>
           <p className="truncate">{user?.email || "No disponible"}</p>
         </div>
         <div className="flex flex-col items-center">
-          <strong className="text-[9px] uppercase text-violeta-marca">
-            Última sesión
-          </strong>
+          <strong className="text-[9px] uppercase text-violeta-marca">Última sesión</strong>
           <div className="flex text-center">
             <span className="truncate text-[10px]">{lastSession.date}</span>
             <span className="mx-1">|</span>
@@ -91,9 +83,9 @@ function NavbarUsuario({ user, onLogout, isVisible }) {
         className="ml-3 text-red-500 hover:text-red-600 transition-colors p-1"
         aria-label="Cerrar sesión"
       >
-        <FiLogOut className="w-4 h-4" /> {/* Ícono de cierre de sesión */}
+        <FiLogOut className="w-4 h-4" />
       </button>
-    </div>
+    </motion.div>
   );
 }
 
