@@ -7,15 +7,14 @@ import InfoServicios from "../components/InfoServicios";
 import LayouHabilidades from "../components/LayouHabilidades";
 import LayouProyectos from "../components/LayouProyectos";
 import BotonFlotanteVideollamada from "../components/VideoConsulta/BotonFlotanteVideollamada";
-import BotonFlotanteUsuario from "../components/Sesion/BotonFlotanteUsuario";
 
 function Inicio() {
   return (
     <div className="relative min-h-screen">
       <FondoParticulasX />
       <ContenedorPagina className="relative z-10">
+        {/* Botón flotante específico para videollamadas */}
         <BotonFlotanteVideollamada />
-        <BotonFlotanteUsuario />
 
         <div className="flex justify-center items-center min-h-screen">
           <InfoPrincipal />

@@ -1,14 +1,10 @@
-import React from "react";
-import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
-
-// Contexto
-import { AuthProvider } from "./components/Sesion/AuthContext";
-
-// Componentes generales
+import React, { useContext } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AuthContext } from "./components/Sesion/AuthContext";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
-
-// Páginas
+import BotonFlotanteUsuario from "./components/Sesion/BotonFlotanteUsuario";
+import NavbarUsuario from "./components/Sesion/NavbarUsuario";
 import Inicio from "./pages/Inicio";
 import SobreMi from "./pages/SobreMi";
 import Proyectos from "./pages/Proyectos";
@@ -19,25 +15,29 @@ import DesarrolloPaginasWeb from "./pages/DesarrolloPaginasWeb";
 import Noticias from "./pages/Noticias";
 import Error404 from "./pages/Error404";
 
-function ContenidoApp() {
-  const ubicacion = useLocation();
-
-  const rutasValidas = [
-    "/",
-    "/sobre-mi",
-    "/proyectos",
-    "/laboratorio",
-    "/contacto",
-    "/servicios",
-    "/desarrollo-paginas-web",
-    "/noticias",
-  ];
-  const esPaginaError = !rutasValidas.includes(ubicacion.pathname);
+function App() {
+  const { isAuthenticated, user, logout } = useContext(AuthContext);
 
   return (
-    <div className="App flex flex-col min-h-screen relative">
-      <div className="flex flex-col flex-grow relative z-10">
-        {!esPaginaError && <Navbar />}
+    <Router>
+      <div className="App flex flex-col min-h-screen relative">
+        {/* Navbar principal */}
+        <Navbar />
+
+        {/* Botón Flotante de Usuario */}
+        <BotonFlotanteUsuario />
+
+        {/* Navbar flotante del usuario autenticado */}
+        {isAuthenticated && (
+          <NavbarUsuario
+            user={user}
+            onLogout={logout}
+            isVisible={isAuthenticated}
+          />
+        )}
+
+
+        {/* Rutas principales */}
         <Routes>
           <Route path="/" element={<Inicio />} />
           <Route path="/sobre-mi" element={<SobreMi />} />
@@ -49,19 +49,11 @@ function ContenidoApp() {
           <Route path="/noticias" element={<Noticias />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
-        {!esPaginaError && <Footer />}
-      </div>
-    </div>
-  );
-}
 
-function App() {
-  return (
-    <AuthProvider>
-      <Router>
-        <ContenidoApp />
-      </Router>
-    </AuthProvider>
+        {/* Footer */}
+        <Footer />
+      </div>
+    </Router>
   );
 }
 

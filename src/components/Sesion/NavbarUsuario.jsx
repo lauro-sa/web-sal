@@ -1,10 +1,38 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { FiLogOut } from "react-icons/fi"; // Ícono de cierre de sesión
 
 function NavbarUsuario({ user, onLogout, isVisible }) {
-  if (!isVisible) return null;
+  const [isVisibleOnScreen, setIsVisibleOnScreen] = useState(isVisible);
+  const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Desglosar fecha y hora en partes separadas
+  // Manejar la visibilidad del Navbar al hacer scroll
+  useEffect(() => {
+    const handleScroll = () => {
+      const currentScrollY = window.scrollY;
+
+      if (currentScrollY > lastScrollY && currentScrollY > 50) {
+        // Desaparece cuando hacemos scroll hacia abajo
+        setIsVisibleOnScreen(false);
+      } else {
+        // Aparece cuando hacemos scroll hacia arriba
+        setIsVisibleOnScreen(true);
+      }
+
+      setLastScrollY(currentScrollY);
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [lastScrollY]);
+
+  // Actualizar visibilidad al cambiar `isVisible` (como al cerrar sesión)
+  useEffect(() => {
+    setIsVisibleOnScreen(isVisible);
+  }, [isVisible]);
+
+  // Formateo de la última sesión
   const formatLastSession = (dateTime) => {
     if (!dateTime) return { date: "No disponible", time: "" };
 
@@ -23,6 +51,9 @@ function NavbarUsuario({ user, onLogout, isVisible }) {
   };
 
   const lastSession = formatLastSession(user?.lastActiveSession);
+
+  // Si no debe mostrarse, retorna null
+  if (!isVisibleOnScreen || !isVisible) return null;
 
   return (
     <div

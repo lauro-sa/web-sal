@@ -5,7 +5,7 @@ import RedesSociales from "./RedesSociales";
 import logo from "../assets/img/logo-01.png";
 
 function Navbar() {
-  const { isAuthenticated } = useContext(AuthContext); // Obtén el estado de autenticación del contexto
+  const { isAuthenticated } = useContext(AuthContext); // Acceder al estado de autenticación
   const location = useLocation();
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -14,6 +14,7 @@ function Navbar() {
 
   const iconosDeseados = ["email", "linkedin", "github"];
 
+  // Manejo de scroll para ocultar o mostrar el navbar
   useEffect(() => {
     const handleScroll = () => {
       const currentScrollY = window.scrollY;
@@ -33,11 +34,10 @@ function Navbar() {
     };
   }, [lastScrollY]);
 
-  const getNavLinkClass = (path) => {
-    return location.pathname === path
+  const getNavLinkClass = (path) =>
+    location.pathname === path
       ? "text-violeta-marca font-semibold"
       : "hover:text-violeta-marca";
-  };
 
   const handleRestrictedClick = (e, route) => {
     if (!isAuthenticated) {

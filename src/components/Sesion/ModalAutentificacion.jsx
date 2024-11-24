@@ -1,7 +1,9 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import ModalCustom from "../ModalCustom";
+import { AuthContext } from "./AuthContext";
 
-const ModalAutentificacion = ({ isVisible, onClose, onAuthSuccess }) => {
+const ModalAutentificacion = ({ isVisible, onClose }) => {
+  const { login } = useContext(AuthContext); // Consumimos el contexto de autenticación
   const [isRegister, setIsRegister] = useState(false);
   const [nombreCompleto, setNombreCompleto] = useState("");
   const [username, setUsername] = useState("");
@@ -12,6 +14,7 @@ const ModalAutentificacion = ({ isVisible, onClose, onAuthSuccess }) => {
   const handleAuth = async (e) => {
     e.preventDefault();
     const endpoint = isRegister ? "/api/register" : "/api/login";
+
     try {
       const bodyData = isRegister
         ? { nombreCompleto, username, email, password }
@@ -32,15 +35,16 @@ const ModalAutentificacion = ({ isVisible, onClose, onAuthSuccess }) => {
       const data = await response.json();
 
       if (!isRegister) {
-        onAuthSuccess({
-          token: data.token,
+        // Inicia sesión y actualiza el contexto
+        login(data.token, {
           nombreCompleto: data.user.nombreCompleto,
           email: data.user.email,
           lastActiveSession: data.user.lastActive,
         });
+        onClose(); // Cierra el modal después de iniciar sesión
       } else {
         alert("Usuario registrado exitosamente");
-        setIsRegister(false);
+        setIsRegister(false); // Cambia a la vista de inicio de sesión
       }
     } catch (error) {
       console.error("Error en la solicitud:", error);
@@ -98,6 +102,11 @@ const ModalAutentificacion = ({ isVisible, onClose, onAuthSuccess }) => {
             required
           />
         </div>
+        {error && (
+          <div className="text-red-500 text-sm text-center">
+            {error}
+          </div>
+        )}
         <div className="flex justify-center">
           <button
             type="submit"
