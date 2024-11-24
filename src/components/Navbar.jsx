@@ -1,37 +1,18 @@
-import React, { useState, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
+import { AuthContext } from "./Sesion/AuthContext";
 import RedesSociales from "./RedesSociales";
 import logo from "../assets/img/logo-01.png";
 
 function Navbar() {
+  const { isAuthenticated } = useContext(AuthContext); // Obtén el estado de autenticación del contexto
+  const location = useLocation();
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isAuthenticated, setIsAuthenticated] = useState(false);
-  const [vibrate, setVibrate] = useState(null); // Ruta que vibra al restringir acceso
-  const location = useLocation();
+  const [vibrate, setVibrate] = useState(null);
 
   const iconosDeseados = ["email", "linkedin", "github"];
-
-  useEffect(() => {
-    const checkAuth = () => {
-      const token = localStorage.getItem("token");
-      setIsAuthenticated(!!token); // Actualiza la autenticación según el token
-    };
-
-    checkAuth();
-
-    // Escucha cambios en localStorage (por ejemplo, al iniciar/cerrar sesión desde otro lugar)
-    const onStorageChange = () => {
-      checkAuth();
-    };
-
-    window.addEventListener("storage", onStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", onStorageChange);
-    };
-  }, []);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -61,8 +42,8 @@ function Navbar() {
   const handleRestrictedClick = (e, route) => {
     if (!isAuthenticated) {
       e.preventDefault();
-      setVibrate(route); // Activar vibración específica
-      setTimeout(() => setVibrate(null), 1000); // Detener vibración después de 1 segundo
+      setVibrate(route);
+      setTimeout(() => setVibrate(null), 1000);
     }
   };
 
@@ -140,13 +121,16 @@ function Navbar() {
               Noticias
             </Link>
           </li>
-          <li>
+          <li className="relative flex items-center">
             <Link
               to="/contacto"
               className={`text-sm md:text-base ${getNavLinkClass("/contacto")}`}
             >
               Contacto
             </Link>
+            {isAuthenticated && (
+              <span className="absolute -right-5 top-[50%] transform -translate-y-1/2 w-1.5 h-1.5 bg-green-400 rounded-full animate-pin"></span>
+            )}
           </li>
         </ul>
 

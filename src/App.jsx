@@ -1,6 +1,9 @@
 import React from "react";
 import { HashRouter as Router, Routes, Route, useLocation } from "react-router-dom";
 
+// Contexto
+import { AuthProvider } from "./components/Sesion/AuthContext";
+
 // Componentes generales
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -27,7 +30,7 @@ function ContenidoApp() {
     "/contacto",
     "/servicios",
     "/desarrollo-paginas-web",
-    "/noticias", 
+    "/noticias",
   ];
   const esPaginaError = !rutasValidas.includes(ubicacion.pathname);
 
@@ -43,7 +46,7 @@ function ContenidoApp() {
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/servicios" element={<Servicios />} />
           <Route path="/desarrollo-paginas-web" element={<DesarrolloPaginasWeb />} />
-          <Route path="/noticias" element={<Noticias />} /> {/* Añade la nueva ruta aquí */}
+          <Route path="/noticias" element={<Noticias />} />
           <Route path="*" element={<Error404 />} />
         </Routes>
         {!esPaginaError && <Footer />}
@@ -54,9 +57,11 @@ function ContenidoApp() {
 
 function App() {
   return (
-    <Router>
-      <ContenidoApp />
-    </Router>
+    <AuthProvider>
+      <Router>
+        <ContenidoApp />
+      </Router>
+    </AuthProvider>
   );
 }
 
