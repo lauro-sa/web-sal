@@ -20,6 +20,7 @@
     "@tsparticles/react": "^3.0.0",
     "browser-image-resizer": "^2.4.1",
     "canvas-confetti": "^1.9.3",
+    "dotenv": "^16.4.5",
     "emailjs-com": "^3.2.0",
     "firebase-admin": "^13.0.0",
     "formik": "^2.4.6",
