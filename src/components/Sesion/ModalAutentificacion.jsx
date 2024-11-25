@@ -1,25 +1,31 @@
+// PFI | FULL STACK AVANZADO - Consigna de trabajo final integrador.
+// Este archivo implementa un modal de autenticación que permite al usuario registrarse o iniciar sesión,
+// utilizando el contexto de autenticación proporcionado por AuthContext.
+
 import React, { useState, useContext } from "react";
-import ModalCustom from "../ModalCustom";
-import { AuthContext } from "./AuthContext";
+import ModalCustom from "../ModalCustom"; // Componente personalizado para modales
+import { AuthContext } from "./AuthContext"; // Importa el contexto de autenticación
 
 const ModalAutentificacion = ({ isVisible, onClose }) => {
-  const { login } = useContext(AuthContext); // Consumimos el contexto de autenticación
-  const [isRegister, setIsRegister] = useState(false);
+  const { login } = useContext(AuthContext); // Usa el contexto para acceder a la función de login
+  const [isRegister, setIsRegister] = useState(false); // Estado para controlar si el modal está en modo registro o inicio de sesión
   const [nombreCompleto, setNombreCompleto] = useState("");
   const [username, setUsername] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [error, setError] = useState(null);
+  const [error, setError] = useState(null); // Estado para manejar los errores de autenticación
 
   const handleAuth = async (e) => {
-    e.preventDefault();
-    const endpoint = isRegister ? "/api/register" : "/api/login";
+    e.preventDefault(); // Evita el comportamiento predeterminado del formulario
+    const endpoint = isRegister ? "/api/register" : "/api/login"; // Define el endpoint basado en el modo del formulario
 
     try {
+      // Datos a enviar en la solicitud
       const bodyData = isRegister
         ? { nombreCompleto, username, email, password }
         : { username, password };
 
+      // Realiza la solicitud al servidor
       const response = await fetch(endpoint, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
@@ -28,14 +34,14 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        setError(errorData.error || "Error en la autenticación");
+        setError(errorData.error || "Error en la autenticación"); // Maneja los errores de respuesta
         return;
       }
 
       const data = await response.json();
 
       if (!isRegister) {
-        // Inicia sesión y actualiza el contexto
+        // Si es inicio de sesión, actualiza el estado global con los datos del usuario
         login(data.token, {
           nombreCompleto: data.user.nombreCompleto,
           email: data.user.email,
@@ -43,8 +49,8 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
         });
         onClose(); // Cierra el modal después de iniciar sesión
       } else {
-        alert("Usuario registrado exitosamente");
-        setIsRegister(false); // Cambia a la vista de inicio de sesión
+        alert("Usuario registrado exitosamente"); // Notifica al usuario
+        setIsRegister(false); // Cambia al modo inicio de sesión
       }
     } catch (error) {
       console.error("Error en la solicitud:", error);

@@ -1,12 +1,26 @@
-// Importación de módulos necesarios
+// PFI | FULL STACK AVANZADO - Consigna de trabajo final integrador.
+// Este archivo implementa la configuración del servidor y las operaciones básicas de CRUD para usuarios, 
+// así como el manejo de sesiones y autenticación, cumpliendo con las consignas del trabajo final integrador.
+
 import express from "express";
 import cors from "cors";
 import bcrypt from "bcrypt";
 import jwt from "jsonwebtoken";
 import admin from "firebase-admin";
+import "dotenv/config"; // Carga las variables de entorno desde el archivo .env
 
-// Inicializar Firebase Admin SDK con la configuración del servicio
-import serviceAccount from "./firebaseConfig.json" assert { type: "json" };
+// Configuración inicial de Firebase Admin SDK usando variables de entorno para seguridad
+const serviceAccount = {
+  type: "service_account",
+  project_id: process.env.FIREBASE_PROJECT_ID,
+  private_key_id: process.env.FIREBASE_PRIVATE_KEY_ID,
+  private_key: process.env.FIREBASE_PRIVATE_KEY.replace(/\\n/g, '\n'),
+  client_email: process.env.FIREBASE_CLIENT_EMAIL,
+  auth_uri: "https://accounts.google.com/o/oauth2/auth",
+  token_uri: "https://oauth2.googleapis.com/token",
+  auth_provider_x509_cert_url: "https://www.googleapis.com/oauth2/v1/certs",
+  client_x509_cert_url: `https://www.googleapis.com/robot/v1/metadata/x509/${process.env.FIREBASE_CLIENT_EMAIL}`,
+};
 
 try {
   admin.initializeApp({
@@ -23,7 +37,7 @@ const db = admin.firestore();
 // Configuración de la aplicación Express
 const app = express();
 const PORT = process.env.PORT || 3002;
-const SECRET_KEY = process.env.SECRET_KEY || "tu_secreto"; // Clave secreta para JWT
+const SECRET_KEY = process.env.SECRET_KEY || "tu_secreto"; // Clave secreta para JWT utilizada en la autenticación
 
 // Middlewares
 app.use(cors());
@@ -34,40 +48,34 @@ app.post("/api/register", async (req, res) => {
   try {
     const { username, password, nombreCompleto, email } = req.body;
 
-    // Validación de los datos recibidos
+    // Validación de los datos recibidos para cumplir con las prácticas de entrada segura
     if (!username || !password || !nombreCompleto || !email) {
       return res.status(400).json({ success: false, error: "Faltan datos" });
     }
 
-    // Verificar si el usuario ya existe en la base de datos
+    // Verificación de la existencia previa del usuario para evitar duplicados
     const userRef = db.collection("users").doc(username);
     const doc = await userRef.get();
 
     if (doc.exists) {
-      return res
-        .status(400)
-        .json({ success: false, error: "El usuario ya existe" });
+      return res.status(400).json({ success: false, error: "El usuario ya existe" });
     }
 
-    // Encriptar la contraseña y guardar el nuevo usuario
+    // Encriptación de la contraseña para la seguridad de los datos del usuario
     const hashedPassword = await bcrypt.hash(password, 10);
     await userRef.set({
       username,
       password: hashedPassword,
       nombreCompleto,
       email,
-      sesionActiva01: null, // Campo inicializado vacío
-      sesionActiva02: null, // Campo inicializado vacío
+      sesionActiva01: null,
+      sesionActiva02: null,
     });
 
-    res
-      .status(201)
-      .json({ success: true, message: "Usuario registrado exitosamente" });
+    res.status(201).json({ success: true, message: "Usuario registrado exitosamente" });
   } catch (error) {
     console.error("Error al registrar usuario:", error);
-    res
-      .status(500)
-      .json({ success: false, error: "Error al registrar el usuario" });
+    res.status(500).json({ success: false, error: "Error al registrar el usuario" });
   }
 });
 
@@ -76,6 +84,7 @@ app.post("/api/login", async (req, res) => {
   try {
     const { username, password } = req.body;
 
+    // Validación de datos completos para iniciar sesión
     if (!username || !password) {
       return res.status(400).json({ success: false, error: "Faltan datos" });
     }
@@ -84,30 +93,26 @@ app.post("/api/login", async (req, res) => {
     const doc = await userRef.get();
 
     if (!doc.exists) {
-      return res
-        .status(400)
-        .json({ success: false, error: "Usuario no encontrado" });
+      return res.status(400).json({ success: false, error: "Usuario no encontrado" });
     }
 
     const user = doc.data();
 
+    // Verificación de la contraseña
     const isMatch = await bcrypt.compare(password, user.password);
     if (!isMatch) {
-      return res
-        .status(400)
-        .json({ success: false, error: "Contraseña incorrecta" });
+      return res.status(400).json({ success: false, error: "Contraseña incorrecta" });
     }
 
-    // Obtener la última sesión activa
+    // Actualización de la información de la última sesión activa
     const lastSession = user.sesionActiva01 || "Primera vez iniciando sesión";
-
-    // Actualizar Firestore: mover sesionActiva02 a sesionActiva01, y guardar la nueva fecha en sesionActiva02
     const newSessionTime = new Date().toISOString();
     await userRef.update({
       sesionActiva01: user.sesionActiva02 || lastSession,
       sesionActiva02: newSessionTime,
     });
 
+    // Creación del token JWT para la sesión
     res.json({
       success: true,
       token: jwt.sign(
@@ -118,7 +123,7 @@ app.post("/api/login", async (req, res) => {
       user: {
         nombreCompleto: user.nombreCompleto,
         email: user.email,
-        lastActive: lastSession, // Última sesión conocida
+        lastActive: lastSession,
       },
     });
   } catch (error) {
@@ -127,37 +132,30 @@ app.post("/api/login", async (req, res) => {
   }
 });
 
-// Middleware para autenticar el token JWT
+// Middleware para autenticar el token JWT y asegurar el acceso a rutas protegidas
 function authenticateToken(req, res, next) {
   const authHeader = req.headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
 
   if (!token) {
-    return res
-      .status(401)
-      .json({ success: false, error: "Acceso denegado. Token no proporcionado" });
+    return res.status(401).json({ success: false, error: "Acceso denegado. Token no proporcionado" });
   }
 
   jwt.verify(token, SECRET_KEY, (err, user) => {
     if (err) {
-      return res
-        .status(403)
-        .json({ success: false, error: "Token inválido o expirado" });
+      return res.status(403).json({ success: false, error: "Token inválido o expirado" });
     }
-    req.user = user; // Adjuntar los datos del usuario al request
+    req.user = user; // Adjuntar los datos del usuario al request para uso en rutas protegidas
     next();
   });
 }
 
-
 // Endpoint para obtener noticias protegidas (requiere autenticación)
 app.get("/api/noticias", authenticateToken, async (req, res) => {
-  const keywords =
-    "Apple OR Android OR Windows OR programación OR PC OR iPhone OR JavaScript OR Python OR Java OR desarrollo OR código OR software";
+  const keywords = "Apple OR Android OR Windows OR programación OR PC OR iPhone OR JavaScript OR Python OR Java OR desarrollo OR código OR software";
   const lastWeekDate = getLastWeekDate();
   const url = `https://newsapi.org/v2/everything?q=${encodeURIComponent(
-    keywords
-  )}&language=es&from=${lastWeekDate}&pageSize=20&apiKey=d73ce24ba58a4dde8df4f4717403b001`;
+    keywords)}&language=es&from=${lastWeekDate}&pageSize=20&apiKey=${process.env.API_KEY}`;
 
   try {
     const response = await fetch(url);

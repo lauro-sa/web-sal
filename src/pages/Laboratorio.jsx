@@ -1,11 +1,15 @@
+// PFI | FULL STACK AVANZADO - Consigna de trabajo final integrador.
+// Este archivo define el componente 'Laboratorio', una página en la aplicación React que ofrece
+// acceso a diversas herramientas digitales y componentes experimentales desarrollados.
+
 import React, { useState, useEffect } from "react";
 
-// Componentes
+// Importación de componentes visuales y de fondo
 import FondoParticulasX from "../components/FondoParticulasX";
 import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
 import ModalAutenticacion from "../components/Sesion/ModalAutentificacion";
 
-// Componentes herramientas
+// Importación de tarjetas de herramientas del laboratorio
 import CardGeneradorContrasenas from "../components/LabComponentes/GeneradorDeContraseñas/CardGeneradorContrasenas";
 import CardGeneradorQr from "../components/LabComponentes/GeneradorDeQr/CardGeneradorQr";
 import CardConversorAudio from "../components/LabComponentes/ConversorAudio/CardConversorAudio";
@@ -14,19 +18,20 @@ import CardGeneradorQrWifi from "../components/LabComponentes/GeneradorQrWifi/Ca
 
 function Laboratorio() {
   const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token")
+    !!localStorage.getItem("token") // Chequea la autenticación inicial a través de token almacenado localmente
   );
 
   const handleAuthSuccess = (token) => {
-    localStorage.setItem("token", token); // Guardar el token en almacenamiento local
-    setIsAuthenticated(true); // Actualizar el estado de autenticación
+    localStorage.setItem("token", token); // Almacena el nuevo token
+    setIsAuthenticated(true); // Actualiza el estado a autenticado
   };
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token); // Verificar si el token existe en el almacenamiento local
+    setIsAuthenticated(!!token); // Actualiza el estado basado en la presencia del token
   }, []);
 
+  // Si no está autenticado, muestra el modal de autenticación
   if (!isAuthenticated) {
     return (
       <ModalAutenticacion
@@ -35,9 +40,10 @@ function Laboratorio() {
     );
   }
 
+  // Renderizado del contenido del laboratorio solo si el usuario está autenticado
   return (
     <div className="relative min-h-screen">
-      <FondoParticulasX /> {/* Incluye el fondo animado */}
+      <FondoParticulasX /> {/* Fondo animado para embellecer la página */}
       <ContenedorPagina className="px-4 relative z-10">
         <h1 className="mt-16 text-xl font-bold">Laboratorio</h1>
         <p className="mt-2 mb-8 text-l leading-relaxed">
