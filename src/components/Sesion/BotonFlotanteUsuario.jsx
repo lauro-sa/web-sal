@@ -1,16 +1,17 @@
-// PFI | FULL STACK AVANZADO - Consigna de trabajo final integrador.
-// Este archivo implementa un botón flotante de usuario que gestiona la visibilidad del navbar y modal de autenticación en la aplicación React.
-
 import React, { useContext, useState, useEffect } from "react";
 import { FaUserCircle } from "react-icons/fa";
 import ModalAutentificacion from "./ModalAutentificacion";
 import NavbarUsuario from "./NavbarUsuario";
+import ModalDespedida from "./ModalDespedida";
+import ModalConfirmacionEliminacion from "./ModalConfirmacionEliminacion";
 import { AuthContext } from "./AuthContext";
 
 const BotonFlotanteUsuario = () => {
   const { isAuthenticated, user, login, logout } = useContext(AuthContext);
   const [isNavbarVisible, setIsNavbarVisible] = useState(false); // Controla la visibilidad del Navbar
   const [isModalVisible, setIsModalVisible] = useState(false); // Controla la visibilidad del modal de autenticación
+  const [showConfirmModal, setShowConfirmModal] = useState(false); // Modal de confirmación
+  const [showFarewellModal, setShowFarewellModal] = useState(false); // Modal de despedida
   const [lastScrollY, setLastScrollY] = useState(0); // Mantiene el último valor de scroll Y para determinar la dirección del scroll
 
   // Efecto para ocultar el Navbar al hacer scroll hacia abajo
@@ -53,6 +54,28 @@ const BotonFlotanteUsuario = () => {
     setIsNavbarVisible(false);
   };
 
+  // Función para eliminar usuario
+  const handleDeleteUser = async () => {
+    setShowConfirmModal(false); // Cierra el modal de confirmación
+    try {
+      const response = await fetch('/api/delete-user', {
+        method: 'DELETE',
+        headers: {
+          'Authorization': `Bearer ${localStorage.getItem("token")}`,
+        },
+      });
+      const data = await response.json();
+      if (data.success) {
+        setShowFarewellModal(true); // Muestra el modal de despedida
+      } else {
+        alert(data.error);
+      }
+    } catch (error) {
+      console.error("Error al eliminar la cuenta:", error);
+      alert("Error al eliminar la cuenta. Por favor, intenta de nuevo.");
+    }
+  };
+
   return (
     <div>
       {/* Botón flotante con ícono de usuario */}
@@ -63,16 +86,17 @@ const BotonFlotanteUsuario = () => {
         <FaUserCircle className="w-6 h-6 transition-transform duration-300 hover:scale-110" />
       </button>
 
-      {/* Componente de NavbarUsuario, se muestra si el usuario está autenticado */}
+      {/* Componente de NavbarUsuario */}
       {isAuthenticated && (
         <NavbarUsuario
           isVisible={isNavbarVisible}
           user={user}
           onLogout={handleLogout}
+          onDeleteUser={() => setShowConfirmModal(true)} // Abre el modal de confirmación
         />
       )}
 
-      {/* Modal para autenticación, se muestra si el usuario no está autenticado y el modal es visible */}
+      {/* Modal para autenticación */}
       {isModalVisible && (
         <ModalAutentificacion
           isVisible={isModalVisible}
@@ -84,6 +108,22 @@ const BotonFlotanteUsuario = () => {
           }}
         />
       )}
+
+      {/* ModalConfirmacionEliminacion */}
+      <ModalConfirmacionEliminacion
+        isVisible={showConfirmModal}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={handleDeleteUser}
+      />
+
+      {/* ModalDespedida */}
+      <ModalDespedida
+        isVisible={showFarewellModal}
+        onClose={() => {
+          setShowFarewellModal(false);
+          handleLogout(); // Cierra sesión al cerrar el modal de despedida
+        }}
+      />
     </div>
   );
 };
