@@ -1,11 +1,12 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useNavigate, useLocation } from "react-router-dom";
 import { AuthContext } from "./Sesion/AuthContext";
 import RedesSociales from "./RedesSociales";
 import logo from "../assets/img/logo-01.png";
 
 function Navbar() {
   const { isAuthenticated } = useContext(AuthContext); // Acceder al estado de autenticación
+  const navigate = useNavigate();
   const location = useLocation();
   const [lastScrollY, setLastScrollY] = useState(0);
   const [isVisible, setIsVisible] = useState(true);
@@ -43,16 +44,22 @@ function Navbar() {
     if (!isAuthenticated) {
       e.preventDefault();
       setVibrate(route);
-      setTimeout(() => setVibrate(null), 1000);
+
+      // Redirige al usuario a la página de inicio de sesión después de vibrar
+      setTimeout(() => {
+        setVibrate(null);
+        navigate("/inicio-sesion", { state: { from: route } });
+      }, 1000);
     }
   };
 
   return (
     <nav
       className={`fixed top-0 left-1/2 transform -translate-x-1/2 z-50 transition-all duration-500 ease-in-out
-        ${isScrolled && lastScrollY > 30
-          ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4 border border-violeta-marca/50 shadow-md shadow-violeta-marca/30"
-          : "bg-transparent md:w-full border-none shadow-none"
+        ${
+          isScrolled && lastScrollY > 30
+            ? "bg-black/20 backdrop-blur-xl rounded-xl mt-4 border border-violeta-marca/50 shadow-md shadow-violeta-marca/30"
+            : "bg-transparent md:w-full border-none shadow-none"
         }
         ${isVisible ? "scale-100 opacity-100" : "scale-95 opacity-0"}`}
     >
@@ -79,7 +86,10 @@ function Navbar() {
         {/* Navigation Links */}
         <ul className="flex space-x-4 py-4">
           <li>
-            <Link to="/" className={`text-sm md:text-base ${getNavLinkClass("/")}`}>
+            <Link
+              to="/"
+              className={`text-sm md:text-base ${getNavLinkClass("/")}`}
+            >
               Inicio
             </Link>
           </li>
@@ -94,7 +104,9 @@ function Navbar() {
           <li>
             <Link
               to="/proyectos"
-              className={`text-sm md:text-base ${getNavLinkClass("/proyectos")}`}
+              className={`text-sm md:text-base ${getNavLinkClass(
+                "/proyectos"
+              )}`}
             >
               Proyectos
             </Link>
@@ -102,9 +114,11 @@ function Navbar() {
           <li>
             <Link
               to="/laboratorio"
-              onClick={(e) => handleRestrictedClick(e, "laboratorio")}
-              className={`text-sm md:text-base ${getNavLinkClass("/laboratorio")} ${
-                vibrate === "laboratorio" ? "text-red-500 animate-pulse" : ""
+              onClick={(e) => handleRestrictedClick(e, "/laboratorio")}
+              className={`text-sm md:text-base ${getNavLinkClass(
+                "/laboratorio"
+              )} ${
+                vibrate === "/laboratorio" ? "text-red-500 animate-pulse" : ""
               }`}
             >
               Laboratorio
@@ -113,9 +127,11 @@ function Navbar() {
           <li>
             <Link
               to="/noticias"
-              onClick={(e) => handleRestrictedClick(e, "noticias")}
-              className={`text-sm md:text-base ${getNavLinkClass("/noticias")} ${
-                vibrate === "noticias" ? "text-red-500 animate-pulse" : ""
+              onClick={(e) => handleRestrictedClick(e, "/noticias")}
+              className={`text-sm md:text-base ${getNavLinkClass(
+                "/noticias"
+              )} ${
+                vibrate === "/noticias" ? "text-red-500 animate-pulse" : ""
               }`}
             >
               Noticias

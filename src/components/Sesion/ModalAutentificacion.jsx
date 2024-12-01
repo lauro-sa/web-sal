@@ -11,7 +11,7 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState(null);
-  const [isConfirmModalVisible, setIsConfirmModalVisible] = useState(false); // Estado para el modal de confirmación
+  const [isConfirmModalVisible, setIsConfirmModalVisible] = useState(false);
 
   const handleAuth = async (e) => {
     e.preventDefault();
@@ -24,6 +24,15 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
       const bodyData = isRegister
         ? { nombreCompleto, username, email, password }
         : { username, password };
+
+      if (
+        !username ||
+        !password ||
+        (isRegister && (!email || !nombreCompleto))
+      ) {
+        setError("Todos los campos son obligatorios.");
+        return;
+      }
 
       const response = await fetch(endpoint, {
         method: "POST",
@@ -41,7 +50,11 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
       const data = await response.json();
       console.log("Respuesta del servidor:", data);
 
-      if (!isRegister) {
+      if (isRegister) {
+        // Registro exitoso, cambiar a modo inicio de sesión con datos prellenados
+        setIsRegister(false);
+        setIsConfirmModalVisible(true);
+      } else {
         // Inicio de sesión exitoso
         login(data.token, {
           id: data.user.id || data.user._id,
@@ -50,11 +63,7 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
           lastActiveSession: data.user.lastLogin,
         });
 
-        onClose();
-      } else {
-        // Registro exitoso, mostrar el modal de confirmación
-        setIsConfirmModalVisible(true);
-        setIsRegister(false); // Cambiar a modo de inicio de sesión
+        onClose(); // Cierra el modal al iniciar sesión
       }
     } catch (error) {
       console.error("Error en la solicitud:", error);
@@ -143,8 +152,7 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
       <ModalConfirmacionUsuario
         isVisible={isConfirmModalVisible}
         onClose={() => {
-          setIsConfirmModalVisible(false); // Cierra el modal de confirmación
-          setIsModalVisible(true); // Vuelve a abrir el modal de autenticación para iniciar sesión
+          setIsConfirmModalVisible(false);
         }}
       />
     </>
