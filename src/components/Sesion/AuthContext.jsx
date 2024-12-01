@@ -40,10 +40,17 @@ export const AuthProvider = ({ children }) => {
 
   // Función para manejar el inicio de sesión, almacenando el token y los datos del usuario en localStorage
   const login = (token, userData) => {
+    const mappedUserData = {
+      ...userData,
+      id: userData.id || userData._id, // Compatibilidad con `_id` si viene del servidor
+    };
+
+    console.log("Datos mapeados del usuario en login:", mappedUserData);
+
     localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(userData));
+    localStorage.setItem("user", JSON.stringify(mappedUserData));
     setIsAuthenticated(true);
-    setUser(userData);
+    setUser(mappedUserData);
   };
 
   // Función para manejar el cierre de sesión, eliminando el token y los datos del usuario de localStorage

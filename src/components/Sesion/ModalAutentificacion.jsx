@@ -1,6 +1,6 @@
 import React, { useState, useContext } from "react";
 import ModalCustom from "../ModalCustom";
-import ModalConfirmacionUsuario from "./ModalConfirmacionUsuario"; // Importa el nuevo modal
+import ModalConfirmacionUsuario from "./ModalConfirmacionUsuario";
 import { AuthContext } from "./AuthContext";
 
 const ModalAutentificacion = ({ isVisible, onClose }) => {
@@ -15,7 +15,10 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
 
   const handleAuth = async (e) => {
     e.preventDefault();
-    const endpoint = isRegister ? "/api/register" : "/api/login";
+
+    const endpoint = isRegister
+      ? "http://localhost:5000/api/users/register"
+      : "http://localhost:5000/api/users/login";
 
     try {
       const bodyData = isRegister
@@ -30,36 +33,46 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
 
       if (!response.ok) {
         const errorData = await response.json();
-        setError(errorData.error || "Error en la autenticación");
+        console.error("Error desde el servidor:", errorData.message);
+        setError(errorData.message);
         return;
       }
 
       const data = await response.json();
+      console.log("Respuesta del servidor:", data);
 
       if (!isRegister) {
+        // Inicio de sesión exitoso
         login(data.token, {
+          id: data.user.id || data.user._id,
           nombreCompleto: data.user.nombreCompleto,
           email: data.user.email,
-          lastActiveSession: data.user.lastActive,
+          lastActiveSession: data.user.lastLogin,
         });
+
         onClose();
       } else {
-        setIsConfirmModalVisible(true); // Mostrar modal de confirmación
-        setIsRegister(false);
+        // Registro exitoso, mostrar el modal de confirmación
+        setIsConfirmModalVisible(true);
+        setIsRegister(false); // Cambiar a modo de inicio de sesión
       }
     } catch (error) {
       console.error("Error en la solicitud:", error);
-      setError("Error en la solicitud. Intente de nuevo más tarde.");
+      setError("Error en la solicitud. Intenta de nuevo más tarde.");
     }
   };
 
   return (
     <>
+      {/* Modal de autenticación */}
       <ModalCustom isVisible={isVisible} onClose={onClose}>
         <h2 className="text-xl font-bold mb-4 text-center">
           {isRegister ? "Registro" : "Inicio de Sesión"}
         </h2>
-        <form onSubmit={handleAuth} className="w-full max-w-sm mx-auto space-y-4">
+        <form
+          onSubmit={handleAuth}
+          className="w-full max-w-sm mx-auto space-y-4"
+        >
           {isRegister && (
             <>
               <div>
@@ -105,9 +118,7 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
             />
           </div>
           {error && (
-            <div className="text-red-500 text-sm text-center">
-              {error}
-            </div>
+            <div className="text-red-500 text-sm text-center">{error}</div>
           )}
           <div className="flex justify-center">
             <button
@@ -128,10 +139,13 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
         </form>
       </ModalCustom>
 
-      {/* Modal de confirmación */}
+      {/* Modal de confirmación de registro */}
       <ModalConfirmacionUsuario
         isVisible={isConfirmModalVisible}
-        onClose={() => setIsConfirmModalVisible(false)}
+        onClose={() => {
+          setIsConfirmModalVisible(false); // Cierra el modal de confirmación
+          setIsModalVisible(true); // Vuelve a abrir el modal de autenticación para iniciar sesión
+        }}
       />
     </>
   );

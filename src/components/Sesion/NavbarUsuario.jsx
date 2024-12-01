@@ -33,12 +33,22 @@ function NavbarUsuario({ isVisible, user, onLogout, onDeleteUser }) {
     if (!dateTime) return { date: "No disponible", time: "" };
     const dateObj = new Date(dateTime);
     return {
-      date: dateObj.toLocaleDateString("es-ES", { day: "2-digit", month: "2-digit", year: "2-digit" }),
-      time: dateObj.toLocaleTimeString("es-ES", { hour: "2-digit", minute: "2-digit" }),
+      date: dateObj.toLocaleDateString("es-ES", {
+        day: "2-digit",
+        month: "2-digit",
+        year: "2-digit",
+      }),
+      time: dateObj.toLocaleTimeString("es-ES", {
+        hour: "2-digit",
+        minute: "2-digit",
+      }),
     };
   };
 
   const lastSession = formatLastSession(user?.lastActive);
+
+  // Log para verificar que el usuario se está pasando correctamente
+  console.log("Datos del usuario en NavbarUsuario:", user);
 
   return (
     <motion.div
@@ -50,23 +60,33 @@ function NavbarUsuario({ isVisible, user, onLogout, onDeleteUser }) {
       variants={entrarDesdeIzquierda}
     >
       <button
-        onClick={onDeleteUser}
+        onClick={() => {
+          console.log("Solicitud de eliminación enviada.");
+          onDeleteUser();
+        }}
         className="ml-3 text-red-500 hover:text-red-600 transition-colors p-1"
         aria-label="Eliminar cuenta"
       >
         <FiTrash2 className="w-4 h-4" />
       </button>
+
       <div className="flex space-x-8 text-[10px] md:text-[11px] font-mono text-white truncate">
         <div className="flex flex-col items-center">
-          <strong className="text-[9px] uppercase text-violeta-marca">Nombre</strong>
+          <strong className="text-[9px] uppercase text-violeta-marca">
+            Nombre
+          </strong>
           <p className="truncate">{user?.nombreCompleto || "No disponible"}</p>
         </div>
         <div className="flex flex-col items-center">
-          <strong className="text-[9px] uppercase text-violeta-marca">Correo</strong>
+          <strong className="text-[9px] uppercase text-violeta-marca">
+            Correo
+          </strong>
           <p className="truncate">{user?.email || "No disponible"}</p>
         </div>
         <div className="flex flex-col items-center">
-          <strong className="text-[9px] uppercase text-violeta-marca">Última sesión</strong>
+          <strong className="text-[9px] uppercase text-violeta-marca">
+            Última sesión
+          </strong>
           <div className="flex text-center">
             <span className="truncate text-[10px]">{lastSession.date}</span>
             <span className="mx-1">|</span>
@@ -74,8 +94,12 @@ function NavbarUsuario({ isVisible, user, onLogout, onDeleteUser }) {
           </div>
         </div>
       </div>
+
       <button
-        onClick={onLogout}
+        onClick={() => {
+          console.log("Cierre de sesión solicitado.");
+          onLogout();
+        }}
         className="ml-3 text-red-500 hover:text-red-600 transition-colors p-1"
         aria-label="Cerrar sesión"
       >
