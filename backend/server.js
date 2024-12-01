@@ -52,8 +52,10 @@ app.get("/api/noticias", authenticateToken, async (req, res) => {
     keywords)}&language=es&from=${lastWeekDate}&pageSize=20&apiKey=${process.env.API_KEY}`;
 
   try {
+    console.log(`Fetching news from URL: ${url}`); // Agregar log para ver la URL
     const response = await fetch(url);
     if (!response.ok) {
+      console.error(`News API Error: ${response.statusText}`); // Log para el error
       return res.status(500).json({
         success: false,
         error: "Error al recuperar las noticias de tecnología",
@@ -62,13 +64,14 @@ app.get("/api/noticias", authenticateToken, async (req, res) => {
     const data = await response.json();
     res.status(200).json({ success: true, articles: data.articles });
   } catch (error) {
-    console.error("Error al obtener noticias:", error);
+    console.error("Error al obtener noticias:", error); // Log para cualquier otro error
     res.status(500).json({
       success: false,
       error: "Error al recuperar las noticias de tecnología",
     });
   }
 });
+
 
 // Helper para calcular la fecha de hace una semana
 function getLastWeekDate() {

@@ -44,8 +44,8 @@ function Laboratorio() {
   return (
     <div className="relative min-h-screen">
       <FondoParticulasX /> {/* Fondo animado para embellecer la página */}
-      <ContenedorPagina className="px-4 relative z-10">
-        <h1 className="mt-16 text-xl font-bold">Laboratorio</h1>
+      <ContenedorPagina className="px-4 relative z-10 mt-20">
+        <h1 className="m-4 text-xl font-bold">Laboratorio</h1>
         <p className="mt-2 mb-8 text-l leading-relaxed">
           Bienvenido a mi Laboratorio Digital, un espacio donde experimento y
           desarrollo pequeños proyectos de investigación y pruebas. Aquí podrás

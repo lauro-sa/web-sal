@@ -18,8 +18,8 @@ function Servicios() {
   return (
     <div className="relative min-h-screen">
       <FondoParticulasX /> {/* Incluye el fondo animado */}
-      <ContenedorPagina className="px-4 relative z-10">
-        <h1 className="mt-16 text-xl font-bold">Servicios</h1>
+      <ContenedorPagina className="px-4 relative z-10 mt-20">
+        <h1 className="m-4 text-xl font-bold">Servicios</h1>
         <p className="mt-2 mb-8 text-l leading-relaxed">
           Descubre los servicios que ofrezco para ayudarte a alcanzar tus objetivos con soluciones personalizadas y efectivas.
         </p>

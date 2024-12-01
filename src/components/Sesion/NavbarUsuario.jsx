@@ -64,7 +64,7 @@ function NavbarUsuario({ isVisible, user, onLogout, onDeleteUser }) {
           console.log("Solicitud de eliminación enviada.");
           onDeleteUser();
         }}
-        className="ml-3 text-red-500 hover:text-red-600 transition-colors p-1"
+        className="mr-4 text-red-500 hover:text-red-600 transition-colors p-1"
         aria-label="Eliminar cuenta"
       >
         <FiTrash2 className="w-4 h-4" />
@@ -100,7 +100,7 @@ function NavbarUsuario({ isVisible, user, onLogout, onDeleteUser }) {
           console.log("Cierre de sesión solicitado.");
           onLogout();
         }}
-        className="ml-3 text-red-500 hover:text-red-600 transition-colors p-1"
+        className="ml-4 text-red-500 hover:text-red-600 transition-colors p-1"
         aria-label="Cerrar sesión"
       >
         <FiLogOut className="w-4 h-4" />
