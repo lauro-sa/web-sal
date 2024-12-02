@@ -10,6 +10,8 @@ import userRoutes from "./routes/userRoutes.js";
 dotenv.config();
 
 const app = express();
+
+// Usamos el puerto dinámico de Vercel o el puerto 5000 en desarrollo
 const PORT = process.env.PORT || 5000;
 const SECRET_KEY = process.env.SECRET_KEY || "tu_secreto"; // Clave secreta para JWT
 
@@ -71,7 +73,6 @@ app.get("/api/noticias", authenticateToken, async (req, res) => {
     });
   }
 });
-
 
 // Helper para calcular la fecha de hace una semana
 function getLastWeekDate() {
