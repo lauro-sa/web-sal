@@ -1,0 +1,15 @@
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "backend/server.js",
+      "use": "@vercel/node"
+    }
+  ],
+  "env": {
+    "MONGO_URI": "mongodb+srv://laurosa:wuYQadp7sJ4t3rms@cluster0.38dpb.mongodb.net/BDwebSal?retryWrites=true&w=majority",
+    "SECRET_KEY": "Seba123456",
+    "API_KEY": "d73ce24ba58a4dde8df4f4717403b001",
+    "PORT": "5000"
+  }
+}
