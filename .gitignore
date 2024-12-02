@@ -12,7 +12,7 @@ dist/
 dist-ssr/
 
 # Environment variables
-.env2
+.env
 
 # Firebase configuration file (legacy, ensure not used anymore)
 firebaseConfig.json
