@@ -10,6 +10,9 @@ import LayouHabilidades from "../components/LayouHabilidades";
 import LayouProyectos from "../components/LayouProyectos";
 import BotonFlotanteVideollamada from "../components/VideoConsulta/BotonFlotanteVideollamada"; // Importa el botón flotante
 
+import RegistroUsuario from "./RegistroUsuario";
+
+
 function Inicio() {
   return (
     <div className="relative min-h-screen">
@@ -21,6 +24,12 @@ function Inicio() {
         <div className="flex justify-center items-center min-h-screen">
           <InfoPrincipal />
         </div>
+
+        {/* Formulario de registro de usuario */}
+        <div className="flex justify-center items-center my-20">
+          <RegistroUsuario />
+        </div>
+
         <div className="flex justify-center items-center mb-80">
           <LayouInfoSal />
         </div>
@@ -37,5 +46,6 @@ function Inicio() {
     </div>
   );
 }
+
 
 export default Inicio;
