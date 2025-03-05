@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import ModalAutenticacion from "../components/Sesion/ModalAutentificacion";
+// import ModalAutenticacion from "../components/Sesion/ModalAutentificacion";
 import FondoParticulasX from "../components/FondoParticulasX";
 import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
 import CompNoticias from "../components/Noticias/CompNoticias";
@@ -8,24 +8,26 @@ function Noticias() {
   const [noticias, setNoticias] = useState([]);
   const [cargando, setCargando] = useState(true);
   const [error, setError] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token")
-  );
+  // const [isAuthenticated, setIsAuthenticated] = useState(
+  //   !!localStorage.getItem("token")
+  // );
 
+  // useEffect(() => {
+  //   if (isAuthenticated) {
+  //     fetchNoticias();
+  //   }
+  // }, [isAuthenticated]);
+
+  // Llamar a `fetchNoticias` directamente ya que no se requiere autenticación temporalmente
   useEffect(() => {
-    if (isAuthenticated) {
-      fetchNoticias();
-    }
-  }, [isAuthenticated]);
+    fetchNoticias();
+  }, []);
 
   const fetchNoticias = async () => {
     setCargando(true);
     try {
-      const response = await fetch("http://localhost:5000/api/noticias", {
-        headers: {
-          Authorization: `Bearer ${localStorage.getItem("token")}`,
-        },
-      });
+      const response = await fetch("http://localhost:5000/api/noticias");
+      // Eliminé el encabezado Authorization ya que la autenticación está deshabilitada temporalmente
 
       if (!response.ok) {
         throw new Error("Error al obtener noticias.");
@@ -46,14 +48,14 @@ function Noticias() {
     }
   };
 
-  const handleAuthSuccess = (token) => {
-    localStorage.setItem("token", token);
-    setIsAuthenticated(true);
-  };
+  // const handleAuthSuccess = (token) => {
+  //   localStorage.setItem("token", token);
+  //   setIsAuthenticated(true);
+  // };
 
-  if (!isAuthenticated) {
-    return <ModalAutenticacion onAuthSuccess={handleAuthSuccess} />;
-  }
+  // if (!isAuthenticated) {
+  //   return <ModalAutenticacion onAuthSuccess={handleAuthSuccess} />;
+  // }
 
   return (
     <div className="relative min-h-screen">

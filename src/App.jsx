@@ -4,7 +4,6 @@ import {
   Routes,
   Route,
   Navigate,
-  useLocation,
 } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -18,19 +17,19 @@ import Servicios from "./pages/Servicios";
 import DesarrolloPaginasWeb from "./pages/DesarrolloPaginasWeb";
 import Noticias from "./pages/Noticias";
 import Error404 from "./pages/Error404";
-import { AuthContext } from "./components/Sesion/AuthContext";
+// import { AuthContext } from "./components/Sesion/AuthContext";
 
-const ProtectedRoute = ({ children }) => {
-  const { isAuthenticated } = React.useContext(AuthContext);
-  const location = useLocation();
+// Deshabilitado temporalmente la protección
+// const ProtectedRoute = ({ children }) => {
+//   const { isAuthenticated } = React.useContext(AuthContext);
+//   const location = useLocation();
 
-  if (!isAuthenticated) {
-    // Redirige a inicio de sesión con información de dónde venía el usuario
-    return <Navigate to="/inicio-sesion" state={{ from: location }} />;
-  }
+//   if (!isAuthenticated) {
+//     return <Navigate to="/inicio-sesion" state={{ from: location }} />;
+//   }
 
-  return children;
-};
+//   return children;
+// };
 
 function App() {
   return (
@@ -47,22 +46,11 @@ function App() {
           <Route path="/" element={<Inicio />} />
           <Route path="/sobre-mi" element={<SobreMi />} />
           <Route path="/proyectos" element={<Proyectos />} />
-          <Route
-            path="/laboratorio"
-            element={
-              <ProtectedRoute>
-                <Laboratorio />
-              </ProtectedRoute>
-            }
-          />
-          <Route
-            path="/noticias"
-            element={
-              <ProtectedRoute>
-                <Noticias />
-              </ProtectedRoute>
-            }
-          />
+          
+          {/* 🔄 Rutas modificadas para acceso libre 🔄 */}
+          <Route path="/laboratorio" element={<Laboratorio />} />
+          <Route path="/noticias" element={<Noticias />} />
+
           <Route path="/contacto" element={<Contacto />} />
           <Route path="/servicios" element={<Servicios />} />
           <Route

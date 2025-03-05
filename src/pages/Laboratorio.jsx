@@ -2,12 +2,12 @@
 // Este archivo define el componente 'Laboratorio', una página en la aplicación React que ofrece
 // acceso a diversas herramientas digitales y componentes experimentales desarrollados.
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Importación de componentes visuales y de fondo
 import FondoParticulasX from "../components/FondoParticulasX";
 import ContenedorPagina from "../components/Contenedores/ContenedorPagina";
-import ModalAutenticacion from "../components/Sesion/ModalAutentificacion";
+// import ModalAutenticacion from "../components/Sesion/ModalAutentificacion";
 
 // Importación de tarjetas de herramientas del laboratorio
 import CardGeneradorContrasenas from "../components/LabComponentes/GeneradorDeContraseñas/CardGeneradorContrasenas";
@@ -17,30 +17,31 @@ import CardConversorImg from "../components/LabComponentes/ConversorImg/CardConv
 import CardGeneradorQrWifi from "../components/LabComponentes/GeneradorQrWifi/CardGeneradorQrWifi";
 
 function Laboratorio() {
-  const [isAuthenticated, setIsAuthenticated] = useState(
-    !!localStorage.getItem("token") // Chequea la autenticación inicial a través de token almacenado localmente
-  );
+  // Protección temporalmente quitada
+  // const [isAuthenticated, setIsAuthenticated] = useState(
+  //   !!localStorage.getItem("token") // Chequea la autenticación inicial a través de token almacenado localmente
+  // );
 
-  const handleAuthSuccess = (token) => {
-    localStorage.setItem("token", token); // Almacena el nuevo token
-    setIsAuthenticated(true); // Actualiza el estado a autenticado
-  };
+  // const handleAuthSuccess = (token) => {
+  //   localStorage.setItem("token", token); // Almacena el nuevo token
+  //   setIsAuthenticated(true); // Actualiza el estado a autenticado
+  // };
 
-  useEffect(() => {
-    const token = localStorage.getItem("token");
-    setIsAuthenticated(!!token); // Actualiza el estado basado en la presencia del token
-  }, []);
+  // useEffect(() => {
+  //   const token = localStorage.getItem("token");
+  //   setIsAuthenticated(!!token); // Actualiza el estado basado en la presencia del token
+  // }, []);
 
   // Si no está autenticado, muestra el modal de autenticación
-  if (!isAuthenticated) {
-    return (
-      <ModalAutenticacion
-        onAuthSuccess={(token) => handleAuthSuccess(token)}
-      />
-    );
-  }
+  // if (!isAuthenticated) {
+  //   return (
+  //     <ModalAutenticacion
+  //       onAuthSuccess={(token) => handleAuthSuccess(token)}
+  //     />
+  //   );
+  // }
 
-  // Renderizado del contenido del laboratorio solo si el usuario está autenticado
+  // Renderizado del contenido del laboratorio
   return (
     <div className="relative min-h-screen">
       <FondoParticulasX /> {/* Fondo animado para embellecer la página */}

@@ -2,7 +2,7 @@ import React, { useContext, useEffect, useState } from "react";
 import { Link, useLocation } from "react-router-dom";
 import { AuthContext } from "./Sesion/AuthContext";
 import RedesSociales from "./RedesSociales";
-import ModalAutentificacion from "./Sesion/ModalAutentificacion";
+// import ModalAutentificacion from "./Sesion/ModalAutentificacion";
 import logo from "../assets/img/logo-01.png";
 
 function Navbar() {
@@ -12,7 +12,7 @@ function Navbar() {
   const [isVisible, setIsVisible] = useState(true);
   const [isScrolled, setIsScrolled] = useState(false);
   const [vibrate, setVibrate] = useState(null);
-  const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
+  // const [isAuthModalVisible, setIsAuthModalVisible] = useState(false);
 
   const iconosDeseados = ["email", "linkedin", "github"];
 
@@ -39,17 +39,16 @@ function Navbar() {
       ? "text-violeta-marca font-semibold"
       : "hover:text-violeta-marca";
 
+  // Modificación: Deshabilité temporalmente la autenticación para "laboratorio" y "noticias"
   const handleRestrictedClick = (e, route) => {
-    if (!isAuthenticated) {
-      e.preventDefault();
-      setVibrate(route);
-
-      // Mantener el efecto visual por 2 segundos antes de abrir el modal
-      setTimeout(() => {
-        setVibrate(null);
-        setIsAuthModalVisible(true); // Abre el modal
-      }, 1500); // 2000ms = 2 segundos
-    }
+    // if (!isAuthenticated) {
+    //   e.preventDefault();
+    //   setVibrate(route);
+    //   setTimeout(() => {
+    //     setVibrate(null);
+    //     setIsAuthModalVisible(true);
+    //   }, 1500);
+    // }
   };
 
   return (
@@ -119,7 +118,7 @@ function Navbar() {
             <li>
               <Link
                 to="/laboratorio"
-                onClick={(e) => handleRestrictedClick(e, "/laboratorio")}
+                // onClick={(e) => handleRestrictedClick(e, "/laboratorio")} // Protección quitada
                 className={`text-sm md:text-base ${getNavLinkClass(
                   "/laboratorio"
                 )} ${vibrate === "/laboratorio" ? "animate-restricted" : ""}`}
@@ -130,7 +129,7 @@ function Navbar() {
             <li>
               <Link
                 to="/noticias"
-                onClick={(e) => handleRestrictedClick(e, "/noticias")}
+                // onClick={(e) => handleRestrictedClick(e, "/noticias")} // Protección quitada
                 className={`text-sm md:text-base ${getNavLinkClass(
                   "/noticias"
                 )} ${vibrate === "/noticias" ? "animate-restricted" : ""}`}
@@ -161,12 +160,12 @@ function Navbar() {
       </nav>
 
       {/* Modal de autenticación */}
-      {isAuthModalVisible && (
+      {/* {isAuthModalVisible && (
         <ModalAutentificacion
           isVisible={isAuthModalVisible}
           onClose={() => setIsAuthModalVisible(false)}
         />
-      )}
+      )} */}
     </>
   );
 }
