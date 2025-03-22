@@ -1,4 +1,3 @@
-// CardGeneradorQr.jsx
 import React, { useState } from "react";
 import ModalCustom from "../../ModalCustom";
 import GeneradorQr from "./GeneradorQr";
@@ -24,8 +23,12 @@ const CardGeneradorQr = () => {
           Abrir Generador
         </button>
       </div>
-      <ModalCustom isVisible={modalOpen} onClose={() => setModalOpen(false)}>
-        <GeneradorQr />
+      <ModalCustom
+        isVisible={modalOpen}
+        onClose={() => setModalOpen(false)}
+        className="w-full max-w-none mx-auto sm:max-w-lg md:max-w-xl bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-y-auto p-4"
+      >
+        <GeneradorQr isOpen={modalOpen} onClose={() => setModalOpen(false)} />
       </ModalCustom>
     </div>
   );
