@@ -25,13 +25,7 @@ function LayouProyectos() {
           Proyectos
         </p>
         <p className="text-sm tracking-wider md:text-left">
-          Me especializo en la innovación y la aplicación de tecnología avanzada
-          para crear experiencias únicas y efectivas. Mi compromiso con la
-          calidad y la excelencia se refleja en cada proyecto que desarrollo,
-          asegurándome de que cada solución no solo sea rápida y segura, sino
-          también visualmente atractiva. Descubre cómo utilizo mi conocimiento y
-          habilidades para ofrecerte soluciones que superan las expectativas y
-          transforman ideas en realidades impactantes.
+          Desde aplicaciones web interactivas (PWA) y plataformas de e-commerce hasta sitios corporativos y diseño de identidad visual. Cada proyecto es una demostración de soluciones a medida que combinan diseño funcional con tecnología robusta. Explora una selección de mis trabajos para ver mi enfoque en acción.
         </p>
       </ContenedorLayou3>
       <ContenedorLayou4 className="mb-12">

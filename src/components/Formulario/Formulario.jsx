@@ -1,5 +1,5 @@
 // React y Hooks necesarios
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 
 // Librerías de terceros para manejo del formulario, envío de email y confetti
 import { Formik, Form, Field, ErrorMessage } from "formik";
@@ -25,6 +25,7 @@ const validateForm = (values) => {
 // Componente principal del formulario
 const Formulario = ({ onClose }) => {
   const form = useRef(); // Referencia al formulario
+  const [extraLinks, setExtraLinks] = useState(0); // Estado para contar los links adicionales
 
   // Función que maneja el envío del formulario
   const handleSubmit = (values, { resetForm }) => {
@@ -39,7 +40,7 @@ const Formulario = ({ onClose }) => {
         (result) => {
           console.log("SUCCESS!", result.text);
 
-          // Lógica para disparar el confetti solo si el formulario se envió con éxito
+          // Lógica para disparar el confetti
           const buttonRect = form.current.querySelector('button[type="submit"]').getBoundingClientRect();
           const x = (buttonRect.left + buttonRect.width / 2) / window.innerWidth;
           const y = (buttonRect.top + buttonRect.height / 2) / window.innerHeight;
@@ -59,138 +60,98 @@ const Formulario = ({ onClose }) => {
             origin: { x, y },
           };
 
-          // Función que dispara el confetti
           function shootConfetti() {
             confetti({ ...defaults, particleCount: 30 });
             confetti({ ...defaults, particleCount: 5, flat: true });
             confetti({ ...defaults, particleCount: 15, scalar: scalar / 2, shapes: ['circle'] });
           }
 
-          shootConfetti(); // Llamada para disparar el confetti
+          shootConfetti();
 
-          // Mostrar el alert con color personalizado y resetear el formulario después de que el confetti termine
           setTimeout(() => {
-            alert("%cFormulario enviado, gracias!", "color: #1e40af;"); // Azul-marca
-            resetForm(); // Restablece el formulario después de enviarlo
-            if (onClose) onClose(); // Cerrar el modal después de enviar el formulario si onClose está definido
-          }, 1000); // Espera 1 segundo antes de mostrar el alert
+            alert("%cFormulario enviado, gracias!", "color: #1e40af;");
+            resetForm();
+            setExtraLinks(0); // Ocultar los campos extra después de enviar
+            if (onClose) onClose();
+          }, 1000);
         },
         (error) => {
           console.log("FAILED...", error.text);
-          alert("%cError al enviar el formulario. Por favor, inténtalo de nuevo.", "color: #1e40af;"); // Azul-marca
+          alert("%cError al enviar el formulario. Por favor, inténtalo de nuevo.", "color: #1e40af;");
         }
       );
   };
 
   return (
-    // Uso de Formik para manejar la lógica del formulario
     <Formik
       initialValues={{
-        nombreCompleto: "", // Valor inicial del campo nombreCompleto
-        correo: "", // Valor inicial del campo correo
-        telefono: "", // Valor inicial del campo teléfono
-        mensaje: "", // Valor inicial del campo mensaje
-        referencia1: "", // Valor inicial del campo referencia1
-        referencia2: "", // Valor inicial del campo referencia2
+        nombreCompleto: "",
+        correo: "",
+        telefono: "",
+        mensaje: "",
+        referencia1: "",
+        referencia2: "",
+        referencia3: "", // Añadido para el tercer link
       }}
-      validate={validateForm} // Validación del formulario
-      onSubmit={(values, actions) => {
-        handleSubmit(values, actions); // Maneja el envío del formulario
-        actions.setSubmitting(false); // Deja de indicar que está enviando
-      }}
+      validate={validateForm}
+      onSubmit={handleSubmit}
     >
       {({ isSubmitting }) => (
         <Form ref={form} className="space-y-6 flex flex-col p-2 w-96">
-          {/* Título del formulario con animación */}
           <h1 className="text-center tracking-in-contract-bck-top text-xl mb-2 text-azul-marca">
             ¡HABLEMOS!
           </h1>
 
+          {/* Campos del formulario */}
+          <Field type="text" name="nombreCompleto" placeholder="Nombre completo*" className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full" />
+          <ErrorMessage name="nombreCompleto" component="div" className="-mt-4 text-sm text-start text-azul-marca" />
 
-          {/* Campo para el nombre completo */}
+          <Field type="email" name="correo" placeholder="Correo electrónico*" className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full" />
+          <ErrorMessage name="correo" component="div" className="-mt-4 text-sm text-start text-azul-marca" />
+
+          <Field type="text" name="telefono" placeholder="Teléfono" className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full" />
+          <ErrorMessage name="telefono" component="div" className="-mt-4 text-sm text-start text-azul-marca" />
+
+          <Field as="textarea" name="mensaje" placeholder="Mensaje*" className="py-1 px-2 text-sm border rounded bg-fondo-oscuro w-full" />
+          <ErrorMessage name="mensaje" component="div" className="-mt-4 text-sm text-start text-acento-rosa" />
+
+          {/* Sección de links de referencia */}
           <div>
-            <Field
-              type="text"
-              name="nombreCompleto"
-              placeholder="Nombre completo*"
-              className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-            />
-            <ErrorMessage
-              name="nombreCompleto"
-              component="div"
-              className="mt-1 text-sm text-start text-azul-marca"
-            />
-          </div>
-
-          {/* Campo para el correo electrónico */}
-          <div>
-            <Field
-              type="email"
-              name="correo"
-              placeholder="Correo electrónico*"
-              className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-            />
-            <ErrorMessage
-              name="correo"
-              component="div"
-              className="mt-1 text-sm text-start text-azul-marca" />
-          </div>
-
-          {/* Campo para el teléfono */}
-          <Field
-            type="text"
-            name="telefono"
-            placeholder="Teléfono"
-            className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-          />
-          <ErrorMessage
-            name="telefono"
-            component="div"
-            className="mt-1 text-sm text-start text-azul-marca" />
-
-          {/* Campo para el mensaje */}
-          <Field
-            as="textarea"
-            name="mensaje"
-            placeholder="Mensaje*"
-            className="py-1 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-          />
-          <ErrorMessage
-            name="mensaje"
-            component="div"
-            className="text-sm text-start text-acento-rosa"
-          />
-
-          {/* Campo para las referencias */}
-          <div className="">
             <h2 className="text-sm mb-2">
               ¿Quieres dejarme algún link de referencia?
             </h2>
+            <Field type="text" name="referencia1" placeholder="Link de referencia" className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full" />
+            <ErrorMessage name="referencia1" component="div" className="mt-1 text-sm text-start text-acento-rosa" />
 
-            <Field
-              type="text"
-              name="referencia1"
-              placeholder="Link referencia 1"
-              className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-            />
-            <ErrorMessage
-              name="referencia1"
-              component="div"
-              className="text-sm text-start text-acento-rosa"
-            />
+            {/* Segundo campo de link (condicional) */}
+            {extraLinks >= 1 && (
+              <div className="mt-4">
+                <Field type="text" name="referencia2" placeholder="Link de referencia 2" className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full" />
+                <ErrorMessage name="referencia2" component="div" className="mt-1 text-sm text-start text-acento-rosa" />
+              </div>
+            )}
+
+            {/* Tercer campo de link (condicional) */}
+            {extraLinks >= 2 && (
+              <div className="mt-4">
+                <Field type="text" name="referencia3" placeholder="Link de referencia 3" className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full" />
+                <ErrorMessage name="referencia3" component="div" className="mt-1 text-sm text-start text-acento-rosa" />
+              </div>
+            )}
+
+            {/* Botón para añadir más links */}
+            {extraLinks < 2 && (
+              <div className="text-center mt-3">
+                <button
+                  type="button"
+                  onClick={() => setExtraLinks(prev => prev + 1)}
+                  className="text-xs uppercase tracking-wider font-bold text-violeta-marca hover:text-white transition-colors"
+                >
+                  + Agregar link
+                </button>
+              </div>
+            )}
           </div>
-
-          <Field
-            type="text"
-            name="referencia2"
-            placeholder="Link referencia 2"
-            className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-          />
-          <ErrorMessage
-            name="referencia2"
-            component="div"
-            className="text-sm text-start text-acento-rosa"
-          />
 
           {/* Botón de enviar */}
           <div className="w-full text-center">

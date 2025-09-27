@@ -1,149 +1,104 @@
-import React, { useContext, useState, useEffect } from "react";
-import { FaUserCircle } from "react-icons/fa";
+import React, { useContext, useState, useEffect, useRef } from "react";
+import { FaUserCircle, FaSignOutAlt } from "react-icons/fa";
 import ModalAutentificacion from "./ModalAutentificacion";
-import NavbarUsuario from "./NavbarUsuario";
+import TarjetaUsuario from "./TarjetaUsuario"; // Importación corregida
 import ModalDespedida from "./ModalDespedida";
 import ModalConfirmacionEliminacion from "./ModalConfirmacionEliminacion";
 import { AuthContext } from "./AuthContext";
 
 const BotonFlotanteUsuario = () => {
-  const { isAuthenticated, user, login, logout } = useContext(AuthContext);
-  const [isNavbarVisible, setIsNavbarVisible] = useState(false);
+  const { isAuthenticated, user, logout } = useContext(AuthContext);
+  const [isCardVisible, setIsCardVisible] = useState(false); // Estado renombrado para claridad
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [showConfirmModal, setShowConfirmModal] = useState(false);
   const [showFarewellModal, setShowFarewellModal] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
 
-  // Logs para depuración
-  useEffect(() => {
-    console.log("Estado del usuario en el contexto:", user);
-  }, [user]);
+  const buttonRef = useRef(null);
+  const cardRef = useRef(null); // Ref renombrado para claridad
 
-  // Ocultar Navbar al hacer scroll hacia abajo
   useEffect(() => {
     const handleScroll = () => {
-      const currentScrollY = window.scrollY;
-      if (currentScrollY > lastScrollY && currentScrollY > 50) {
-        setIsNavbarVisible(false);
+      if (window.scrollY > lastScrollY && window.scrollY > 50) {
+        setIsCardVisible(false);
       }
-      setLastScrollY(currentScrollY);
+      setLastScrollY(window.scrollY);
     };
     window.addEventListener("scroll", handleScroll);
-    return () => {
-      window.removeEventListener("scroll", handleScroll);
-    };
+    return () => window.removeEventListener("scroll", handleScroll);
   }, [lastScrollY]);
 
-  // Mostrar automáticamente el Navbar al iniciar sesión
   useEffect(() => {
-    if (isAuthenticated) {
-      setIsNavbarVisible(true);
-    }
-  }, [isAuthenticated]);
+    const handleClickOutside = (event) => {
+      if (
+        isCardVisible &&
+        buttonRef.current && !buttonRef.current.contains(event.target) &&
+        cardRef.current && !cardRef.current.contains(event.target)
+      ) {
+        setIsCardVisible(false);
+      }
+    };
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isCardVisible]);
 
-  // Alternar visibilidad del Navbar
-  const toggleNavbar = () => {
+  const toggleCard = () => { // Función renombrada
     if (isAuthenticated) {
-      setIsNavbarVisible((prev) => !prev);
+      setIsCardVisible((prev) => !prev);
     } else {
       setIsModalVisible(true);
     }
   };
 
-  // Manejar cierre de sesión
   const handleLogout = () => {
     logout();
-    setIsNavbarVisible(false);
+    setIsCardVisible(false);
   };
 
-  // Manejar eliminación de usuario
   const handleDeleteUser = async () => {
-    if (!user || !user.id) {
-      alert(
-        "No se pudo obtener el ID del usuario. Intenta iniciar sesión nuevamente."
-      );
-      console.error("ID del usuario no encontrado:", user);
-      return;
-    }
-
-    console.log("ID del usuario:", user.id);
-    const token = localStorage.getItem("token");
-    console.log("Token JWT:", token);
-
-    try {
-      const response = await fetch(
-        `http://localhost:5000/api/users/${user.id}`,
-        {
-          method: "DELETE",
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      );
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error desde el servidor:", errorData);
-        alert(`Error al eliminar la cuenta: ${errorData.message}`);
-        return;
-      }
-
-      setShowFarewellModal(true); // Mostrar modal de despedida
-    } catch (error) {
-      console.error("Error al eliminar la cuenta:", error);
-      alert("Error al eliminar la cuenta. Por favor, intenta de nuevo.");
-    }
+    setShowConfirmModal(false);
+    alert("La eliminación de cuentas está desactivada en el modo de desarrollo.");
   };
 
   return (
     <div>
-      {/* Botón flotante */}
       <button
-        className="fixed bottom-32 right-4 bg-gradiente-marca text-white p-4 rounded-full shadow-lg hover:bg-violeta-marca/90 transition-colors flex items-center justify-center z-50 cursor-pointer"
-        onClick={toggleNavbar}
+        ref={buttonRef}
+        className="fixed bottom-32 right-4 bg-gradiente-marca text-white w-14 h-14 rounded-full shadow-lg hover:bg-violeta-marca/90 transition-all duration-300 flex items-center justify-center z-50 cursor-pointer active:scale-95"
+        onClick={toggleCard} // Usando la función renombrada
       >
-        <FaUserCircle className="w-6 h-6 transition-transform duration-300 hover:scale-110" />
+        {isAuthenticated ? <FaSignOutAlt className="w-5 h-5" /> : <FaUserCircle className="w-8 h-8" />}
       </button>
 
-      {/* NavbarUsuario */}
-      {isAuthenticated && (
-        <NavbarUsuario
-          isVisible={isNavbarVisible}
-          user={user}
-          onLogout={handleLogout}
-          onDeleteUser={() => setShowConfirmModal(true)} // Mostrar modal de confirmación
-        />
-      )}
+      <div ref={cardRef}> {/* Ref renombrado */}
+        {isAuthenticated && (
+          <TarjetaUsuario
+            isVisible={isCardVisible}
+            user={user}
+            onLogout={handleLogout}
+            onDeleteUser={() => setShowConfirmModal(true)}
+          />
+        )}
+      </div>
 
-      {/* Modal de autenticación */}
       {isModalVisible && (
         <ModalAutentificacion
           isVisible={isModalVisible}
           onClose={() => setIsModalVisible(false)}
-          onAuthSuccess={(userData) => {
-            login(userData.token, userData);
-            setIsModalVisible(false);
-            setIsNavbarVisible(true);
-          }}
         />
       )}
 
-      {/* ModalConfirmacionEliminacion */}
       <ModalConfirmacionEliminacion
         isVisible={showConfirmModal}
-        onClose={() => setShowConfirmModal(false)} // Cierra el modal sin eliminar
-        onConfirm={() => {
-          setShowConfirmModal(false); // Cierra el modal de confirmación
-          handleDeleteUser(); // Llama a la función para eliminar el usuario
-        }}
+        onClose={() => setShowConfirmModal(false)}
+        onConfirm={handleDeleteUser}
       />
 
-      {/* ModalDespedida */}
       <ModalDespedida
         isVisible={showFarewellModal}
         onClose={() => {
           setShowFarewellModal(false);
-          handleLogout(); // Cierra sesión al cerrar el modal
+          handleLogout();
         }}
       />
     </div>

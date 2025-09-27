@@ -13,7 +13,8 @@
 
 html,
 body {
-  min-height: 100vh;
+  min-height: 100vh; /* Fallback */
+  min-height: 100dvh; /* Altura dinámica del viewport */
   height: 100%;
   background-color: #10151d;
   color: #fff; /* Opcional: Color de texto */
@@ -27,7 +28,8 @@ body {
 
 /* Contenedor principal de la aplicación */
 #root {
-  min-height: 100vh;
+  min-height: 100vh; /* Fallback */
+  min-height: 100dvh; /* Altura dinámica del viewport */
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -55,6 +57,11 @@ body {
 }
 
 @layer utilities {
+  .min-h-dynamic-screen {
+    min-height: 100vh; /* Fallback para navegadores antiguos */
+    min-height: 100dvh; /* Unidad de viewport dinámica */
+  }
+
   .neon-effect {
     position: relative;
     transition: all 0.3s ease;

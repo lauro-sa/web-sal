@@ -13,10 +13,7 @@ function LayouHabilidades() {
           Habilidades
         </p>
         <p className="text-sm tracking-wider md:text-left">
-          Utilizo tecnología de punta para asegurarme de que tu experiencia en
-          mi sitio sea única, rápida y segura. Mi enfoque en innovación y
-          calidad me diferencia, ofreciéndote soluciones efectivas y visualmente
-          atractivas.
+          Mi stack tecnológico es el núcleo de mis habilidades. Cada herramienta es seleccionada para construir soluciones robustas y a medida. Hace clic en cada ícono para descubrir el beneficio directo que aporta a tu proyecto.
         </p>
       </ContenedorLayou3>
       <ContenedorLayou4 className="">

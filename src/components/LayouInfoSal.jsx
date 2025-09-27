@@ -12,7 +12,7 @@ function LayouInfoSal() {
   return (
     <div className="flex flex-col md:flex-row justify-center items-center m-4">
       <ContenedorLayou1 className="flex flex-col justify-center items-center ">
-        <div className="w-52 md:w-40 mb-4">
+        <div className="w-24 md:w-40 mb-4">
           <img
             src={fotoRetrato}
             alt="SAL"

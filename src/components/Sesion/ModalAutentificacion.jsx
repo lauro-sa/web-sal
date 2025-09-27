@@ -15,65 +15,36 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
 
   const handleAuth = async (e) => {
     e.preventDefault();
+    setError(null); // Limpiar errores previos
 
-    const endpoint = isRegister
-      ? "http://localhost:5000/api/users/register"
-      : "http://localhost:5000/api/users/login";
+    // La lógica de registro se mantiene, pero la de inicio de sesión se adapta a nuestro sistema de desarrollo
+    if (isRegister) {
+      // Aquí iría la futura lógica de registro con Firebase u otro servicio.
+      // Por ahora, podemos mostrar un mensaje o simplemente no hacer nada.
+      setError("La función de registro está desactivada temporalmente.");
+      return;
+    } else {
+      // LÓGICA DE INICIO DE SESIÓN DE DESARROLLO (admin/admin)
+      try {
+        if (!username || !password) {
+          setError("Usuario y contraseña son obligatorios.");
+          return;
+        }
 
-    try {
-      const bodyData = isRegister
-        ? { nombreCompleto, username, email, password }
-        : { username, password };
+        // Llamamos a la función 'login' del AuthContext, que ahora es una promesa
+        await login(username, password);
 
-      if (
-        !username ||
-        !password ||
-        (isRegister && (!email || !nombreCompleto))
-      ) {
-        setError("Todos los campos son obligatorios.");
-        return;
+        onClose(); // Si el login es exitoso, cerramos el modal
+
+      } catch (errorMsg) {
+        // Si la promesa es rechazada (credenciales incorrectas), mostramos el error
+        setError(errorMsg);
       }
-
-      const response = await fetch(endpoint, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(bodyData),
-      });
-
-      if (!response.ok) {
-        const errorData = await response.json();
-        console.error("Error desde el servidor:", errorData.message);
-        setError(errorData.message);
-        return;
-      }
-
-      const data = await response.json();
-      console.log("Respuesta del servidor:", data);
-
-      if (isRegister) {
-        // Registro exitoso, cambiar a modo inicio de sesión con datos prellenados
-        setIsRegister(false);
-        setIsConfirmModalVisible(true);
-      } else {
-        // Inicio de sesión exitoso
-        login(data.token, {
-          id: data.user.id || data.user._id,
-          nombreCompleto: data.user.nombreCompleto,
-          email: data.user.email,
-          lastActiveSession: data.user.lastLogin,
-        });
-
-        onClose(); // Cierra el modal al iniciar sesión
-      }
-    } catch (error) {
-      console.error("Error en la solicitud:", error);
-      setError("Error en la solicitud. Intenta de nuevo más tarde.");
     }
   };
 
   return (
     <>
-      {/* Modal de autenticación */}
       <ModalCustom isVisible={isVisible} onClose={onClose}>
         <h2 className="text-xl font-bold mb-4 text-center">
           {isRegister ? "Registro" : "Inicio de Sesión"}
@@ -91,7 +62,6 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
                   value={nombreCompleto}
                   onChange={(e) => setNombreCompleto(e.target.value)}
                   className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-                  required
                 />
               </div>
               <div>
@@ -101,7 +71,6 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   className="py-3 px-2 text-sm border rounded bg-fondo-oscuro w-full"
-                  required
                 />
               </div>
             </>
@@ -138,7 +107,10 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
             </button>
           </div>
           <p
-            onClick={() => setIsRegister(!isRegister)}
+            onClick={() => {
+              setIsRegister(!isRegister);
+              setError(null); // Limpiar errores al cambiar de modo
+            }}
             className="text-violeta-marca cursor-pointer text-center"
           >
             {isRegister
@@ -148,7 +120,6 @@ const ModalAutentificacion = ({ isVisible, onClose }) => {
         </form>
       </ModalCustom>
 
-      {/* Modal de confirmación de registro */}
       <ModalConfirmacionUsuario
         isVisible={isConfirmModalVisible}
         onClose={() => {

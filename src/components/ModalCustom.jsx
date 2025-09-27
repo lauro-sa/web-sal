@@ -17,10 +17,10 @@ const ModalCustom = ({ isVisible, onClose, children }) => {
           animate="visible"
           exit="hidden"
           onClick={onClose}
-          style={{ margin: 0 }}  // Eliminar cualquier margen
+          style={{ margin: 0 }} // Eliminar cualquier margen
         >
           <motion.div
-            className="rounded-lg shadow-lg p-6 z-10 max-w-xl bg-[rgba(1,1,1,0.80)] border border-violeta-marca/50 w-full"
+            className="rounded-lg shadow-lg p-6 z-10 max-w-xl bg-[rgba(1,1,1,0.80)] border border-violeta-marca/50 w-full overflow-y-auto max-h-[90vh]"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Renderizado del contenido */}

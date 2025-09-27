@@ -1,9 +1,8 @@
 import React, { useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import Calendar from "react-calendar";
-import "react-calendar/dist/Calendar.css";
+import "./Calendar.css"; // Importa los nuevos estilos para el calendario
 
-// Lista de servicios disponibles para seleccionar
 const serviciosDisponibles = [
   "Consultoría Técnica",
   "Desarrollo Web",
@@ -12,7 +11,6 @@ const serviciosDisponibles = [
   "Desarrollo de Aplicaciones Móviles",
 ];
 
-// Función para validar los campos del formulario
 const validateForm = (values) => {
   const errors = {};
   if (!values.nombre) {
@@ -27,25 +25,20 @@ const validateForm = (values) => {
 };
 
 const FormularioVideollamada = ({ onClose }) => {
-  // Estado para la fecha seleccionada
   const [selectedDate, setSelectedDate] = useState(null);
-  // Estado para los servicios seleccionados
   const [selectedServices, setSelectedServices] = useState([]);
-  // Estado para controlar la visibilidad del calendario
   const [showCalendar, setShowCalendar] = useState(false);
 
-  // Maneja el cambio de fecha en el calendario
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    setShowCalendar(false); // Oculta el calendario después de seleccionar una fecha
+    setShowCalendar(false);
   };
 
-  // Maneja la selección y deselección de servicios
   const handleServiceToggle = (service) => {
     setSelectedServices((prev) =>
       prev.includes(service)
-        ? prev.filter((s) => s !== service) // Si el servicio ya está seleccionado, lo deselecciona
-        : [...prev, service] // Si no está seleccionado, lo agrega a la lista
+        ? prev.filter((s) => s !== service)
+        : [...prev, service]
     );
   };
 
@@ -60,7 +53,7 @@ const FormularioVideollamada = ({ onClose }) => {
             fecha: selectedDate,
             servicios: selectedServices,
           };
-          localStorage.setItem("videoCallData", JSON.stringify(dataToSave)); // Guarda los datos en el localStorage
+          localStorage.setItem("videoCallData", JSON.stringify(dataToSave));
           alert(
             `📅 Agendamos tu reunión para el ${selectedDate.toLocaleDateString("es-ES", {
               weekday: "long",
@@ -70,23 +63,27 @@ const FormularioVideollamada = ({ onClose }) => {
             })}. Te enviaremos un correo con el enlace para la reunión.`
           );
           setSubmitting(false);
-          onClose(); // Cierra el modal después de agendar la videollamada
+          onClose();
         }, 400);
       }}
     >
       {({ values, isSubmitting }) => (
-        <Form className="space-y-6 flex flex-col p-4 w-96 bg-fondo-oscuro rounded-md">
+        <Form 
+          className="space-y-6 flex flex-col p-4 w-full max-w-md 
+                     bg-black/30 backdrop-blur-xl rounded-2xl 
+                     border border-violeta-marca/30 text-white"
+        >
           <div>
             <Field
               type="text"
               name="nombre"
               placeholder="Nombre*"
-              className="py-2 px-3 text-sm border rounded bg-fondo-oscuro w-full"
+              className="py-2 px-3 text-sm border rounded bg-transparent w-full border-violeta-marca/50 focus:border-violeta-marca focus:ring-0"
             />
             <ErrorMessage
               name="nombre"
               component="div"
-              className="text-sm text-start text-acento-rosa"
+              className="text-sm text-start text-acento-rosa pt-1"
             />
           </div>
 
@@ -95,44 +92,42 @@ const FormularioVideollamada = ({ onClose }) => {
               type="email"
               name="correo"
               placeholder="Correo electrónico*"
-              className="py-2 px-3 text-sm border rounded bg-fondo-oscuro w-full"
+              className="py-2 px-3 text-sm border rounded bg-transparent w-full border-violeta-marca/50 focus:border-violeta-marca focus:ring-0"
             />
             <ErrorMessage
               name="correo"
               component="div"
-              className="text-sm text-start text-acento-rosa"
+              className="text-sm text-start text-acento-rosa pt-1"
             />
           </div>
 
-          {/* Muestra los servicios seleccionados */}
           {selectedServices.length > 0 && (
             <div className="mt-6 text-center">
               <h4 className="text-sm mb-2 text-white">Servicios seleccionados:</h4>
-              <div className="flex flex-wrap gap-2 justify-center border-t border-gray-500 pt-2">
+              <div className="flex flex-wrap gap-2 justify-center border-t border-violeta-marca/20 pt-2">
                 {selectedServices.map((service) => (
                   <span
                     key={service}
                     onClick={() => handleServiceToggle(service)}
-                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-green-900 hover:bg-green-900/20 transition-colors"
+                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-green-700 bg-green-900/30 hover:bg-green-800/50 transition-colors"
                   >
-                    {service}
+                    {service} ✕
                   </span>
                 ))}
               </div>
             </div>
           )}
 
-          {/* Muestra los servicios disponibles para seleccionar */}
           <div className="mt-4">
-            <h3 className="text-sm mb-2 text-white text-center">Selecciona los servicios:</h3>
-            <div className="flex flex-wrap gap-2 justify-center border-t border-gray-500 pt-2">
+            <h3 className="text-sm mb-2 text-white text-center">Selecciona los servicios de tu interés:</h3>
+            <div className="flex flex-wrap gap-2 justify-center border-t border-violeta-marca/20 pt-2">
               {serviciosDisponibles
                 .filter((service) => !selectedServices.includes(service))
                 .map((service) => (
                   <span
                     key={service}
                     onClick={() => handleServiceToggle(service)}
-                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-red-900 hover:bg-red-900/20 transition-colors"
+                    className="cursor-pointer px-3 py-1 rounded-full text-sm border border-violeta-marca/50 hover:bg-violeta-marca/30 transition-colors"
                   >
                     {service}
                   </span>
@@ -140,28 +135,29 @@ const FormularioVideollamada = ({ onClose }) => {
             </div>
           </div>
 
-          {/* Botón para mostrar/ocultar el calendario y seleccionar la fecha */}
           <div className="flex flex-col items-center">
             <h3 className="text-sm mb-2 text-white">
-              Selecciona la fecha para la videollamada:
+              Elige una fecha para la videollamada:
             </h3>
             <button
               type="button"
               onClick={() => setShowCalendar(!showCalendar)}
-              className="px-4 py-2 mt-2 w-full text-center text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
+              className="px-4 py-2 mt-2 w-full text-center text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:bg-violeta-marca/30 transition-colors"
             >
               {selectedDate ? selectedDate.toLocaleDateString("es-ES") : "Seleccionar fecha"}
             </button>
             {showCalendar && (
-              <Calendar onChange={handleDateChange} value={selectedDate} />
+              <div className="mt-4 w-full flex justify-center">
+                 <Calendar onChange={handleDateChange} value={selectedDate} />
+              </div>
             )}
           </div>
 
           <div className="text-center">
             <button
               type="submit"
-              disabled={isSubmitting}
-              className="px-4 py-2 mt-4 w-full text-center text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:border-violeta-marca hover:bg-violeta-marca/30 hover:text-white transition-colors"
+              disabled={isSubmitting || !selectedDate || selectedServices.length === 0}
+              className="px-4 py-2 mt-4 w-full text-center text-sm uppercase tracking-wider font-bold rounded-xl border border-violeta-marca hover:bg-violeta-marca/30 disabled:opacity-50 disabled:cursor-not-allowed transition-colors"
             >
               Agendar Videollamada
             </button>

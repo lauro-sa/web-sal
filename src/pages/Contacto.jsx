@@ -22,10 +22,9 @@ function Contacto() {
       <ContenedorPagina className="px-4 relative z-10 mt-20">
         <h1 className="m-4 text-xl font-bold">Contacto</h1>
         <p className="mt-2 mb-8 text-l leading-relaxed">
-          Aquí puedes ponerte en contacto conmigo a través de estos canales o bien completar
-          el formulario y te responderé a la brevedad.
+        Si tienes alguna pregunta o simplemente quieres saludar, no dudes en contactarme.
         </p>
-        <RedesSociales iconsToShow={iconosDeseados} />
+        {/* <RedesSociales iconsToShow={iconosDeseados} /> */}
         <div className="flex justify-center items-center">
         <Contenedor className="">
           <Formulario />

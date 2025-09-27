@@ -11,57 +11,62 @@ export const AuthProvider = ({ children }) => {
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [user, setUser] = useState(null);
 
-  // Efecto para verificar el token y los datos del usuario almacenados en localStorage al cargar el componente
+  // Efecto para verificar si ya existe una sesión en localStorage al cargar la app
   useEffect(() => {
     const storedToken = localStorage.getItem("token");
     const storedUser = localStorage.getItem("user");
 
-    // Si existen token y datos del usuario, se actualizan los estados correspondientes
     if (storedToken && storedUser) {
       setIsAuthenticated(true);
       setUser(JSON.parse(storedUser));
     }
-
-    // Manejador de eventos para cambios en el almacenamiento local, asegura que el estado de autenticación se mantenga actualizado
-    const handleStorageChange = () => {
-      const updatedToken = localStorage.getItem("token");
-      const updatedUser = localStorage.getItem("user");
-
-      setIsAuthenticated(!!updatedToken);
-      setUser(updatedUser ? JSON.parse(updatedUser) : null);
-    };
-
-    window.addEventListener("storage", handleStorageChange);
-
-    return () => {
-      window.removeEventListener("storage", handleStorageChange);
-    };
   }, []);
 
-  // Función para manejar el inicio de sesión, almacenando el token y los datos del usuario en localStorage
-  const login = (token, userData) => {
-    const mappedUserData = {
-      ...userData,
-      id: userData.id || userData._id, // Compatibilidad con `_id` si viene del servidor
-    };
+  // Función para manejar el inicio de sesión (versión de desarrollo)
+  const login = (email, password) => {
+    return new Promise((resolve, reject) => {
+      // Simulación de verificación de credenciales
+      if (email === "admin" && password === "admin") {
+        console.log("Inicio de sesión de desarrollo exitoso para 'admin'");
 
-    console.log("Datos mapeados del usuario en login:", mappedUserData);
+        // Crear datos de usuario falsos
+        const fakeUserData = {
+          id: "admin-id-01",
+          email: "admin@dominio.com",
+          nombre: "Administrador",
+        };
 
-    localStorage.setItem("token", token);
-    localStorage.setItem("user", JSON.stringify(mappedUserData));
-    setIsAuthenticated(true);
-    setUser(mappedUserData);
+        // Crear un token falso
+        const fakeToken = "fake-jwt-token-for-admin-session";
+
+        // Guardar en localStorage para persistir la sesión
+        localStorage.setItem("token", fakeToken);
+        localStorage.setItem("user", JSON.stringify(fakeUserData));
+
+        // Actualizar el estado de la aplicación
+        setIsAuthenticated(true);
+        setUser(fakeUserData);
+        
+        resolve("¡Inicio de sesión exitoso!");
+
+      } else {
+        console.log("Credenciales de desarrollo incorrectas");
+        // Rechazar la promesa con un mensaje de error
+        reject("Credenciales incorrectas. Por favor, intente de nuevo.");
+      }
+    });
   };
 
-  // Función para manejar el cierre de sesión, eliminando el token y los datos del usuario de localStorage
+  // Función para manejar el cierre de sesión, eliminando los datos de localStorage
   const logout = () => {
     localStorage.removeItem("token");
     localStorage.removeItem("user");
     setIsAuthenticated(false);
     setUser(null);
+    console.log("Sesión de desarrollo cerrada.");
   };
 
-  // Proveedor del contexto que expone el estado de autenticación y las funciones para modificarlo
+  // Proveedor del contexto que expone el estado de autenticación y las funciones
   return (
     <AuthContext.Provider value={{ isAuthenticated, user, login, logout }}>
       {children}

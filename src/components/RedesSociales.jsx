@@ -12,16 +12,16 @@ import TransicionDeMovimiento from "./TransicionDeMovimiento";
 import ModalCustom from "./ModalCustom";
 import Formulario from "./Formulario/Formulario";
 
-function RedesSociales({ iconsToShow = [], animateIcons = false }) {
+function RedesSociales({ iconsToShow = [], animateIcons = false, size = "25", initialDelay = 0 }) {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const toggleModal = (e) => {
-    e.stopPropagation(); // Evita que el clic en el formulario cierre el footer
+    e.stopPropagation();
     setIsModalOpen(!isModalOpen);
   };
 
   const handleIconClick = (url, e) => {
-    e.stopPropagation(); // Asegura que el clic solo afecte al ícono y no a otros elementos
+    e.stopPropagation();
     if (url) {
       window.open(url, "_blank");
     } else {
@@ -29,8 +29,8 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
     }
   };
 
-  const baseDelay = 0.1; // Base delay en segundos
-  const delayIncrement = 0.1; // Incremento de delay para cada icono adicional
+  const baseDelay = 0.1;
+  const delayIncrement = 0.1;
 
   const renderIcon = (Icon, delayMultiplier, url, className) => {
     const iconElement = (
@@ -39,7 +39,7 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
         onClick={(e) => handleIconClick(url, e)}
       >
         <Icon
-          size="25"
+          size={size}
           color="#8964e8"
           className={`icon ${animateIcons ? "animated" : ""}`}
         />
@@ -48,7 +48,7 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
     return animateIcons ? (
       <TransicionDeMovimiento
         type="entrarAbajoArriba"
-        delay={baseDelay + delayMultiplier * delayIncrement}
+        delay={initialDelay + baseDelay + delayMultiplier * delayIncrement}
       >
         {iconElement}
       </TransicionDeMovimiento>
@@ -97,7 +97,6 @@ function RedesSociales({ iconsToShow = [], animateIcons = false }) {
           "instagram-icon"
         )}
 
-      {/* Modal */}
       <ModalCustom isVisible={isModalOpen} onClose={toggleModal}>
         <Formulario onClose={toggleModal} />
       </ModalCustom>

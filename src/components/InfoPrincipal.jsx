@@ -14,20 +14,20 @@ function InfoPrincipal() {
       <Contenedor className="">
         <div className="flex flex-col space-y-12 py-20 md:py-40">
           <TransicionDeMovimiento type="entrarArribaAbajo">
-            <p className="text-sm uppercase tracking-wider">BIENVENIDOS</p>
+            <p className="text-sm uppercase tracking-wider">Hola, soy Sebastián. Bienvenido a mi portafolio.</p>
           </TransicionDeMovimiento>
-          <h1 className="flex flex-col items-center justify-center md:flex-row md:items-end h-full text-center">
-            <span className="text-2xl uppercase tracking-wider">Soy</span>
+          <h1 className="flex flex-col items-center justify-center ">
+           
+            <span className="text-xl tracking-wider">S7ian Code</span>
             <span className="animated-text text-4xl uppercase tracking-wider mx-2">
-              S7ian Code
+            Desarrollador <br/>Full-Stack
             </span>
-            <span className="text-2xl uppercase tracking-wider">
-              Programador
-            </span>
+
           </h1>
           <p className="text-sm uppercase tracking-wider">
-            Creo soluciones elegantes y simples a través de mi diseño y
-            programación, disfrutando cada paso del proceso.
+          Apasionado por la tecnología y el diseño, enfocado en construir
+              soluciones de software eficientes, escalables y visualmente
+              atractivas.
           </p>
           <TransicionDeMovimiento type="entrarAbajoArriba">
             <Link
